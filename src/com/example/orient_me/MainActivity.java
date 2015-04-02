@@ -1,17 +1,37 @@
 package com.example.orient_me;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
 
+	Button submitButton;
+	EditText usernameTextF, passwordTextF;	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        submitButton = (Button) findViewById(R.id.maB_Submit);
+        usernameTextF = (EditText) findViewById(R.id.maTF_Username);
+        passwordTextF = (EditText) findViewById(R.id.maTF_Password);
+        
+        submitButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(MainActivity.this, "Clicked Submit!", Toast.LENGTH_SHORT).show();
+			}
+		});
     }
 
 
