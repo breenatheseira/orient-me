@@ -8,24 +8,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:weightSum="2" >
-
-        <TextView
-            android:id="@+id/maT_Username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/username_text"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:weightSum="1" />
+        android:paddingTop="10dp" >
 
         <EditText
             android:id="@+id/maTF_Username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textEmailAddress"
-            android:weightSum="1" >
+            android:hint="@string/username_text"
+            android:inputType="textEmailAddress" >
 
             <requestFocus />
         </EditText>
@@ -34,24 +25,15 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2" >
-
-        <TextView
-            android:id="@+id/maT_Password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/password_text"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:weightSum="1" />
+        android:orientation="horizontal" >
 
         <EditText
             android:id="@+id/maTF_Password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
-            android:weightSum="1" >
+            android:hint="@string/password_text"
+            android:inputType="textPassword" >
         </EditText>
     </LinearLayout>
 
