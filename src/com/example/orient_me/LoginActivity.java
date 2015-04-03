@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity {
 
 	Button submitButton;
 	EditText usernameTextF, passwordTextF;	
@@ -18,18 +18,18 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         
-        submitButton = (Button) findViewById(R.id.maB_Submit);
-        usernameTextF = (EditText) findViewById(R.id.maTF_Username);
-        passwordTextF = (EditText) findViewById(R.id.maTF_Password);
+        submitButton = (Button) findViewById(R.id.laB_Submit);
+        usernameTextF = (EditText) findViewById(R.id.laTF_Username);
+        passwordTextF = (EditText) findViewById(R.id.laTF_Password);
         
         submitButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Toast.makeText(MainActivity.this, "Clicked Submit!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(LoginActivity.this, "Clicked Submit!", Toast.LENGTH_SHORT).show();
 			}
 		});
     }

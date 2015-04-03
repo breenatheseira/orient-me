@@ -11,7 +11,7 @@
         android:paddingTop="10dp" >
 
         <EditText
-            android:id="@+id/maTF_Username"
+            android:id="@+id/laTF_Username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -28,7 +28,7 @@
         android:orientation="horizontal" >
 
         <EditText
-            android:id="@+id/maTF_Password"
+            android:id="@+id/laTF_Password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -38,7 +38,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/maB_Submit"
+        android:id="@+id/laB_Submit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/submit_text" />

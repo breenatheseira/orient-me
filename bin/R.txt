@@ -378,11 +378,11 @@ int id homeAsUp 0x7f09000e
 int id icon 0x7f090026
 int id ifRoom 0x7f090016
 int id image 0x7f090023
+int id laB_Submit 0x7f090041
+int id laTF_Password 0x7f090040
+int id laTF_Username 0x7f09003f
 int id listMode 0x7f09000a
 int id list_item 0x7f090025
-int id maB_Submit 0x7f090041
-int id maTF_Password 0x7f090040
-int id maTF_Username 0x7f09003f
 int id middle 0x7f09001d
 int id never 0x7f090017
 int id none 0x7f09000f
@@ -437,7 +437,7 @@ int layout abc_screen_toolbar 0x7f030012
 int layout abc_search_dropdown_item_icons_2line 0x7f030013
 int layout abc_search_view 0x7f030014
 int layout abc_simple_dropdown_hint 0x7f030015
-int layout activity_main 0x7f030016
+int layout activity_login 0x7f030016
 int layout support_simple_spinner_dropdown_item 0x7f030017
 int menu main 0x7f0c0000
 int string abc_action_bar_home_description 0x7f0a0001
