@@ -1,5 +1,6 @@
 package com.example.orient_me;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -12,8 +13,10 @@ import android.widget.Toast;
 
 public class LoginActivity extends ActionBarActivity {
 
+	private final static String LOGIN_API_ENDPOINT_URL = "http://apu-orientation.herokuapp.com/api/sessions.json";
+	private SharedPreferences mPreferences;
 	Button submitButton;
-	EditText usernameTextF, passwordTextF;	
+	EditText usernameTextF, passwordTextF;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
