@@ -27,8 +27,7 @@ import com.savagelook.android.UrlJsonAsyncTask;
 
 public class LoginActivity extends ActionBarActivity {
 
-	private final static String LOGIN_API_ENDPOINT_URL = "http://apu-orientation.herokuapp.com/api/sessions.json";
-	private SharedPreferences mPreferences;
+	private final static String LOGIN_API_ENDPOINT_URL = "http://apu-orientation.herokuapp.com/api/sessions.json";	
 	Button submitButton;
 	EditText usernameTextF, passwordTextF;
 	String s_username, s_password;
@@ -133,12 +132,13 @@ public class LoginActivity extends ActionBarActivity {
             return json;
         }
     	protected void onPostExecute(JSONObject json) {
+    		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
     		try {
                 if (json.getBoolean("success")) {
-                	mPreferences = getPreferences(Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = mPreferences.edit();
-                    editor.putString("AuthToken", json.getJSONObject("data").getString("auth_token"));
-                    editor.commit();
+                	prefs.SavePreferences("AuthToken", json.getJSONObject("data").getString("auth_token"));
+                	prefs.SavePreferences("Name", json.getJSONObject("data").getString("name"));
+                	prefs.SavePreferences("Username", json.getJSONObject("data").getString("username"));
+                	prefs.SavePreferences("IntakeCode", json.getJSONObject("data").getString("intake_code")); 
 //                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 //                    startActivity(intent);
 //                    finish();
