@@ -1838,6 +1838,7 @@ containing a value of this type.
         public static final int action_settings=0x7f0a0012;
         public static final int app_name=0x7f0a0010;
         public static final int hello_world=0x7f0a0011;
+        public static final int main_menu=0x7f0a0016;
         public static final int password_text=0x7f0a0014;
         public static final int submit_text=0x7f0a0015;
         public static final int username_text=0x7f0a0013;

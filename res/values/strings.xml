@@ -7,5 +7,6 @@
     <string name="username_text">Username</string>
     <string name="password_text">Password</string>
     <string name="submit_text">Submit</string>
+    <string name="main_menu">Main Menu</string>
 
 </resources>

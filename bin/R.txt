@@ -461,6 +461,7 @@ int string abc_toolbar_collapse_description 0x7f0a0004
 int string action_settings 0x7f0a0012
 int string app_name 0x7f0a0010
 int string hello_world 0x7f0a0011
+int string main_menu 0x7f0a0016
 int string password_text 0x7f0a0014
 int string submit_text 0x7f0a0015
 int string username_text 0x7f0a0013
