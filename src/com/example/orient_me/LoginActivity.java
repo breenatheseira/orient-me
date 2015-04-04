@@ -2,17 +2,17 @@ package com.example.orient_me;
 
 import java.io.IOException;
 
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -139,9 +139,10 @@ public class LoginActivity extends ActionBarActivity {
                 	prefs.SavePreferences("Name", json.getJSONObject("data").getString("name"));
                 	prefs.SavePreferences("Username", json.getJSONObject("data").getString("username"));
                 	prefs.SavePreferences("IntakeCode", json.getJSONObject("data").getString("intake_code")); 
-//                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-//                    startActivity(intent);
-//                    finish();
+                	
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
                 Toast.makeText(context, json.getString("info"), Toast.LENGTH_LONG).show();
             } catch (Exception e) {
