@@ -25,7 +25,6 @@ import android.widget.Toast;
 
 import com.savagelook.android.UrlJsonAsyncTask;
 
-
 public class LoginActivity extends ActionBarActivity {
 
 	private final static String LOGIN_API_ENDPOINT_URL = "http://apu-orientation.herokuapp.com/api/sessions.json";
@@ -104,7 +103,7 @@ public class LoginActivity extends ActionBarActivity {
             	try {
             		json.put("success", false);
             		json.put("info", "Sorry, something went wrong. Please try again.");
-            		studentObj.put("username", s_username);
+            		studentObj.put("email", s_username);
             		studentObj.put("password", s_password);
             		holder.put("student", studentObj);
             		
@@ -136,6 +135,7 @@ public class LoginActivity extends ActionBarActivity {
     	protected void onPostExecute(JSONObject json) {
     		try {
                 if (json.getBoolean("success")) {
+                	mPreferences = getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = mPreferences.edit();
                     editor.putString("AuthToken", json.getJSONObject("data").getString("auth_token"));
                     editor.commit();
