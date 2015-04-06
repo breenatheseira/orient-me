@@ -12,7 +12,7 @@
         android:padding="10dp" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/daT_instructions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/doc_instruction"
@@ -27,31 +27,31 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/daB_studentHandbook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/student_handbook" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/daB_moduleList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/module_list" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/daB_orientSchedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/orientation_schedule" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/daB_campusMap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/campus_map" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/daB_myNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/my_notes" />
