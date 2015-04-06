@@ -140,7 +140,7 @@ public class LoginActivity extends ActionBarActivity {
                 	prefs.SavePreferences("Username", json.getJSONObject("data").getString("username"));
                 	prefs.SavePreferences("IntakeCode", json.getJSONObject("data").getString("intake_code")); 
                 	
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), DocumentActivity.class);
                     startActivity(intent);
                     finish();
                 }
