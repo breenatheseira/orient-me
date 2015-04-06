@@ -14,5 +14,6 @@
     <string name="action_import_long">Import Contacts</string>
     <string name="action_badges">Badges</string>
     <string name="action_import_short">Import</string>
+    <string name="doc_instruction">Select A Document</string>
 
 </resources>
