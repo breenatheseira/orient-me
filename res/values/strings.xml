@@ -14,6 +14,11 @@
     <string name="action_import_long">Import Contacts</string>
     <string name="action_badges">Badges</string>
     <string name="action_import_short">Import</string>
-    <string name="doc_instruction">Select A Document</string>
+    <string name="student_handbook">Student Handbook</string>
+    <string name="module_list">Module List</string>
+    <string name="orientation_schedule">Orientation Schedule</string>
+    <string name="campus_map">Campus Map</string>
+    <string name="my_notes">My Notes</string>
+    <string name="doc_instruction">Select a Document to View</string>
 
 </resources>
