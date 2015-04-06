@@ -9,5 +9,10 @@
     <string name="submit_text">Submit</string>
     <string name="main_menu">Main Menu</string>
     <string name="welcome">Welcome</string>
+    <string name="action_doc">Docs</string>
+    <string name="action_sMedia">Friends</string>
+    <string name="action_import_long">Import Contacts</string>
+    <string name="action_badges">Badges</string>
+    <string name="action_import_short">Import</string>
 
 </resources>
