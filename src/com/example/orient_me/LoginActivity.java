@@ -138,8 +138,17 @@ public class LoginActivity extends ActionBarActivity {
                 	prefs.SavePreferences("AuthToken", json.getJSONObject("data").getString("auth_token"));
                 	prefs.SavePreferences("Name", json.getJSONObject("data").getString("name"));
                 	prefs.SavePreferences("Username", json.getJSONObject("data").getString("username"));
-                	prefs.SavePreferences("IntakeCode", json.getJSONObject("data").getString("intake_code")); 
+                	prefs.SavePreferences("IntakeCode", json.getJSONObject("data").getString("intake_code"));
+
+                	// Shared Preferences to get the URLs of the documents
+                	JSONObject doc = new JSONObject();
+                	doc = json.getJSONObject("data").getJSONObject("documents");
                 	
+                	prefs.SavePreferences("OrientationSchedule", doc.getJSONArray("orientation_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
+                	prefs.SavePreferences("StudentHandbook", doc.getJSONArray("handbook").getJSONObject(0).getJSONObject("document_url").getString("url"));
+                	prefs.SavePreferences("ModuleList", doc.getJSONArray("module_list").getJSONObject(0).getJSONObject("document_url").getString("url"));
+                	prefs.SavePreferences("FeeSchedule", doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
+                	                	
                     Intent intent = new Intent(getApplicationContext(), DocumentActivity.class);
                     startActivity(intent);
                     finish();
