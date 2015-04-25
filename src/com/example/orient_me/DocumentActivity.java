@@ -31,16 +31,10 @@ public class DocumentActivity extends ActionBarActivity implements OnClickListen
 		myNotes = (Button) findViewById(R.id.daB_myNotes);
 		
 		stuHandbook.setOnClickListener(this);
-		
-//      stuHandbook.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				Toast.makeText(LoginActivity.this, "Clicked Submit!", Toast.LENGTH_SHORT).show();
-//			}
-//		});		
-		
+		modList.setOnClickListener(this);
+		campMap.setOnClickListener(this);
+		orientSch.setOnClickListener(this);
+		myNotes.setOnClickListener(this);
 	}
 
 	@Override
