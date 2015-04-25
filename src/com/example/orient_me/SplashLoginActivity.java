@@ -1,3 +1,4 @@
+// wael (2014) How To Hide the File Download with Splash Screen Activity. [Online]. Available from: http://stackoverflow.com/questions/22585155/how-to-hide-the-file-download-with-splash-screen-activity [Accessed: 25 April 2015]. 
 package com.example.orient_me;
 
 import java.io.File;
@@ -11,7 +12,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class SplashLoginActivity extends ActionBarActivity {
 	String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
@@ -33,16 +33,7 @@ public class SplashLoginActivity extends ActionBarActivity {
 		files[6] = "OrientationSchedule.pdf";
 		files[7] = "FeeSchedule.pdf";
 				
-		String[] fileNames = new String[4];
-		fileNames[0] = "StudentHandbook.pdf";
-		fileNames[1] = "ModuleList.pdf";
-		fileNames[2] = "OrientationSchedule.pdf";
-		fileNames[3] = "FeeSchedule.pdf";
-		
     	new DownloadFile().execute(files);
-//    	new DownloadFile().execute(prefs.GetPreferences("ModuleList"), "ModuleList" + ".pdf");
-//    	new DownloadFile().execute(prefs.GetPreferences("OrientationSchedule"), "OrientationSchedule" + ".pdf");
-//    	new DownloadFile().execute(prefs.GetPreferences("FeeSchedule"), "FeeSchedule" + ".pdf");
     	
 	}
 
