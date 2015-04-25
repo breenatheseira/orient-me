@@ -36,7 +36,6 @@ public class LoginActivity extends ActionBarActivity {
 	Button submitButton;
 	EditText usernameTextF, passwordTextF;
 	String s_username, s_password;
-	String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,52 +150,21 @@ public class LoginActivity extends ActionBarActivity {
                 	// Shared Preferences to get the URLs of the documents
                 	JSONObject doc = new JSONObject();
                 	doc = json.getJSONObject("data").getJSONObject("documents");
-
-                	new DownloadFile().execute(doc.getJSONArray("handbook").getJSONObject(0).getJSONObject("document_url").getString("url"), "StudentHandbook" + ".pdf");
-                	new DownloadFile().execute(doc.getJSONArray("module_list").getJSONObject(0).getJSONObject("document_url").getString("url"), "ModuleList" + ".pdf");
-                	new DownloadFile().execute(doc.getJSONArray("orientation_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"), "OrientationSchedule" + ".pdf");
-                	new DownloadFile().execute(doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"), "FeeSchedule" + ".pdf");
                 	
-                	prefs.SavePreferences("OrientationSchedule", extStorageDirectory + "/orientmepdf/OrientationSchedule.pdf");
-                	prefs.SavePreferences("StudentHandbook", extStorageDirectory + "/orientmepdf/StudentHandbook.pdf");
-                	prefs.SavePreferences("ModuleList", extStorageDirectory + "/orientmepdf/ModuleList.pdf");
-                	prefs.SavePreferences("FeeSchedule", extStorageDirectory + "/orientmepdf/FeeSchedule.pdf");
-                	
-//                	prefs.SavePreferences("OrientationSchedule", doc.getJSONArray("orientation_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
-//                	prefs.SavePreferences("StudentHandbook", doc.getJSONArray("handbook").getJSONObject(0).getJSONObject("document_url").getString("url"));
-//                	prefs.SavePreferences("ModuleList", doc.getJSONArray("module_list").getJSONObject(0).getJSONObject("document_url").getString("url"));
-//                	prefs.SavePreferences("FeeSchedule",  doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));                	
+                	prefs.SavePreferences("OrientationSchedule", doc.getJSONArray("orientation_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
+                	prefs.SavePreferences("StudentHandbook", doc.getJSONArray("handbook").getJSONObject(0).getJSONObject("document_url").getString("url"));
+                	prefs.SavePreferences("ModuleList", doc.getJSONArray("module_list").getJSONObject(0).getJSONObject("document_url").getString("url"));
+                	prefs.SavePreferences("FeeSchedule",  doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
                 }
-//                Toast.makeText(context, json.getString("info"), Toast.LENGTH_LONG).show();
+               
             } catch (Exception e) {
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
             } finally {
                 super.onPostExecute(json);
+                Intent intent = new Intent (context, SplashLoginActivity.class);
+                startActivity(intent);
+            	finish();
             }
     	}
-    }
-    // Zakaria, M. (2014) Android Download PDF From Url Then Open It With a PDF Reader. [Online]. Available from: http://stackoverflow.com/questions/24740228/android-download-pdf-from-url-then-open-it-with-a-pdf-reader. [Accessed: 25 April 2015].
-
-    public class DownloadFile extends AsyncTask<String, Void, Void>{
-
-        @Override
-        protected Void doInBackground(String... strings) {
-            String fileUrl = strings[0];  
-            String fileName = strings[1];            
-            File folder = new File(extStorageDirectory, "orientmepdf");
-            if (!folder.exists())
-            	folder.mkdir();
-
-            File pdfFile = new File(folder, fileName);
-
-            try{
-                pdfFile.createNewFile();
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-            FileDownloader.downloadFile(fileUrl, pdfFile);
-            return null;
-        }
-    }
-    
+    }   
 }
