@@ -1,6 +1,9 @@
 package com.example.orient_me;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.ResponseHandler;
@@ -13,7 +16,9 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -31,6 +36,7 @@ public class LoginActivity extends ActionBarActivity {
 	Button submitButton;
 	EditText usernameTextF, passwordTextF;
 	String s_username, s_password;
+	String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +106,6 @@ public class LoginActivity extends ActionBarActivity {
             
             try {
             	try {
-            		json.put("success", false);
-            		json.put("info", "Sorry, something went wrong. Please try again.");
             		studentObj.put("email", s_username);
             		studentObj.put("password", s_password);
             		holder.put("student", studentObj);
@@ -119,20 +123,24 @@ public class LoginActivity extends ActionBarActivity {
             	} catch (HttpResponseException e) {
                     e.printStackTrace();
                     Log.e("ClientProtocol", "" + e);
-                    json.put("info", "Email and/or password are invalid. Retry!");
+                    Toast.makeText(getApplicationContext(), "Email and/or password are invalid. Retry!", Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e("IO", "" + e);
+                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
                 Log.e("JSON", "" + e);
+                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
             }
 
             return json;
         }
-    	protected void onPostExecute(JSONObject json) {
+    	@SuppressWarnings("deprecation")
+		protected void onPostExecute(JSONObject json) {
     		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
+    		
     		try {
                 if (json.getBoolean("success")) {
                 	prefs.SavePreferences("AuthToken", json.getJSONObject("data").getString("auth_token"));
@@ -143,17 +151,23 @@ public class LoginActivity extends ActionBarActivity {
                 	// Shared Preferences to get the URLs of the documents
                 	JSONObject doc = new JSONObject();
                 	doc = json.getJSONObject("data").getJSONObject("documents");
+
+                	new DownloadFile().execute(doc.getJSONArray("handbook").getJSONObject(0).getJSONObject("document_url").getString("url"), "StudentHandbook" + ".pdf");
+                	new DownloadFile().execute(doc.getJSONArray("module_list").getJSONObject(0).getJSONObject("document_url").getString("url"), "ModuleList" + ".pdf");
+                	new DownloadFile().execute(doc.getJSONArray("orientation_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"), "OrientationSchedule" + ".pdf");
+                	new DownloadFile().execute(doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"), "FeeSchedule" + ".pdf");
                 	
-                	prefs.SavePreferences("OrientationSchedule", doc.getJSONArray("orientation_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
-                	prefs.SavePreferences("StudentHandbook", doc.getJSONArray("handbook").getJSONObject(0).getJSONObject("document_url").getString("url"));
-                	prefs.SavePreferences("ModuleList", doc.getJSONArray("module_list").getJSONObject(0).getJSONObject("document_url").getString("url"));
-                	prefs.SavePreferences("FeeSchedule", doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
-                	                	
-                    Intent intent = new Intent(getApplicationContext(), DocumentActivity.class);
-                    startActivity(intent);
-                    finish();
+                	prefs.SavePreferences("OrientationSchedule", extStorageDirectory + "/orientmepdf/OrientationSchedule.pdf");
+                	prefs.SavePreferences("StudentHandbook", extStorageDirectory + "/orientmepdf/StudentHandbook.pdf");
+                	prefs.SavePreferences("ModuleList", extStorageDirectory + "/orientmepdf/ModuleList.pdf");
+                	prefs.SavePreferences("FeeSchedule", extStorageDirectory + "/orientmepdf/FeeSchedule.pdf");
+                	
+//                	prefs.SavePreferences("OrientationSchedule", doc.getJSONArray("orientation_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
+//                	prefs.SavePreferences("StudentHandbook", doc.getJSONArray("handbook").getJSONObject(0).getJSONObject("document_url").getString("url"));
+//                	prefs.SavePreferences("ModuleList", doc.getJSONArray("module_list").getJSONObject(0).getJSONObject("document_url").getString("url"));
+//                	prefs.SavePreferences("FeeSchedule",  doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));                	
                 }
-                Toast.makeText(context, json.getString("info"), Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, json.getString("info"), Toast.LENGTH_LONG).show();
             } catch (Exception e) {
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
             } finally {
@@ -161,4 +175,28 @@ public class LoginActivity extends ActionBarActivity {
             }
     	}
     }
+    // Zakaria, M. (2014) Android Download PDF From Url Then Open It With a PDF Reader. [Online]. Available from: http://stackoverflow.com/questions/24740228/android-download-pdf-from-url-then-open-it-with-a-pdf-reader. [Accessed: 25 April 2015].
+
+    public class DownloadFile extends AsyncTask<String, Void, Void>{
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            String fileUrl = strings[0];  
+            String fileName = strings[1];            
+            File folder = new File(extStorageDirectory, "orientmepdf");
+            if (!folder.exists())
+            	folder.mkdir();
+
+            File pdfFile = new File(folder, fileName);
+
+            try{
+                pdfFile.createNewFile();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            FileDownloader.downloadFile(fileUrl, pdfFile);
+            return null;
+        }
+    }
+    
 }
