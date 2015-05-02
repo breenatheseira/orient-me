@@ -27,5 +27,7 @@
     <string name="Save">Save</string>
     <string name="title_activity_view_note">ViewNoteActivity</string>
     <string name="Discard">Discard</string>
+    <string name="Title">Title</string>
+    <string name="ana_instructions">Type your notes here</string>
 
 </resources>

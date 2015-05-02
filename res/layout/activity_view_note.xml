@@ -8,12 +8,14 @@
         android:id="@+id/vna_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:hint="@string/Title" />
 
     <EditText
         android:id="@+id/vna_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:hint="@string/ana_instructions" />
 
 </LinearLayout>
