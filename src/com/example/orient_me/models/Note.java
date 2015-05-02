@@ -27,7 +27,7 @@ String id, title, note;
 		return this.id;
 	}
 	
-	public String getDocId(){
+	public String getTitle(){
 		return this.title;
 	}
 	

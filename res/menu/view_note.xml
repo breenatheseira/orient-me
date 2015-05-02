@@ -1,12 +1,16 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.orient_me.ViewNoteActivity" >
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
-
+<?xml version="1.0" encoding="utf-8"?>
+<menu 
+	xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+	<item
+	    android:id="@+id/save"
+	    android:icon="@drawable/ic_action_save"
+	    android:title="@string/Save"
+	    app:showAsAction="ifRoom" />
+		<item
+	    android:id="@+id/discard"
+	    android:icon="@drawable/ic_action_discard"
+	    android:title="@string/Discard"
+	    app:showAsAction="ifRoom" />
 </menu>
+

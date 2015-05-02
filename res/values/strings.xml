@@ -26,5 +26,6 @@
     <string name="New">New</string>
     <string name="Save">Save</string>
     <string name="title_activity_view_note">ViewNoteActivity</string>
+    <string name="Discard">Discard</string>
 
 </resources>
