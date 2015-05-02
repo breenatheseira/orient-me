@@ -31,7 +31,7 @@ String id, title, note;
 		return this.title;
 	}
 	
-	public String getContent(){
+	public String getNote(){
 		return this.note;
 	}
 }
