@@ -67,7 +67,6 @@ public class ViewNotesListActivity extends ActionBarActivity {
 				startActivity(intent);
 			}
 		});
-		
 	}
 
 	@Override
@@ -82,7 +81,7 @@ public class ViewNotesListActivity extends ActionBarActivity {
 		if (id == R.id.add) {
 			Intent intent = new Intent(this, AddNoteActivity.class);
 			startActivity(intent);
-			return true;
+			finish();
 		}
 		return super.onOptionsItemSelected(item);
 	}
