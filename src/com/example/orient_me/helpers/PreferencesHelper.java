@@ -1,4 +1,4 @@
-package com.example.orient_me;
+package com.example.orient_me.helpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;

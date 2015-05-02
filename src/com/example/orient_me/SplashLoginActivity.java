@@ -4,6 +4,9 @@ package com.example.orient_me;
 import java.io.File;
 import java.io.IOException;
 
+import com.example.orient_me.helpers.FileDownloader;
+import com.example.orient_me.helpers.PreferencesHelper;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;

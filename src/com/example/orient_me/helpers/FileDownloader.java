@@ -1,6 +1,6 @@
 //Zakaria, M. (2014) Android Download PDF From Url Then Open It With a PDF Reader. [Online]. Available from: http://stackoverflow.com/questions/24740228/android-download-pdf-from-url-then-open-it-with-a-pdf-reader. [Accessed: 25 April 2015]. 
 
-package com.example.orient_me;
+package com.example.orient_me.helpers;
 
 import java.io.File;
 import java.io.FileNotFoundException;

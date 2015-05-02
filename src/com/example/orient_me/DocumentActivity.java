@@ -2,6 +2,8 @@ package com.example.orient_me;
 
 import java.io.File;
 
+import com.example.orient_me.helpers.PreferencesHelper;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;

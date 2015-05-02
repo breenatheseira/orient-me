@@ -1,5 +1,7 @@
 package com.example.orient_me;
 
+import com.example.orient_me.helpers.PreferencesHelper;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;

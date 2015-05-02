@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.orient_me.helpers.PreferencesHelper;
 import com.savagelook.android.UrlJsonAsyncTask;
 
 public class LoginActivity extends ActionBarActivity {
