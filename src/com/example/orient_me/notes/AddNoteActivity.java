@@ -1,4 +1,4 @@
-package com.example.orient_me;
+package com.example.orient_me.notes;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.orient_me.models.Note;
-import com.example.orient_me.models.NoteDatabaseHelper;
+import com.example.orient_me.R;
 
 public class AddNoteActivity extends ActionBarActivity {
 

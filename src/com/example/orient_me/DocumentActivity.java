@@ -3,12 +3,12 @@ package com.example.orient_me;
 import java.io.File;
 
 import com.example.orient_me.helpers.PreferencesHelper;
+import com.example.orient_me.notes.ViewNotesListActivity;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;

@@ -1,4 +1,4 @@
-package com.example.orient_me;
+package com.example.orient_me.notes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.example.orient_me.models.Note;
-import com.example.orient_me.models.NoteDatabaseHelper;
+import com.example.orient_me.R;
 
 public class ViewNotesListActivity extends ActionBarActivity {
 

@@ -46,15 +46,6 @@ public class LoginActivity extends ActionBarActivity {
         submitButton = (Button) findViewById(R.id.laB_Submit);
         usernameTextF = (EditText) findViewById(R.id.laTF_Username);
         passwordTextF = (EditText) findViewById(R.id.laTF_Password);
-        
-//        submitButton.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				Toast.makeText(LoginActivity.this, "Clicked Submit!", Toast.LENGTH_SHORT).show();
-//			}
-//		});
     }
 
     @Override

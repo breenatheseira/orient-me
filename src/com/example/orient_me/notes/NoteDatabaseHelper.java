@@ -1,4 +1,4 @@
-package com.example.orient_me.models;
+package com.example.orient_me.notes;
 
 import java.util.ArrayList;
 import java.util.List;
