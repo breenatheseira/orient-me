@@ -12,13 +12,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		protected static final String DATABASE_NAME = "orientMe";
 		
 		// Table Names
-		private static final String TABLE_NOTES = "notes";
+		protected static final String TABLE_NOTES = "notes";
 		
 		
 		// Notes Column name
-		private static final String KEY_NOTE_ID = "id";
-		private static final String KEY_TITLE = "title";
-		private static final String KEY_NOTE = "note";
+		protected static final String KEY_NOTE_ID = "id";
+		protected static final String KEY_TITLE = "title";
+		protected static final String KEY_NOTE = "note";
 
 		
 		// Table Create Statements
