@@ -63,7 +63,8 @@ public class DocumentActivity extends ActionBarActivity implements OnClickListen
 			ViewPDF(prefs.GetPreferences("OrientationSchedule"),v);
 			break;
 		case R.id.daB_myNotes:
-			ViewPDF(prefs.GetPreferences("StudentHandbook"),v);
+			Intent intent = new Intent(this, ViewNotesListActivity.class);
+			startActivity(intent);
 			break;
 		}
 	}
