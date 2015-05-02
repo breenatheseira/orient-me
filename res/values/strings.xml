@@ -24,5 +24,6 @@
     <string name="title_activity_view_notes_list">ViewNotesListActivity</string>
     <string name="title_activity_add_note">AddNoteActivity</string>
     <string name="New">New</string>
+    <string name="Save">Save</string>
 
 </resources>

@@ -47,7 +47,6 @@ public class AddNoteActivity extends ActionBarActivity {
 			db.addNote(newNote);
 			
 			Toast.makeText(this, newNote.getDocId() + " saved!", Toast.LENGTH_SHORT).show();
-			Log.d("NewNote", "NewNote: " + newNote.getId() + " " + newNote.getDocId() + " " + newNote.getNote());
 			
 			Intent intent = new Intent(AddNoteActivity.this,ViewNotesListActivity.class);
 			startActivity(intent);
@@ -60,21 +59,17 @@ public class AddNoteActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.add_note, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-//		if (id == R.id.save) {
-//			save();
-//			return true;
-//		}
+		if (id == R.id.save) {
+			save();
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 }
