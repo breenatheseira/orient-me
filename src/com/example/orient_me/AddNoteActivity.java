@@ -46,7 +46,7 @@ public class AddNoteActivity extends ActionBarActivity {
 			}
 			db.addNote(newNote);
 			
-			Toast.makeText(this, newNote.getDocId() + " saved!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, newNote.getTitle() + " saved!", Toast.LENGTH_SHORT).show();
 			
 			Intent intent = new Intent(AddNoteActivity.this,ViewNotesListActivity.class);
 			startActivity(intent);

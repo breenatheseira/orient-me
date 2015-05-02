@@ -25,7 +25,7 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 
 		ContentValues values = new ContentValues();
 		values.put(KEY_NOTE_ID, note.getId());
-		values.put(KEY_TITLE, note.getDocId());
+		values.put(KEY_TITLE, note.getTitle());
 		values.put(KEY_NOTE, note.getNote());
 
 		// insert row
@@ -88,13 +88,13 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 
 	public int updateNote(Note note) {
 		ContentValues values = new ContentValues();
-		values.put(KEY_TITLE, note.getDocId());
+		values.put(KEY_TITLE, note.getTitle());
 		values.put(KEY_NOTE, note.getNote());
 
 		// updating row
 		int i = wdb.update(TABLE_NOTES, values, KEY_NOTE_ID + " = ?",
 				new String[] { String.valueOf(note.getId()) });
-		Log.d("update values", i + " > doc id: " + note.getDocId() + ", note: "
+		Log.d("update values", i + " > doc id: " + note.getTitle() + ", note: "
 				+ note.getNote());
 		return i;
 	}

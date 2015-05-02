@@ -44,7 +44,7 @@ public class ViewNotesListActivity extends ActionBarActivity {
 		//Tamada, R. (2013) Android SQLite Database with Multiple Tables. [Online]. Available from: http://www.androidhive.info/2013/09/android-sqlite-database-with-multiple-tables/ [Accessed: 1 May 2015].
 		notes = db.getAllNote();
 		for (Note eachNote : notes){
-			titles.add(eachNote.getDocId());
+			titles.add(eachNote.getTitle());
 		}
 		
 		// Developers (n.d.) Layouts. [Online]. Available from: http://developer.android.com/guide/topics/ui/declaring-layout.html#AdapterViews [Accessed: 1 May 2015]. 		
@@ -62,9 +62,9 @@ public class ViewNotesListActivity extends ActionBarActivity {
 				// victor (2010) Android - Getting Database ID from ListView Selection. [Online]. Available from: http://stackoverflow.com/questions/12268721/android-getting-database-id-from-listview-selection [Accessed: 2 May 2015].
 				String id = notes.get(position).getId(); 
 				
-//				Intent intent = new Intent(ViewNotesListActivity.this, ViewNoteActivity.class);
-//				intent.putExtra("id", id);
-//				startActivity(intent);
+				Intent intent = new Intent(ViewNotesListActivity.this, ViewNoteActivity.class);
+				intent.putExtra("id", id);
+				startActivity(intent);
 			}
 		});
 		
