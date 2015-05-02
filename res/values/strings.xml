@@ -22,5 +22,6 @@
     <string name="doc_instruction">Select a Document to View</string>
     <string name="title_activity_splash_login">SplashLoginActivity</string>
     <string name="title_activity_view_notes_list">ViewNotesListActivity</string>
+    <string name="title_activity_add_note">AddNoteActivity</string>
 
 </resources>

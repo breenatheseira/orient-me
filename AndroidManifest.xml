@@ -49,6 +49,10 @@
             android:name=".ViewNotesListActivity"
             android:label="@string/title_activity_view_notes_list" >
         </activity>
+        <activity
+            android:name=".AddNoteActivity"
+            android:label="@string/title_activity_add_note" >
+        </activity>
     </application>
 
 </manifest>
