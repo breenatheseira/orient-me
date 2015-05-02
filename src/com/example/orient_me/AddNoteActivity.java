@@ -3,7 +3,6 @@ package com.example.orient_me;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -27,12 +26,13 @@ public class AddNoteActivity extends ActionBarActivity {
 	}
 
 	private void save() {
-		try {
 
-			title = title_text.getText().toString();
-			note = note_text.getText().toString();
+		title = title_text.getText().toString();
+		note = note_text.getText().toString();
+		
+		if (title.length() > 0) {
 			Note newNote = new Note();
-
+	
 			newNote.setTitle(title);
 			newNote.setNote(note);
 			
@@ -52,8 +52,8 @@ public class AddNoteActivity extends ActionBarActivity {
 			startActivity(intent);
 			finish();
 			
-		} catch (Exception e) {
-			Log.d("Database insert", e.toString());
+		} else {
+			Toast.makeText(this, "Please enter a title before saving this note.", Toast.LENGTH_SHORT).show();
 		}
 	}
 

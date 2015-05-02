@@ -20,7 +20,6 @@ public class ViewNoteActivity extends ActionBarActivity {
 	NoteDatabaseHelper db;
 
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_view_note);
@@ -59,13 +58,18 @@ public class ViewNoteActivity extends ActionBarActivity {
 		case R.id.save:
 			noteViewed.setTitle(title.getEditableText().toString());
 			noteViewed.setNote(note.getEditableText().toString());
-
-			if (db.updateNote(noteViewed) == 1) {
-				Toast.makeText(this, oldTitle + " updated", Toast.LENGTH_SHORT).show();
-				finish();
+			
+			if (noteViewed.getTitle().length() > 0){
+				if (db.updateNote(noteViewed) == 1) {
+					Toast.makeText(this, oldTitle + " updated", Toast.LENGTH_SHORT).show();
+					finish();
+				} else {
+					Toast.makeText(this,"Error: " + noteViewed.getTitle()+ " could not be updated", Toast.LENGTH_SHORT).show();
+				}
 			} else {
-				Toast.makeText(this,"Error: " + noteViewed.getTitle()+ " could not be updated", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Please enter a title before saving this note.", Toast.LENGTH_SHORT).show();
 			}
+			
 			break;
 		case R.id.discard:
 			deleteNote();
