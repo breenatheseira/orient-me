@@ -1,11 +1,15 @@
 package com.example.orient_me.schedules;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
 import com.example.orient_me.helpers.DatabaseHelper;
+import com.example.orient_me.notes.Note;
 
 public class ScheduleDatabaseHelper extends DatabaseHelper {
 
@@ -49,5 +53,35 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 			Log.d("ScheduleDatabaseHelper", "Error getting last schedule id: " + e.getMessage());
 		}
 		return 0;		
+	}
+	
+	public List<Schedule> getAllSchedules(){
+		List<Schedule> schedules = new ArrayList<Schedule>();
+		String sql = "SELECT * FROM " + TABLE_SCHEDULES;
+
+		try {
+			Cursor c = rdb.rawQuery(sql, null);
+	
+			if (c.moveToFirst()) {
+				do {
+					Schedule schedule = new Schedule();
+					
+					schedule.setId(c.getInt(c.getColumnIndex(SCHEDULE_ID )));
+					schedule.setTitle(c.getString(c.getColumnIndex(SCHEDULE_TITLE)));
+					schedule.setLocation(c.getString(c.getColumnIndex(SCHEDULE_LOCATION)));
+					schedule.setStart(c.getLong(c.getColumnIndex(SCHEDULE_START)));
+					schedule.setEnd(c.getLong(c.getColumnIndex(SCHEDULE_END)));
+					schedule.setNotes(c.getString(c.getColumnIndex(SCHEDULE_NOTES)));
+					schedule.setAlert(c.getInt(c.getColumnIndex(SCHEDULE_ALERT)));
+					schedule.setTransparent(c.getInt(c.getColumnIndex(SCHEDULE_TRANSPARENT)));
+					
+					schedules.add(schedule);
+				} while (c.moveToNext());
+			}
+		} catch (Exception e) {
+			schedules = null;
+			Log.d(this.getClass().getSimpleName(), "Error returning all Schedules: " + e.getMessage());
+		}
+		return schedules;
 	}
 }
