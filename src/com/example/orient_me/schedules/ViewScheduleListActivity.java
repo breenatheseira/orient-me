@@ -1,19 +1,30 @@
 package com.example.orient_me.schedules;
 
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.example.orient_me.R;
 
 public class ViewScheduleListActivity extends ActionBarActivity {
 
+	ListView scheduleList;
+	LinearLayout emptyLayout;
+	List<Schedule> schedules;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_schedule_list);
+		
+		scheduleList = (ListView) findViewById(R.id.vnsLV_listview);
+		emptyLayout = (LinearLayout) findViewById(R.id.vnslLL_emptyList);
 	}
 
 	@Override
