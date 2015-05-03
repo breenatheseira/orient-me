@@ -25,7 +25,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:weightSum="1" />
 
-        <TextView
+        <EditText
             android:id="@+id/asaDB_startDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:onClick="onClick"
             android:clickable="true" />
 
-        <TextView
+        <EditText
             android:id="@+id/asaDB_startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:weightSum="1" />
 
-        <TextView
+        <EditText
             android:id="@+id/asaDB_endDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             android:onClick="onClick"
             android:clickable="true" />
 
-        <TextView
+        <EditText
             android:id="@+id/asaDB_endTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

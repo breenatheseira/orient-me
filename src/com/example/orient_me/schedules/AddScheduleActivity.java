@@ -13,15 +13,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.orient_me.R;
 
 public class AddScheduleActivity extends ActionBarActivity implements OnClickListener {
 
-	EditText title, location, notes;
-	TextView startDateTV, startTimeTV, endDateTV, endTimeTV;
+	EditText title, location, notes, startDateTV, startTimeTV, endDateTV, endTimeTV;
 	ToggleButton alert;
 	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
@@ -39,10 +37,10 @@ public class AddScheduleActivity extends ActionBarActivity implements OnClickLis
 		title = (EditText) findViewById(R.id.asaTB_title);
 		location = (EditText) findViewById(R.id.asaTB_location);
 		notes = (EditText) findViewById(R.id.asaTA_notes);
-		startDateTV = (TextView) findViewById(R.id.asaDB_startDate);
-		startTimeTV = (TextView) findViewById(R.id.asaDB_startTime);
-		endDateTV = (TextView) findViewById(R.id.asaDB_endDate);
-		endTimeTV = (TextView) findViewById(R.id.asaDB_endTime);
+		startDateTV = (EditText) findViewById(R.id.asaDB_startDate);
+		startTimeTV = (EditText) findViewById(R.id.asaDB_startTime);
+		endDateTV = (EditText) findViewById(R.id.asaDB_endDate);
+		endTimeTV = (EditText) findViewById(R.id.asaDB_endTime);
 		alert = (ToggleButton) findViewById(R.id.asaSw_alert);
 		
 		startDateTV.setOnClickListener(this);
@@ -62,57 +60,6 @@ public class AddScheduleActivity extends ActionBarActivity implements OnClickLis
 	}
 
 	@Override
-	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.asaDB_startDate:
-			onCreateDialog(dialogSDate);
-			break;
-		case R.id.asaDB_startTime:
-			break;
-		case R.id.asaDB_endDate:
-			break;
-		case R.id.asaDB_endTime:
-			break;
-		}
-	}
-	
-	protected Dialog onCreateDialog(int i){
-		
-		switch(i){
-		case 0:
-			dialogState = dialogSDate;
-			return new DatePickerDialog(this, date, startCal.YEAR, startCal.MONTH, startCal.DAY_OF_MONTH);
-		case 1:
-		}
-		return null;
-	}
-	
-	DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-		
-		@Override
-		public void onDateSet(DatePicker view, int year, int monthOfYear,
-				int dayOfMonth) {
-			if (dialogState == dialogSDate) {
-				startCal.set(Calendar.YEAR, year);
-				startCal.set(Calendar.MONTH, monthOfYear);
-				startCal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-			} else {
-				endCal.set(Calendar.YEAR, year);
-				endCal.set(Calendar.MONTH, monthOfYear);
-				endCal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-			}
-			refreshDateLabels();
-		}
-	};
-	
-	
-	
-	
-	
-	
-	
-
-	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.add_record, menu);
@@ -129,6 +76,12 @@ public class AddScheduleActivity extends ActionBarActivity implements OnClickLis
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
