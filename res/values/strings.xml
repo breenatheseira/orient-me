@@ -37,6 +37,8 @@
     <string name="Notes">Notes</string>
     <string name="Alert">Alert?</string>
     <string name="Start">Start</string>
+    <string name="Starts_at">Starts at:</string>
+    <string name="Ends_at">Ends at:</string>
     <string name="End">End</string>
     <string name="title_activity_view_schedule">ViewScheduleActivity</string>
 
