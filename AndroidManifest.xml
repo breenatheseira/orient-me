@@ -61,6 +61,10 @@
             android:name=".schedules.ViewScheduleListActivity"
             android:label="@string/title_activity_view_schedule_list" >
         </activity>
+        <activity
+            android:name="com.example.orient_me.schedules.AddScheduleActivity"
+            android:label="@string/title_activity_add_schedule" >
+        </activity>
     </application>
 
 </manifest>
