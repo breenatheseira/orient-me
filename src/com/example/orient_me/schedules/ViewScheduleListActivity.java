@@ -8,12 +8,17 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.example.orient_me.R;
+import com.example.orient_me.notes.ViewNoteActivity;
+import com.example.orient_me.notes.ViewNotesListActivity;
 
 public class ViewScheduleListActivity extends ActionBarActivity {
 
@@ -30,6 +35,19 @@ public class ViewScheduleListActivity extends ActionBarActivity {
 		emptyLayout = (LinearLayout) findViewById(R.id.vnslLL_emptyList);
 		
 		loadListView();
+		scheduleList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long l) {
+				
+				String id = schedules.get(position).getId(); 
+				
+				Intent intent = new Intent(ViewScheduleListActivity.this, ViewScheduleActivity.class);
+				intent.putExtra("id", id);
+				startActivity(intent);
+			}
+		});
 	}
 	
 	private void loadListView(){
@@ -76,6 +94,4 @@ public class ViewScheduleListActivity extends ActionBarActivity {
 		loadListView();
 		super.onPostResume();
 	}
-	
-	
 }
