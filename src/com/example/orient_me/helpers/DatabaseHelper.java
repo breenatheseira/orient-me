@@ -25,14 +25,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		protected static final String KEY_NOTE = "note";
 
 		// Schedule Column names
-		protected static final String KEY_SCHEDULE_ID = "id";
-		protected static final String KEY_SCHEDULE_TITLE = "title";
-		protected static final String KEY_SCHEDULE_NOTES = "note";
-		protected static final String KEY_SCHEDULE_START = "startTime";
-		protected static final String KEY_SCHEDULE_END = "endTime";
-		protected static final String KEY_SCHEDULE_LOCATION = "location";
-		protected static final String KEY_SCHEDULE_ALERT = "alert";
-		protected static final String KEY_SCHEDULE_TRANSPARENT = "transparent";
+		protected static final String SCHEDULE_ID = "id";
+		protected static final String SCHEDULE_TITLE = "title";
+		protected static final String SCHEDULE_NOTES = "note";
+		protected static final String SCHEDULE_START = "startTime";
+		protected static final String SCHEDULE_END = "endTime";
+		protected static final String SCHEDULE_LOCATION = "location";
+		protected static final String SCHEDULE_ALERT = "alert";
+		protected static final String SCHEDULE_TRANSPARENT = "transparent";
 		
 		// Table Create Statements
 			// Note table create statement
@@ -43,14 +43,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			// Schedule table create statement
 			private static final String CREATE_TABLE_SCHEDULES = "CREATE TABLE "
 					+ TABLE_SCHEDULES + "("
-					+ KEY_SCHEDULE_ID + " INTEGER PRIMARY KEY,"
-					+ KEY_SCHEDULE_TITLE + " TEXT,"
-					+ KEY_SCHEDULE_START + " DATETIME,"
-					+ KEY_SCHEDULE_END + " DATETIME,"
-					+ KEY_SCHEDULE_LOCATION + " TEXT,"
-					+ KEY_SCHEDULE_ALERT + " INTEGER,"
-					+ KEY_SCHEDULE_NOTES + " TEXT,"
-					+ KEY_SCHEDULE_TRANSPARENT + " INTEGER" + ")";
+					+ SCHEDULE_ID + " INTEGER PRIMARY KEY,"
+					+ SCHEDULE_TITLE + " TEXT,"
+					+ SCHEDULE_START + " DATETIME,"
+					+ SCHEDULE_END + " DATETIME,"
+					+ SCHEDULE_LOCATION + " TEXT,"
+					+ SCHEDULE_ALERT + " INTEGER,"
+					+ SCHEDULE_NOTES + " TEXT,"
+					+ SCHEDULE_TRANSPARENT + " INTEGER" + ")";
 			
 		public DatabaseHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
