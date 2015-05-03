@@ -1,5 +1,6 @@
 package com.example.orient_me.schedules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
@@ -7,8 +8,10 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.orient_me.R;
 
@@ -25,6 +28,30 @@ public class ViewScheduleListActivity extends ActionBarActivity {
 		
 		scheduleList = (ListView) findViewById(R.id.vnsLV_listview);
 		emptyLayout = (LinearLayout) findViewById(R.id.vnslLL_emptyList);
+		
+		loadListView();
+	}
+	
+	private void loadListView(){
+		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(ViewScheduleListActivity.this);
+		ArrayList<String> titles = new ArrayList<String>();
+		ArrayList<String> start = new ArrayList<String>();
+		ArrayList<String> loc = new ArrayList<String>();
+		
+		if (!db.getAllSchedules().isEmpty()){
+			schedules = db.getAllSchedules();
+			for (Schedule eachSchedule : schedules){
+				titles.add(eachSchedule.getTitle());
+				start.add(eachSchedule.getStart());
+				loc.add(eachSchedule.getLocation());
+			}
+			
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewScheduleListActivity.this, android.R.layout.simple_list_item_1,titles);
+			scheduleList.setAdapter(adapter);
+			scheduleList.setEmptyView(emptyLayout);
+		} else {
+			Toast.makeText(this, "Add a Schedule to View Your List", Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
@@ -36,9 +63,6 @@ public class ViewScheduleListActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.add) {
 			Intent intent = new Intent(this, AddScheduleActivity.class);
@@ -46,4 +70,12 @@ public class ViewScheduleListActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	@Override
+	protected void onPostResume() {
+		loadListView();
+		super.onPostResume();
+	}
+	
+	
 }
