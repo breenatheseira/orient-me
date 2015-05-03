@@ -18,9 +18,9 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 
 	public void addNote(Note note) {
 		ContentValues values = new ContentValues();
-		values.put(KEY_NOTE_ID, note.getId());
-		values.put(KEY_TITLE, note.getTitle());
-		values.put(KEY_NOTE, note.getNote());
+		values.put(NOTE_ID , note.getId());
+		values.put(TITLE, note.getTitle());
+		values.put(NOTE, note.getNote());
 
 		// insert row
 		wdb.insert(TABLE_NOTES, null, values);
@@ -28,7 +28,7 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 	}
 
 	public int getLastNoteId() {
-		String sql = "SELECT " + KEY_NOTE_ID + " FROM " + TABLE_NOTES;
+		String sql = "SELECT " + NOTE_ID + " FROM " + TABLE_NOTES;
 		int id = -1;
 		try {
 			Cursor c = rdb.rawQuery(sql, null);
@@ -57,9 +57,9 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 		if (c.moveToFirst()) {
 			do {
 				Note note = new Note();
-				note.setId(c.getString(c.getColumnIndex(KEY_NOTE_ID)));
-				note.setTitle(c.getString(c.getColumnIndex(KEY_TITLE)));
-				note.setNote(c.getString(c.getColumnIndex(KEY_NOTE)));
+				note.setId(c.getString(c.getColumnIndex(NOTE_ID )));
+				note.setTitle(c.getString(c.getColumnIndex(TITLE)));
+				note.setNote(c.getString(c.getColumnIndex(NOTE)));
 
 				notes.add(note);
 			} while (c.moveToNext());
@@ -81,11 +81,11 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 
 	public int updateNote(Note note) {
 		ContentValues values = new ContentValues();
-		values.put(KEY_TITLE, note.getTitle());
-		values.put(KEY_NOTE, note.getNote());
+		values.put(TITLE, note.getTitle());
+		values.put(NOTE, note.getNote());
 
 		// updating row
-		int i = wdb.update(TABLE_NOTES, values, KEY_NOTE_ID + " = ?",
+		int i = wdb.update(TABLE_NOTES, values, NOTE_ID + " = ?",
 				new String[] { String.valueOf(note.getId()) });
 		Log.d("update values", i + " > doc id: " + note.getTitle() + ", note: "
 				+ note.getNote());
@@ -93,7 +93,7 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 	}
 
 	public int deleteNote(String id) {
-		return wdb.delete(TABLE_NOTES, KEY_NOTE_ID + " = ?",new String[] { String.valueOf(id) });
+		return wdb.delete(TABLE_NOTES, NOTE_ID + " = ?",new String[] { String.valueOf(id) });
 	}
 }
 

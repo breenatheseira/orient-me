@@ -20,9 +20,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		protected static final String TABLE_SCHEDULES = "schedules";
 		
 		// Notes Column names
-		protected static final String KEY_NOTE_ID = "id";
-		protected static final String KEY_TITLE = "title";
-		protected static final String KEY_NOTE = "note";
+		protected static final String NOTE_ID = "id";
+		protected static final String TITLE = "title";
+		protected static final String NOTE = "note";
 
 		// Schedule Column names
 		protected static final String SCHEDULE_ID = "id";
@@ -37,8 +37,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// Table Create Statements
 			// Note table create statement
 			private static final String CREATE_TABLE_NOTES = "CREATE TABLE "
-					+ TABLE_NOTES + "(" + KEY_NOTE_ID + " INTEGER PRIMARY KEY,"
-					+ KEY_TITLE + " TEXT," + KEY_NOTE + " TEXT" + ")";
+					+ TABLE_NOTES + "(" + NOTE_ID + " INTEGER PRIMARY KEY,"
+					+ TITLE + " TEXT," + NOTE + " TEXT" + ")";
 			
 			// Schedule table create statement
 			private static final String CREATE_TABLE_SCHEDULES = "CREATE TABLE "
