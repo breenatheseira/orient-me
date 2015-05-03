@@ -37,6 +37,7 @@ public class AddScheduleActivity extends ActionBarActivity implements OnClickLis
 		alert = (ToggleButton) findViewById(R.id.asaSw_alert);
 		
 		setDateTime();
+		setOnClickListeners();
 	}
 	
 	private void setDateTime(){
@@ -52,6 +53,13 @@ public class AddScheduleActivity extends ActionBarActivity implements OnClickLis
 		endTimeTV.setText(tf.format(cal.getTime()));
 	}
 
+	private void setOnClickListeners(){
+		startDateTV.setOnClickListener(this);
+		startTimeTV.setOnClickListener(this);
+		endDateTV.setOnClickListener(this);
+		endTimeTV.setOnClickListener(this);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -73,7 +81,16 @@ public class AddScheduleActivity extends ActionBarActivity implements OnClickLis
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		
+		switch(v.getId()){
+		case R.id.asaDB_startDate:
+			
+			break;
+		case R.id.asaDB_startTime:
+			break;
+		case R.id.asaDB_endDate:
+			break;
+		case R.id.asaDB_endTime:
+			break;
+		}
 	}
 }
