@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.util.Log;
 
 import com.example.orient_me.helpers.DatabaseHelper;
-import com.example.orient_me.notes.Note;
 
 public class ScheduleDatabaseHelper extends DatabaseHelper {
 
@@ -19,14 +18,14 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 	
 	public int addSchedule(Schedule schedule){
 		ContentValues values = new ContentValues();
-		values.put(SCHEDULE_ID, schedule.getId());
+		values.put(SCHEDULE_ID, Integer.parseInt(schedule.getId()));
 		values.put(SCHEDULE_TITLE, schedule.getTitle());
-		values.put(SCHEDULE_START, schedule.getStart());
-		values.put(SCHEDULE_END, schedule.getEnd());
+		values.put(SCHEDULE_START, Long.parseLong(schedule.getStart()));
+		values.put(SCHEDULE_END, Long.parseLong(schedule.getEnd()));
 		values.put(SCHEDULE_LOCATION, schedule.getLocation());
-		values.put(SCHEDULE_ALERT, schedule.getAlert());
+		values.put(SCHEDULE_ALERT, Integer.parseInt(schedule.getAlert()));
 		values.put(SCHEDULE_NOTES, schedule.getNotes());
-		values.put(SCHEDULE_TRANSPARENT, schedule.getTransparent());
+		values.put(SCHEDULE_TRANSPARENT, Integer.parseInt(schedule.getTransparent()));
 		
 		try {
 			wdb.insert(TABLE_SCHEDULES, null, values);
@@ -66,14 +65,14 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 				do {
 					Schedule schedule = new Schedule();
 					
-					schedule.setId(c.getInt(c.getColumnIndex(SCHEDULE_ID )));
+					schedule.setId(String.valueOf(c.getInt(c.getColumnIndex(SCHEDULE_ID ))));
 					schedule.setTitle(c.getString(c.getColumnIndex(SCHEDULE_TITLE)));
 					schedule.setLocation(c.getString(c.getColumnIndex(SCHEDULE_LOCATION)));
-					schedule.setStart(c.getLong(c.getColumnIndex(SCHEDULE_START)));
-					schedule.setEnd(c.getLong(c.getColumnIndex(SCHEDULE_END)));
+					schedule.setStart(String.valueOf(c.getLong(c.getColumnIndex(SCHEDULE_START))));
+					schedule.setEnd(String.valueOf(c.getLong(c.getColumnIndex(SCHEDULE_END))));
 					schedule.setNotes(c.getString(c.getColumnIndex(SCHEDULE_NOTES)));
-					schedule.setAlert(c.getInt(c.getColumnIndex(SCHEDULE_ALERT)));
-					schedule.setTransparent(c.getInt(c.getColumnIndex(SCHEDULE_TRANSPARENT)));
+					schedule.setAlert(String.valueOf(c.getInt(c.getColumnIndex(SCHEDULE_ALERT))));
+					schedule.setTransparent(String.valueOf(c.getInt(c.getColumnIndex(SCHEDULE_TRANSPARENT))));
 					
 					schedules.add(schedule);
 				} while (c.moveToNext());

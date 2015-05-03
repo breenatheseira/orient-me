@@ -22,13 +22,12 @@ public class AddScheduleActivity extends ActionBarActivity implements
 
 	EditText titleET, locationET, notesET, startDateTV, startTimeTV, endDateTV,
 			endTimeTV;
-	String title, location, notes;
+	String title, location, notes, alert;
 	ToggleButton alertButton;
 	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
 	Calendar startCal = Calendar.getInstance();
 	Calendar endCal = Calendar.getInstance();
-	int alert;
 	Schedule schedule;
 	ScheduleDatabaseHelper db;
 
@@ -72,7 +71,7 @@ public class AddScheduleActivity extends ActionBarActivity implements
 		location = this.locationET.getText().toString();
 		notes = this.notesET.getText().toString();
 		
-		schedule = new Schedule(db.getNewScheduleId(), alert, 0, title, location, notes, start, end);
+		schedule = new Schedule(String.valueOf(db.getNewScheduleId()), alert, "0", title, location, notes, String.valueOf(start), String.valueOf(end));
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -116,9 +115,9 @@ public class AddScheduleActivity extends ActionBarActivity implements
 		boolean on = ((ToggleButton) view).isChecked();
 
 		if (on) {
-			alert = 1;
+			alert = "1";
 		} else {
-			alert = 0;
+			alert = "0";
 		}
 	}
 }
