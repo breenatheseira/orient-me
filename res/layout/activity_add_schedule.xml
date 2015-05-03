@@ -31,7 +31,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:weightSum="1" />
+            android:weightSum="1"
+            android:onClick="onClick"
+            android:clickable="true" />
 
         <TextView
             android:id="@+id/asaDB_startTime"
@@ -39,7 +41,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:weightSum="1" />
+            android:weightSum="1"
+            android:onClick="onClick"
+            android:clickable="true" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,7 +66,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:weightSum="1" />
+            android:weightSum="1"
+            android:onClick="onClick"
+            android:clickable="true" />
 
         <TextView
             android:id="@+id/asaDB_endTime"
@@ -70,7 +76,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:weightSum="1" />
+            android:weightSum="1"
+            android:onClick="onClick"
+            android:clickable="true" />
     </LinearLayout>
 
     <EditText
