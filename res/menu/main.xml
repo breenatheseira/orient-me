@@ -16,7 +16,7 @@
         android:visible="true">
     </item>
 
-   <group
+    <group
         android:id="@+id/mg_notChecked"
         android:checkableBehavior="single"
         android:enabled="true"
@@ -35,7 +35,10 @@
             android:id="@+id/mi_sMedia"
             android:title="@string/action_sMedia">
         </item>
-        <item android:id="@+id/mi_schedule" android:title="@string/action_schedule"></item>
+        <item
+            android:id="@+id/mi_schedule"
+            android:title="@string/action_schedule">
+        </item>
     </group>
 
 </menu>

@@ -2,9 +2,6 @@ package com.example.orient_me;
 
 import java.io.File;
 
-import com.example.orient_me.helpers.PreferencesHelper;
-import com.example.orient_me.notes.ViewNotesListActivity;
-
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,10 +9,15 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.orient_me.helpers.PreferencesHelper;
+import com.example.orient_me.notes.ViewNotesListActivity;
+import com.example.orient_me.schedules.ViewScheduleListActivity;
 
 public class DocumentActivity extends ActionBarActivity implements OnClickListener {		
 	Button stuHandbook, modList, campMap, orientSch, myNotes;	
@@ -45,7 +47,27 @@ public class DocumentActivity extends ActionBarActivity implements OnClickListen
 		inflater.inflate(R.menu.main, menu);	
 		return super.onCreateOptionsMenu(menu);
 	}
-
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch(id) {
+        case R.id.mi_badges:
+        	break;
+        case R.id.mi_doc:
+        	break;
+        case R.id.mi_import:
+        	break;
+        case R.id.mi_sMedia:
+        	break;
+        case R.id.mi_schedule:
+        	Intent intent = new Intent(this, ViewScheduleListActivity.class);
+        	startActivity(intent);
+        	break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+	
 	@Override
 	public void onClick(View v) {
 		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());

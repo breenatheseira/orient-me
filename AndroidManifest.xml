@@ -58,7 +58,7 @@
             android:label="@string/title_activity_view_note" >
         </activity>
         <activity
-            android:name="schedules.ViewScheduleListActivity"
+            android:name=".schedules.ViewScheduleListActivity"
             android:label="@string/title_activity_view_schedule_list" >
         </activity>
     </application>
