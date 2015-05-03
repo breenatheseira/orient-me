@@ -1,18 +1,35 @@
 package com.example.orient_me.schedules;
 
-import com.example.orient_me.R;
-
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+
+import com.example.orient_me.R;
 
 public class AddScheduleActivity extends ActionBarActivity {
 
+	EditText title, location, notes;
+	TextView startDateTV, startTimeTV, endDateTV, endTimeTV;
+	ToggleButton alert;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_schedule);
+		
+		title = (EditText) findViewById(R.id.asaTB_title);
+		location = (EditText) findViewById(R.id.asaTB_location);
+		notes = (EditText) findViewById(R.id.asaTA_notes);
+		startDateTV = (TextView) findViewById(R.id.asaDB_startDate);
+		startTimeTV = (TextView) findViewById(R.id.asaDB_startTime);
+		endDateTV = (TextView) findViewById(R.id.asaDB_endDate);
+		endTimeTV = (TextView) findViewById(R.id.asaDB_endTime);
+		alert = (ToggleButton) findViewById(R.id.asaSw_alert);
+		
 	}
 
 	@Override
