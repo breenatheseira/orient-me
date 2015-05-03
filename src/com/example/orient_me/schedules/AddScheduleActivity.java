@@ -22,7 +22,7 @@ public class AddScheduleActivity extends ActionBarActivity implements
 
 	EditText titleET, locationET, notesET, startDateTV, startTimeTV, endDateTV,
 			endTimeTV;
-	String title, location, notes, alert;
+	String title, location, notes, alert = "0";
 	ToggleButton alertButton;
 	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
