@@ -1,20 +1,26 @@
 package com.example.orient_me.schedules;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.orient_me.R;
 
-public class AddScheduleActivity extends ActionBarActivity {
+public class AddScheduleActivity extends ActionBarActivity implements OnClickListener {
 
 	EditText title, location, notes;
 	TextView startDateTV, startTimeTV, endDateTV, endTimeTV;
 	ToggleButton alert;
+	SimpleDateFormat df, tf;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,20 @@ public class AddScheduleActivity extends ActionBarActivity {
 		endTimeTV = (TextView) findViewById(R.id.asaDB_endTime);
 		alert = (ToggleButton) findViewById(R.id.asaSw_alert);
 		
+		setDateTime();
+	}
+	
+	private void setDateTime(){
+		Calendar cal = Calendar.getInstance();
+		df = new SimpleDateFormat("dd-MM-yyyy");
+		tf = new SimpleDateFormat("hh:mm a");
+		
+		startDateTV.setText(df.format(cal.getTime()));
+		startTimeTV.setText(tf.format(cal.getTime()));
+		
+		cal.add(Calendar.HOUR, 1);
+		endDateTV.setText(df.format(cal.getTime()));
+		endTimeTV.setText(tf.format(cal.getTime()));
 	}
 
 	@Override
@@ -49,5 +69,11 @@ public class AddScheduleActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 }
