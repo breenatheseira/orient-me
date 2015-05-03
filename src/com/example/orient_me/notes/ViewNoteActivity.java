@@ -46,7 +46,7 @@ public class ViewNoteActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.view_note, menu);
+		getMenuInflater().inflate(R.menu.view_record, menu);
 		return true;
 	}
 
