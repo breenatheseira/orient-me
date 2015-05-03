@@ -5,11 +5,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-	// Database Version
+		// Database Version
 		protected static final int DATABASE_VERSION = 1;
 
 		// Database Name
 		protected static final String DATABASE_NAME = "orientMe";
+		
+		// Database methods
+		protected SQLiteDatabase rdb = this.getReadableDatabase();
+		protected SQLiteDatabase wdb = this.getWritableDatabase();
 		
 		// Table Names
 		protected static final String TABLE_NOTES = "notes";

@@ -6,39 +6,32 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.orient_me.helpers.DatabaseHelper;
 
 public class NoteDatabaseHelper extends DatabaseHelper {
 
-	private SQLiteDatabase rdb = this.getReadableDatabase();
-	private SQLiteDatabase wdb = this.getWritableDatabase();
-
 	public NoteDatabaseHelper(Context context) {
 		super(context);
 	}
 
 	public void addNote(Note note) {
-		SQLiteDatabase db = this.getWritableDatabase();
-
 		ContentValues values = new ContentValues();
 		values.put(KEY_NOTE_ID, note.getId());
 		values.put(KEY_TITLE, note.getTitle());
 		values.put(KEY_NOTE, note.getNote());
 
 		// insert row
-		db.insert(TABLE_NOTES, null, values);
-		db.close();
+		wdb.insert(TABLE_NOTES, null, values);
+		wdb.close();
 	}
 
 	public int getLastNoteId() {
 		String sql = "SELECT " + KEY_NOTE_ID + " FROM " + TABLE_NOTES;
 		int id = -1;
 		try {
-			SQLiteDatabase db = this.getReadableDatabase();
-			Cursor c = db.rawQuery(sql, null);
+			Cursor c = rdb.rawQuery(sql, null);
 
 			if (c.moveToLast()) {
 				id = Integer.parseInt(c.getString(0));
