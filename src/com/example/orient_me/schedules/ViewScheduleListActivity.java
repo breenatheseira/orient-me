@@ -18,7 +18,7 @@ public class ViewScheduleListActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.view_schedule_list, menu);
+		getMenuInflater().inflate(R.menu.view_records_list, menu);
 		return true;
 	}
 

@@ -35,6 +35,7 @@
             android:id="@+id/mi_sMedia"
             android:title="@string/action_sMedia">
         </item>
+        <item android:id="@+id/mi_schedule" android:title="@string/action_schedule"></item>
     </group>
 
 </menu>

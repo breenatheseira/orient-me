@@ -30,5 +30,6 @@
     <string name="Title">Title</string>
     <string name="ana_instructions">Type your notes here</string>
     <string name="title_activity_view_schedule_list">ViewScheduleListActivity</string>
+    <string name="action_schedule">Schedules</string>
 
 </resources>
