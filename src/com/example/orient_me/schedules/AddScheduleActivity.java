@@ -3,13 +3,16 @@ package com.example.orient_me.schedules;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.orient_me.R;
@@ -17,8 +20,9 @@ import com.example.orient_me.R;
 public class AddScheduleActivity extends ActionBarActivity implements
 		OnClickListener {
 
-	EditText title, location, notes, startDateTV, startTimeTV, endDateTV,
+	EditText titleET, locationET, notesET, startDateTV, startTimeTV, endDateTV,
 			endTimeTV;
+	String title, location, notes;
 	ToggleButton alertButton;
 	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
@@ -26,15 +30,16 @@ public class AddScheduleActivity extends ActionBarActivity implements
 	Calendar endCal = Calendar.getInstance();
 	int alert;
 	Schedule schedule;
+	ScheduleDatabaseHelper db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_schedule);
 
-		title = (EditText) findViewById(R.id.asaTB_title);
-		location = (EditText) findViewById(R.id.asaTB_location);
-		notes = (EditText) findViewById(R.id.asaTA_notes);
+		titleET = (EditText) findViewById(R.id.asaTB_title);
+		locationET = (EditText) findViewById(R.id.asaTB_location);
+		notesET = (EditText) findViewById(R.id.asaTA_notes);
 		startDateTV = (EditText) findViewById(R.id.asaDB_startDate);
 		startTimeTV = (EditText) findViewById(R.id.asaDB_startTime);
 		endDateTV = (EditText) findViewById(R.id.asaDB_endDate);
@@ -47,6 +52,8 @@ public class AddScheduleActivity extends ActionBarActivity implements
 		endTimeTV.setOnClickListener(this);
 
 		endCal.add(Calendar.HOUR, 1);
+		db = new ScheduleDatabaseHelper(this);
+		
 		refreshDateLabels();
 	}
 
@@ -57,16 +64,16 @@ public class AddScheduleActivity extends ActionBarActivity implements
 		endTimeTV.setText(tf.format(endCal.getTime()));
 	}
 
-	private void save() {
-		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(this);
+	private void assignSchedule(){
 		long start = startCal.getTimeInMillis();
 		long end = endCal.getTimeInMillis();
-
-		schedule = new Schedule(db.getNewScheduleId(), alert, 0, title
-				.getText().toString(), location.getText().toString(), notes
-				.getText().toString(), start, end);
+		
+		title = this.titleET.getText().toString();
+		location = this.locationET.getText().toString();
+		notes = this.notesET.getText().toString();
+		
+		schedule = new Schedule(db.getNewScheduleId(), alert, 0, title, location, notes, start, end);
 	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -76,12 +83,25 @@ public class AddScheduleActivity extends ActionBarActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		if (id == R.id.save) {
+			
+			assignSchedule();
+			
+			if (title != null && !title.equals("") && location != null && !location.equals("")){
+				
+				if (db.addSchedule(schedule) == 1){
+					Toast.makeText(this, "Schedule added", Toast.LENGTH_LONG).show();
+					
+					Intent intent = new Intent(this, ViewScheduleListActivity.class);
+					startActivity(intent);
+					finish();
+					
+				} else
+					Toast.makeText(this, "Error: Schedule could not be added", Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(this, "Please Add a Title & Location to Your New Schedule", Toast.LENGTH_LONG).show();
+			}
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -89,7 +109,6 @@ public class AddScheduleActivity extends ActionBarActivity implements
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void onToggleClicked(View view) {
@@ -102,5 +121,4 @@ public class AddScheduleActivity extends ActionBarActivity implements
 			alert = 0;
 		}
 	}
-
 }
