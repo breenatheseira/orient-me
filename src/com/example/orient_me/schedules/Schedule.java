@@ -60,8 +60,8 @@ public class Schedule {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	public void setStart(long start) {
-		this.start = start;
+	public void setStart(long string) {
+		this.start = string;
 	}
 	public void setEnd(long end) {
 		this.end = end;
