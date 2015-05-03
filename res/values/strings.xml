@@ -32,5 +32,10 @@
     <string name="title_activity_view_schedule_list">ViewScheduleListActivity</string>
     <string name="action_schedule">Schedules</string>
     <string name="title_activity_add_schedule">AddScheduleActivity</string>
+    <string name="Location">Location</string>
+    <string name="Notes">Notes</string>
+    <string name="Alert">Alert?</string>
+    <string name="Start">Start</string>
+    <string name="End">End</string>
 
 </resources>

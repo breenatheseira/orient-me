@@ -1,11 +1,12 @@
 package com.example.orient_me.schedules;
 
-import com.example.orient_me.R;
-
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.orient_me.R;
 
 public class ViewScheduleListActivity extends ActionBarActivity {
 
@@ -28,8 +29,9 @@ public class ViewScheduleListActivity extends ActionBarActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		if (id == R.id.add) {
+			Intent intent = new Intent(this, AddScheduleActivity.class);
+			startActivity(intent);
 		}
 		return super.onOptionsItemSelected(item);
 	}
