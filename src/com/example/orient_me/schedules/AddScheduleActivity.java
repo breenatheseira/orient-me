@@ -87,9 +87,8 @@ public class AddScheduleActivity extends ActionBarActivity implements
 		if (id == R.id.save) {
 			
 			assignSchedule();
-			
+			// codaddict (2010) Java, Check Whether a String is not Null and not Empty? [Online]. Available from: http://stackoverflow.com/questions/3598770/java-check-whether-a-string-is-not-null-and-not-empty [Accessed: 3 May 2015].
 			if (title != null && !title.equals("") && location != null && !location.equals("")){
-				
 				if (db.addSchedule(schedule) == 1){
 					Toast.makeText(this, "Schedule added", Toast.LENGTH_LONG).show();
 					
@@ -111,6 +110,7 @@ public class AddScheduleActivity extends ActionBarActivity implements
 		// TODO Auto-generated method stub
 	}
 
+	// Developer (n.d.) Toggle Buttons [Online]. Available from: http://developer.android.com/guide/topics/ui/controls/togglebutton.html [Accessed: 3 May 2015].
 	public void onToggleClicked(View view) {
 		// Is the toggle on?
 		boolean on = ((ToggleButton) view).isChecked();
