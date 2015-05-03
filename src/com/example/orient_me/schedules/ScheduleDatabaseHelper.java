@@ -13,7 +13,7 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 		super(context);
 	}
 	
-	public void addSchedule(Schedule schedule){
+	public int addSchedule(Schedule schedule){
 		ContentValues values = new ContentValues();
 		values.put(SCHEDULE_ID, schedule.getId());
 		values.put(SCHEDULE_TITLE, schedule.getTitle());
@@ -24,8 +24,15 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 		values.put(SCHEDULE_NOTES, schedule.getNotes());
 		values.put(SCHEDULE_TRANSPARENT, schedule.getTransparent());
 		
-		wdb.insert(TABLE_SCHEDULES, null, values);
+		try {
+			wdb.insert(TABLE_SCHEDULES, null, values);
+			return 1;
+		} catch (Exception e) {
+			Log.d(this.getClass().getName(), "Error Inserting Schedule: " + e.getMessage());
+			
+		}
 		wdb.close();
+		return 0;
 	}
 	
 	public int getNewScheduleId(){
