@@ -2,6 +2,8 @@ package com.example.orient_me.schedules;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.util.Log;
 
 import com.example.orient_me.helpers.DatabaseHelper;
 
@@ -24,5 +26,21 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 		
 		wdb.insert(TABLE_SCHEDULES, null, values);
 		wdb.close();
+	}
+	
+	public int getNewScheduleId(){
+		String sql = "SELECT " + SCHEDULE_ID + " FROM " + TABLE_SCHEDULES + " ORDER BY " + SCHEDULE_ID + " DESC LIMIT 1";
+		Cursor c = rdb.rawQuery(sql, null);
+		
+		try {
+			if (c.moveToFirst()){
+				return (int) c.getLong(c.getColumnIndex(SCHEDULE_ID)) + 1;
+			} else {
+				return 1;
+			}
+		} catch (Exception e) {
+			Log.d("ScheduleDatabaseHelper", "Error getting last schedule id: " + e.getMessage());
+		}
+		return 0;		
 	}
 }
