@@ -54,6 +54,21 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 		return 0;		
 	}
 	
+	private Schedule setScheduleFromCursor(Cursor c){
+		Schedule schedule = new Schedule();
+		
+		schedule.setId(String.valueOf(c.getInt(c.getColumnIndex(SCHEDULE_ID ))));
+		schedule.setTitle(c.getString(c.getColumnIndex(SCHEDULE_TITLE)));
+		schedule.setLocation(c.getString(c.getColumnIndex(SCHEDULE_LOCATION)));
+		schedule.setStart(String.valueOf(c.getLong(c.getColumnIndex(SCHEDULE_START))));
+		schedule.setEnd(String.valueOf(c.getLong(c.getColumnIndex(SCHEDULE_END))));
+		schedule.setNotes(c.getString(c.getColumnIndex(SCHEDULE_NOTES)));
+		schedule.setAlert(String.valueOf(c.getInt(c.getColumnIndex(SCHEDULE_ALERT))));
+		schedule.setTransparent(String.valueOf(c.getInt(c.getColumnIndex(SCHEDULE_TRANSPARENT))));
+		
+		return schedule;
+	}
+	
 	public List<Schedule> getAllSchedules(){
 		List<Schedule> schedules = new ArrayList<Schedule>();
 		String sql = "SELECT * FROM " + TABLE_SCHEDULES;
@@ -63,18 +78,7 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 	
 			if (c.moveToFirst()) {
 				do {
-					Schedule schedule = new Schedule();
-					
-					schedule.setId(String.valueOf(c.getInt(c.getColumnIndex(SCHEDULE_ID ))));
-					schedule.setTitle(c.getString(c.getColumnIndex(SCHEDULE_TITLE)));
-					schedule.setLocation(c.getString(c.getColumnIndex(SCHEDULE_LOCATION)));
-					schedule.setStart(String.valueOf(c.getLong(c.getColumnIndex(SCHEDULE_START))));
-					schedule.setEnd(String.valueOf(c.getLong(c.getColumnIndex(SCHEDULE_END))));
-					schedule.setNotes(c.getString(c.getColumnIndex(SCHEDULE_NOTES)));
-					schedule.setAlert(String.valueOf(c.getInt(c.getColumnIndex(SCHEDULE_ALERT))));
-					schedule.setTransparent(String.valueOf(c.getInt(c.getColumnIndex(SCHEDULE_TRANSPARENT))));
-					
-					schedules.add(schedule);
+					schedules.add(setScheduleFromCursor(c));
 				} while (c.moveToNext());
 			}
 		} catch (Exception e) {
@@ -84,15 +88,15 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 		return schedules;
 	}
 	
-	public String getOneScheduleRow (String key, String id) {
-		String value = null;
-		String sql = "Select " + key + " FROM " + TABLE_SCHEDULES + " WHERE id = "
+	public Schedule getOneScheduleRow (String id) {
+		String sql = "Select * FROM " + TABLE_SCHEDULES + " WHERE id = "
 				+ id;
+		Schedule schedule = new Schedule();
 		Cursor c = rdb.rawQuery(sql, null);
 
 		if (c.moveToNext()) {
-			value = c.getString(0);
+			return setScheduleFromCursor(c);
 		}
-		return value;
+		return schedule;
 	}
 }
