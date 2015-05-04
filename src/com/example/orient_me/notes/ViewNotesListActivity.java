@@ -61,7 +61,7 @@ public class ViewNotesListActivity extends ActionBarActivity {
 				// victor (2010) Android - Getting Database ID from ListView Selection. [Online]. Available from: http://stackoverflow.com/questions/12268721/android-getting-database-id-from-listview-selection [Accessed: 2 May 2015].
 				String id = notes.get(position).getId(); 
 				
-				Intent intent = new Intent(ViewNotesListActivity.this, ViewNoteActivity.class);
+				Intent intent = new Intent(ViewNotesListActivity.this, EditNoteActivity.class);
 				intent.putExtra("id", id);
 				startActivity(intent);
 			}

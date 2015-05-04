@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.example.orient_me.R;
 
-public class ViewNoteActivity extends ActionBarActivity {
+public class EditNoteActivity extends ActionBarActivity {
 
 	String oldTitle;
 	Note noteViewed;
@@ -25,7 +25,7 @@ public class ViewNoteActivity extends ActionBarActivity {
 
 		title = (EditText) findViewById(R.id.vna_title);
 		note = (EditText) findViewById(R.id.vna_note);
-		db = new NoteDatabaseHelper(ViewNoteActivity.this);
+		db = new NoteDatabaseHelper(EditNoteActivity.this);
 
 		setNotesContents();
 	}
