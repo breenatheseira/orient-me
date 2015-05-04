@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -73,15 +75,15 @@ public class EditScheduleActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// stopped here
-		getMenuInflater().inflate(R.menu.save_only, menu);
+		getMenuInflater().inflate(R.menu.save_and_discard, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (id == R.id.save) {
-			
+		switch(id){
+		case R.id.save: 
 			assignCalDates();
 			if (startCal.compareTo(endCal) < 0){
 				assignSchedule();
@@ -89,9 +91,6 @@ public class EditScheduleActivity extends ActionBarActivity {
 				if (title != null && !title.equals("") && location != null && !location.equals("")){
 					if (db.updateSchedule(schedule) == 1){
 						Toast.makeText(this, "Your Schedule is updated.", Toast.LENGTH_LONG).show();
-						
-						Intent intent = new Intent(this, ViewScheduleActivity.class);
-						startActivity(intent);
 						finish();
 						
 					} else
@@ -102,6 +101,23 @@ public class EditScheduleActivity extends ActionBarActivity {
 			} else {
 				Toast.makeText(this, "Please ensure Start Time is before End Time.", Toast.LENGTH_LONG).show();
 			}
+			break;
+		case R.id.discard:
+			//Sukarno, C. (2011) How to Show a Dialog Confirm that the User Wishes to Exit an Android Activity? [Online]. Available: http://stackoverflow.com/questions/2257963/how-to-show-a-dialog-to-confirm-that-the-user-wishes-to-exit-an-android-activity [Accessed: 2 May 2015].
+			  new AlertDialog.Builder(this)
+		      .setMessage("Are you sure you want to delete this schedule?")
+		      .setCancelable(false)
+		      .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		          public void onClick(DialogInterface dialog, int id) {
+
+		        	//Delete the note
+		        	if (db.deleteSchedule(schedule.getId()) == 1)
+						finish();        	  
+		          }
+		      })
+		      .setNegativeButton("No", null)
+		      .show();
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -137,4 +153,5 @@ public class EditScheduleActivity extends ActionBarActivity {
 			e.printStackTrace();
 		}
 	}
+
 }

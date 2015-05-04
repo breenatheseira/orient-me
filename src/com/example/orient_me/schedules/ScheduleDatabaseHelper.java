@@ -114,4 +114,7 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 //				+ schedule.getNotes());
 		return i;
 	}
+	public int deleteSchedule(String id){
+		return wdb.delete(TABLE_SCHEDULES, SCHEDULE_ID + " = ?",new String[] { String.valueOf(id) });
+	}
 }
