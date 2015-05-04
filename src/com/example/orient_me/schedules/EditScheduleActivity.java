@@ -89,7 +89,7 @@ public class EditScheduleActivity extends ActionBarActivity {
 					if (db.updateSchedule(schedule) == 1){
 						Toast.makeText(this, "Your Schedule is updated.", Toast.LENGTH_LONG).show();
 						
-						Intent intent = new Intent(this, ViewScheduleListActivity.class);
+						Intent intent = new Intent(this, ViewScheduleActivity.class);
 						startActivity(intent);
 						finish();
 						
