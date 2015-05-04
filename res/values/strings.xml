@@ -41,5 +41,6 @@
     <string name="Ends_at">Ends at:</string>
     <string name="End">End</string>
     <string name="title_activity_view_schedule">ViewScheduleActivity</string>
+    <string name="title_activity_edit_schedule">EditScheduleActivity</string>
 
 </resources>
