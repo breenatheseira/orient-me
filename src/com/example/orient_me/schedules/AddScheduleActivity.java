@@ -102,9 +102,6 @@ public class AddScheduleActivity extends ActionBarActivity implements
 				if (title != null && !title.equals("") && location != null && !location.equals("")){
 					if (db.addSchedule(schedule) == 1){
 						Toast.makeText(this, "Schedule added", Toast.LENGTH_LONG).show();
-						
-						Intent intent = new Intent(this, ViewScheduleListActivity.class);
-						startActivity(intent);
 						finish();
 						
 					} else
