@@ -1,12 +1,12 @@
 package com.example.orient_me.schedules;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +26,7 @@ public class AddScheduleActivity extends ActionBarActivity implements
 	ToggleButton alertButton;
 	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
+	SimpleDateFormat dtf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	Calendar startCal = Calendar.getInstance();
 	Calendar endCal = Calendar.getInstance();
 	Schedule schedule;
@@ -62,17 +63,27 @@ public class AddScheduleActivity extends ActionBarActivity implements
 		endDateTV.setText(df.format(endCal.getTime()));
 		endTimeTV.setText(tf.format(endCal.getTime()));
 	}
-
+	
 	private void assignSchedule(){
-		long start = startCal.getTimeInMillis();
-		long end = endCal.getTimeInMillis();
-		
 		title = this.titleET.getText().toString();
 		location = this.locationET.getText().toString();
 		notes = this.notesET.getText().toString();
 		
-		schedule = new Schedule(String.valueOf(db.getNewScheduleId()), alert, "0", title, location, notes, String.valueOf(start), String.valueOf(end));
+		String start = String.valueOf(startCal.getTimeInMillis());
+		String end = String.valueOf(endCal.getTimeInMillis());		
+		
+		schedule = new Schedule(String.valueOf(db.getNewScheduleId()), alert, "0", title, location, notes, start, end);
 	}
+	
+	private void assignCalDates(){
+		try {
+			startCal.setTime(dtf.parse(startDateTV.getEditableText().toString() + " " + startTimeTV.getEditableText().toString()));
+			endCal.setTime(dtf.parse(endDateTV.getEditableText().toString() + " " + endTimeTV.getEditableText().toString()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -84,21 +95,25 @@ public class AddScheduleActivity extends ActionBarActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.save) {
-			
-			assignSchedule();
-			// codaddict (2010) Java, Check Whether a String is not Null and not Empty? [Online]. Available from: http://stackoverflow.com/questions/3598770/java-check-whether-a-string-is-not-null-and-not-empty [Accessed: 3 May 2015].
-			if (title != null && !title.equals("") && location != null && !location.equals("")){
-				if (db.addSchedule(schedule) == 1){
-					Toast.makeText(this, "Schedule added", Toast.LENGTH_LONG).show();
-					
-					Intent intent = new Intent(this, ViewScheduleListActivity.class);
-					startActivity(intent);
-					finish();
-					
-				} else
-					Toast.makeText(this, "Error: Schedule could not be added", Toast.LENGTH_LONG).show();
+			assignCalDates();
+			if (startCal.compareTo(endCal) < 0){
+				assignSchedule();
+				// codaddict (2010) Java, Check Whether a String is not Null and not Empty? [Online]. Available from: http://stackoverflow.com/questions/3598770/java-check-whether-a-string-is-not-null-and-not-empty [Accessed: 3 May 2015].
+				if (title != null && !title.equals("") && location != null && !location.equals("")){
+					if (db.addSchedule(schedule) == 1){
+						Toast.makeText(this, "Schedule added", Toast.LENGTH_LONG).show();
+						
+						Intent intent = new Intent(this, ViewScheduleListActivity.class);
+						startActivity(intent);
+						finish();
+						
+					} else
+						Toast.makeText(this, "Error: Schedule could not be added", Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(this, "Please Add a Title & Location to Your New Schedule", Toast.LENGTH_LONG).show();
+				}
 			} else {
-				Toast.makeText(this, "Please Add a Title & Location to Your New Schedule", Toast.LENGTH_LONG).show();
+				Toast.makeText(this, "Please ensure Start Time is before End Time.", Toast.LENGTH_LONG).show();
 			}
 		}
 		return super.onOptionsItemSelected(item);
