@@ -40,6 +40,8 @@ public class ViewScheduleActivity extends ActionBarActivity {
 		String id = String.valueOf((getIntent().getStringExtra("id")));
 	
 		schedule = db.getOneScheduleRow(id);
+		schedule.setId(id);
+		
 		title_locTV.setText(schedule.getTitle() + " @ " + schedule.getLocation());
 		notesTV.setText(schedule.getNotes());
 		
@@ -49,10 +51,10 @@ public class ViewScheduleActivity extends ActionBarActivity {
 		startTV.setText(df.format(startCal.getTime()) + " " + tf.format(startCal.getTime()));
 		endTV.setText(df.format(endCal.getTime()) + " " + tf.format(endCal.getTime()));
 		
-		if (schedule.getAlert().compareTo("0") == 0)
-			alertTV.setText("Yes.");
+		if (schedule.getAlert().compareTo("1") == 0)
+			alertTV.setText("On");
 		else
-			alertTV.setText("No.");
+			alertTV.setText("Off");
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -67,8 +69,8 @@ public class ViewScheduleActivity extends ActionBarActivity {
 		switch (id) {
 		case R.id.edit:
 			Intent intent = new Intent(this,EditScheduleActivity.class);
-			startActivity(intent);
 			intent.putExtra("id", schedule.getId());
+			startActivity(intent);
 			break;
 		case R.id.discard:
 			finish();
