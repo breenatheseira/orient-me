@@ -17,8 +17,6 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.example.orient_me.R;
-import com.example.orient_me.notes.ViewNoteActivity;
-import com.example.orient_me.notes.ViewNotesListActivity;
 
 public class ViewScheduleListActivity extends ActionBarActivity {
 
