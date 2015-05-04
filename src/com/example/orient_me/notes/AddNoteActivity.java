@@ -58,7 +58,7 @@ public class AddNoteActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.add_record, menu);
+		getMenuInflater().inflate(R.menu.save_only, menu);
 		return true;
 	}
 
