@@ -129,6 +129,7 @@ public class EditScheduleActivity extends ActionBarActivity {
 	}
 	
 	private void assignCalDates(){
+		//Saryada, W. (2006) How Do I Convert String to Date Object in Java? [Online]. Available from: kodejava.org/how-do-i-convert-string-to-date-object/ [Accessed: 4 May 2015].
 		try {
 			startCal.setTime(dtf.parse(startDateTV.getEditableText().toString() + " " + startTimeTV.getEditableText().toString()));
 			endCal.setTime(dtf.parse(endDateTV.getEditableText().toString() + " " + endTimeTV.getEditableText().toString()));
