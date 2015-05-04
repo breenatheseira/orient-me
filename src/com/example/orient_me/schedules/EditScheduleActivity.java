@@ -91,8 +91,11 @@ public class EditScheduleActivity extends ActionBarActivity {
 				if (title != null && !title.equals("") && location != null && !location.equals("")){
 					if (db.updateSchedule(schedule) == 1){
 						Toast.makeText(this, "Your Schedule is updated.", Toast.LENGTH_LONG).show();
+						Intent intent = new Intent(this, ViewScheduleActivity.class);
+						intent.putExtra("id", schedule.getId());
+						intent.putExtra("destroy?", false);
+						startActivity(intent);
 						finish();
-						
 					} else
 						Toast.makeText(this, "Error: Schedule could not be updated", Toast.LENGTH_LONG).show();
 				} else {
@@ -112,7 +115,7 @@ public class EditScheduleActivity extends ActionBarActivity {
 
 		        	//Delete the note
 		        	if (db.deleteSchedule(schedule.getId()) == 1)
-						finish();        	  
+		        		finish();
 		          }
 		      })
 		      .setNegativeButton("No", null)

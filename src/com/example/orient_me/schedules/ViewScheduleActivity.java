@@ -20,7 +20,7 @@ public class ViewScheduleActivity extends ActionBarActivity {
 	SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
 	Calendar startCal = Calendar.getInstance();
 	Calendar endCal = Calendar.getInstance();
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,6 +39,7 @@ public class ViewScheduleActivity extends ActionBarActivity {
 		String id = String.valueOf((getIntent().getStringExtra("id")));
 	
 		schedule = db.getOneScheduleRow(id);
+		
 		schedule.setId(id);
 		
 		title_locTV.setText(schedule.getTitle() + " @ " + schedule.getLocation());
@@ -58,7 +59,7 @@ public class ViewScheduleActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.edit_and_discard, menu);
+		getMenuInflater().inflate(R.menu.edit_only, menu);
 		return true;
 	}
 
@@ -70,8 +71,6 @@ public class ViewScheduleActivity extends ActionBarActivity {
 			Intent intent = new Intent(this,EditScheduleActivity.class);
 			intent.putExtra("id", schedule.getId());
 			startActivity(intent);
-			break;
-		case R.id.discard:
 			finish();
 			break;
 		}
