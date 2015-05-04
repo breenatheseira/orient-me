@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.util.Log;
 
 import com.example.orient_me.helpers.DatabaseHelper;
+import com.example.orient_me.notes.Note;
 
 public class ScheduleDatabaseHelper extends DatabaseHelper {
 
@@ -18,14 +19,7 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 	
 	public int addSchedule(Schedule schedule){
 		ContentValues values = new ContentValues();
-		values.put(SCHEDULE_ID, Integer.parseInt(schedule.getId()));
-		values.put(SCHEDULE_TITLE, schedule.getTitle());
-		values.put(SCHEDULE_START, Long.parseLong(schedule.getStart()));
-		values.put(SCHEDULE_END, Long.parseLong(schedule.getEnd()));
-		values.put(SCHEDULE_LOCATION, schedule.getLocation());
-		values.put(SCHEDULE_ALERT, Integer.parseInt(schedule.getAlert()));
-		values.put(SCHEDULE_NOTES, schedule.getNotes());
-		values.put(SCHEDULE_TRANSPARENT, Integer.parseInt(schedule.getTransparent()));
+		setContentFromSchedule(schedule, values);
 		
 		try {
 			wdb.insert(TABLE_SCHEDULES, null, values);
@@ -68,7 +62,18 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 		
 		return schedule;
 	}
-	
+	private ContentValues setContentFromSchedule(Schedule schedule, ContentValues values){
+		values.put(SCHEDULE_ID, Integer.parseInt(schedule.getId()));
+		values.put(SCHEDULE_TITLE, schedule.getTitle());
+		values.put(SCHEDULE_START, Long.parseLong(schedule.getStart()));
+		values.put(SCHEDULE_END, Long.parseLong(schedule.getEnd()));
+		values.put(SCHEDULE_LOCATION, schedule.getLocation());
+		values.put(SCHEDULE_ALERT, Integer.parseInt(schedule.getAlert()));
+		values.put(SCHEDULE_NOTES, schedule.getNotes());
+		values.put(SCHEDULE_TRANSPARENT, Integer.parseInt(schedule.getTransparent()));
+		
+		return values;
+	}
 	public List<Schedule> getAllSchedules(){
 		List<Schedule> schedules = new ArrayList<Schedule>();
 		String sql = "SELECT * FROM " + TABLE_SCHEDULES;
@@ -98,5 +103,16 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 			return setScheduleFromCursor(c);
 		}
 		return schedule;
+	}
+	public int updateSchedule(Schedule schedule){
+		ContentValues values = new ContentValues();
+		setContentFromSchedule(schedule, values);
+
+		// updating row
+		int i = wdb.update(TABLE_SCHEDULES, values, NOTE_ID + " = ?",
+				new String[] { String.valueOf(schedule.getId()) });
+//		Log.d("update values", i + " > doc id: " + schedule.getTitle() + ", note: "
+//				+ schedule.getNotes());
+		return i;
 	}
 }
