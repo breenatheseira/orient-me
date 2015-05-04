@@ -1,5 +1,6 @@
 package com.example.orient_me.schedules;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -7,7 +8,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.orient_me.R;
-import com.example.orient_me.notes.Note;
 
 public class ViewScheduleActivity extends ActionBarActivity {
 
@@ -47,12 +47,16 @@ public class ViewScheduleActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		switch (id) {
+		case R.id.edit:
+			Intent intent = new Intent(this,EditScheduleActivity.class);
+			startActivity(intent);
+			intent.putExtra("id", id);
+			break;
+		case R.id.discard:
+			finish();
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
