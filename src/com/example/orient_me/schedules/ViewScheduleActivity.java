@@ -1,8 +1,12 @@
 package com.example.orient_me.schedules;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -13,6 +17,10 @@ public class ViewScheduleActivity extends ActionBarActivity {
 
 	TextView title_locTV, startTV, endTV, alertTV, notesTV;
 	Schedule schedule;
+	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+	SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
+	Calendar startCal = Calendar.getInstance();
+	Calendar endCal = Calendar.getInstance();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +39,20 @@ public class ViewScheduleActivity extends ActionBarActivity {
 		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(this);
 		String id = String.valueOf((getIntent().getStringExtra("id")));
 	
-		schedule = new Schedule(id, db.getOneScheduleRow("alert", id),"0", db.getOneScheduleRow("title", id), db.getOneScheduleRow("location",id),db.getOneScheduleRow("note", id),db.getOneScheduleRow("startTime", id),db.getOneScheduleRow("endTime",id));
+		schedule = db.getOneScheduleRow(id);
 		title_locTV.setText(schedule.getTitle() + " @ " + schedule.getLocation());
 		notesTV.setText(schedule.getNotes());
-		startTV.setText(schedule.getStart());
-		endTV.setText(schedule.getEnd());
-		alertTV.setText(schedule.getAlert());
+		
+		startCal.setTimeInMillis(Long.parseLong(schedule.getStart()));
+		endCal.setTimeInMillis(Long.parseLong(schedule.getEnd()));
+		
+		startTV.setText(df.format(startCal.getTime()) + " " + tf.format(startCal.getTime()));
+		endTV.setText(df.format(endCal.getTime()) + " " + tf.format(endCal.getTime()));
+		
+		if (schedule.getAlert().compareTo("0") == 0)
+			alertTV.setText("Yes.");
+		else
+			alertTV.setText("No.");
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -52,7 +68,7 @@ public class ViewScheduleActivity extends ActionBarActivity {
 		case R.id.edit:
 			Intent intent = new Intent(this,EditScheduleActivity.class);
 			startActivity(intent);
-			intent.putExtra("id", id);
+			intent.putExtra("id", schedule.getId());
 			break;
 		case R.id.discard:
 			finish();
