@@ -83,4 +83,16 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 		}
 		return schedules;
 	}
+	
+	public String getOneScheduleRow (String key, String id) {
+		String value = null;
+		String sql = "Select " + key + " FROM " + TABLE_SCHEDULES + " WHERE id = "
+				+ id;
+		Cursor c = rdb.rawQuery(sql, null);
+
+		if (c.moveToNext()) {
+			value = c.getString(0);
+		}
+		return value;
+	}
 }

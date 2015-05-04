@@ -31,10 +31,12 @@ public class ViewScheduleActivity extends ActionBarActivity {
 		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(this);
 		String id = String.valueOf((getIntent().getStringExtra("id")));
 	
-		schedule = new Schedule(id, db.getOneNoteRow("title", id),
-				db.getOneNoteRow("note", id));
+		schedule = new Schedule(id, db.getOneScheduleRow("alert", id),"0", db.getOneScheduleRow("title", id), db.getOneScheduleRow("location",id),db.getOneScheduleRow("note", id),db.getOneScheduleRow("startTime", id),db.getOneScheduleRow("endTime",id));
 		title_locTV.setText(schedule.getTitle() + " @ " + schedule.getLocation());
 		notesTV.setText(schedule.getNotes());
+		startTV.setText(schedule.getStart());
+		endTV.setText(schedule.getEnd());
+		alertTV.setText(schedule.getAlert());
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
