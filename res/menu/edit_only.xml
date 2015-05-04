@@ -7,10 +7,5 @@
         android:icon="@drawable/ic_action_edit"
         android:title="@string/Edit"
         app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/discard"
-        android:icon="@drawable/ic_action_discard"
-        android:title="@string/Discard"
-        app:showAsAction="ifRoom"/>
 
 </menu>
