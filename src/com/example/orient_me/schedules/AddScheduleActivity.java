@@ -4,8 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -91,6 +93,7 @@ public class AddScheduleActivity extends ActionBarActivity implements
 		return true;
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
@@ -101,8 +104,17 @@ public class AddScheduleActivity extends ActionBarActivity implements
 				// codaddict (2010) Java, Check Whether a String is not Null and not Empty? [Online]. Available from: http://stackoverflow.com/questions/3598770/java-check-whether-a-string-is-not-null-and-not-empty [Accessed: 3 May 2015].
 				if (title != null && !title.equals("") && location != null && !location.equals("")){
 					if (db.addSchedule(schedule) == 1){
-						Toast.makeText(this, "Schedule added", Toast.LENGTH_LONG).show();
-						finish();
+//						Toast.makeText(this, "Schedule added", Toast.LENGTH_LONG).show();
+//						finish();
+						Intent intent = new Intent(Intent.ACTION_EDIT);
+						intent.setData(CalendarContract.Events.CONTENT_URI);
+						intent.putExtra("beginTime", startCal.getTimeInMillis());
+						intent.putExtra("endTime", endCal.getTimeInMillis());
+						intent.putExtra("title", schedule.getTitle());
+						intent.putExtra("eventLocation", schedule.getLocation());
+						intent.putExtra("description", schedule.getNotes());
+						intent.putExtra("alarm", schedule.getAlert());
+						startActivity(intent);
 						
 					} else
 						Toast.makeText(this, "Error: Schedule could not be added", Toast.LENGTH_LONG).show();
