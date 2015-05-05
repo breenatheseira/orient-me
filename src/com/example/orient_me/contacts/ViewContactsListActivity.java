@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.orient_me.R;
 
@@ -18,7 +19,8 @@ public class ViewContactsListActivity extends ActionBarActivity {
 	ListView contactList;
 	LinearLayout emptyLayout;
 	List<Contact> contacts;
-
+	ContactsDatabaseHelper db;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -32,7 +34,7 @@ public class ViewContactsListActivity extends ActionBarActivity {
 	}
 
 	private void loadListView() {
-		ContactsDatabaseHelper db = new ContactsDatabaseHelper(this);
+		db = new ContactsDatabaseHelper(this);
 
 		ArrayList<String> names = new ArrayList<String>(); 
 
@@ -59,6 +61,18 @@ public class ViewContactsListActivity extends ActionBarActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
+		if (id == R.id.add){
+			for (Contact eachContact : contacts){
+				ContactsProviderHelper contactsCP = new ContactsProviderHelper(eachContact);
+				contactsCP.insertDataToContactsContractTable(this);
+				
+				if (contactsCP.applyBatchInsertOperations(this) == 1)
+					Toast.makeText(this, "Error inserting all contacts!", Toast.LENGTH_SHORT).show();
+				
+				eachContact.setImported("1");
+				db.updateContact(eachContact);
+			}
+		}
 		return super.onOptionsItemSelected(item);
 	}
 
