@@ -42,5 +42,6 @@
     <string name="End">End</string>
     <string name="title_activity_view_schedule">ViewScheduleActivity</string>
     <string name="title_activity_edit_schedule">EditScheduleActivity</string>
+    <string name="title_activity_view_contacts_list">ViewContactsListActivity</string>
 
 </resources>
