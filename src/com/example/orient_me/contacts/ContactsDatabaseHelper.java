@@ -36,6 +36,19 @@ public class ContactsDatabaseHelper extends DatabaseHelper {
 		return schedules;
 	}
 	
+	public int updateContact(Contact contact){
+		ContentValues values = new ContentValues();
+		values.put(CONTACT_NAME, contact.getName());
+		values.put(CONTACT_NUMBER, contact.getNumber());
+		values.put(CONTACT_IMPORTED, contact.getImported());
+		
+		Log.d("update values", String.valueOf(contact.getId()) + " > contact name: " + contact.getName() + ", imported: "
+				+ contact.getImported());
+		
+		return wdb.update(TABLE_CONTACTS, values, CONTACT_ID + " = ?",
+				new String[] { String.valueOf(contact.getId()) });
+	}
+	
 	private Contact setContactsFromCursor(Cursor c){
 		Contact contact = new Contact();
 		
