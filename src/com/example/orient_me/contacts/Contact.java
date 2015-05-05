@@ -1,4 +1,4 @@
-package contacts;
+package com.example.orient_me.contacts;
 
 public class Contact {
 	String id, name, number, imported;

@@ -74,7 +74,7 @@
             android:label="@string/title_activity_edit_schedule" >
         </activity>
         <activity
-            android:name=".ViewContactsListActivity"
+            android:name=".contacts.ViewContactsListActivity"
             android:label="@string/title_activity_view_contacts_list" >
         </activity>
     </application>
