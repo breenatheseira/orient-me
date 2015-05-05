@@ -21,6 +21,7 @@ import com.example.orient_me.schedules.ViewScheduleListActivity;
 
 public class DocumentActivity extends ActionBarActivity implements OnClickListener {		
 	Button stuHandbook, modList, campMap, orientSch, myNotes;	
+	Intent intent;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
@@ -57,11 +58,13 @@ public class DocumentActivity extends ActionBarActivity implements OnClickListen
         case R.id.mi_doc:
         	break;
         case R.id.mi_import:
+        	intent = new Intent(this, ViewContactsListActivity.class);
+        	startActivity(intent);
         	break;
         case R.id.mi_sMedia:
         	break;
         case R.id.mi_schedule:
-        	Intent intent = new Intent(this, ViewScheduleListActivity.class);
+        	intent = new Intent(this, ViewScheduleListActivity.class);
         	startActivity(intent);
         	break;
         }
