@@ -18,6 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// Table Names
 		protected static final String TABLE_NOTES = "notes";
 		protected static final String TABLE_SCHEDULES = "schedules";
+		protected static final String TABLE_CONTACTS = "contacts";
 		
 		// Notes Column names
 		protected static final String NOTE_ID = "id";
@@ -33,6 +34,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		protected static final String SCHEDULE_LOCATION = "location";
 		protected static final String SCHEDULE_ALERT = "alert";
 		protected static final String SCHEDULE_TRANSPARENT = "transparent";
+		
+		// Contact Column Names
+		protected static final String CONTACT_ID = "id";
+		protected static final String CONTACT_NAME = "name";
+		protected static final String CONTACT_NUMBER = "c_number";
+		protected static final String CONTACT_IMPORTED = "imported";
 		
 		// Table Create Statements
 			// Note table create statement
@@ -52,6 +59,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					+ SCHEDULE_NOTES + " TEXT,"
 					+ SCHEDULE_TRANSPARENT + " INTEGER" + ")";
 			
+			// Contact table create statement
+			private static final String CREATE_TABLE_CONTACTS = "CREATE TABLE "
+					+ TABLE_CONTACTS + "("
+					+ CONTACT_ID + " INTEGER PRIMARY KEY,"
+					+ CONTACT_NAME + " TEXT,"
+					+ CONTACT_NUMBER + " TEXT,"
+					+ CONTACT_IMPORTED + " INTEGER" + ")";
+			
 		public DatabaseHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		}
@@ -61,6 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			// creating required tables
 			db.execSQL(CREATE_TABLE_NOTES);
 			db.execSQL(CREATE_TABLE_SCHEDULES);
+			db.execSQL(CREATE_TABLE_CONTACTS);
 		}
 
 		@Override
@@ -68,6 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			// on upgrade drop older tables
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTES);
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCHEDULES);
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
 
 			// create new tables
 			onCreate(db);
