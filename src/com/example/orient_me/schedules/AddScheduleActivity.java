@@ -104,8 +104,7 @@ public class AddScheduleActivity extends ActionBarActivity implements
 				// codaddict (2010) Java, Check Whether a String is not Null and not Empty? [Online]. Available from: http://stackoverflow.com/questions/3598770/java-check-whether-a-string-is-not-null-and-not-empty [Accessed: 3 May 2015].
 				if (title != null && !title.equals("") && location != null && !location.equals("")){
 					if (db.addSchedule(schedule) == 1){
-//						Toast.makeText(this, "Schedule added", Toast.LENGTH_LONG).show();
-//						finish();
+
 						Intent intent = new Intent(Intent.ACTION_EDIT);
 						intent.setData(CalendarContract.Events.CONTENT_URI);
 						intent.putExtra("beginTime", startCal.getTimeInMillis());
@@ -116,6 +115,8 @@ public class AddScheduleActivity extends ActionBarActivity implements
 						intent.putExtra("alarm", schedule.getAlert());
 						startActivity(intent);
 						
+						Toast.makeText(this, "Schedule added", Toast.LENGTH_LONG).show();
+						finish();
 					} else
 						Toast.makeText(this, "Error: Schedule could not be added", Toast.LENGTH_LONG).show();
 				} else {
