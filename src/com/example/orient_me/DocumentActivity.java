@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.orient_me.helpers.PreferencesHelper;
 import com.example.orient_me.notes.ViewNotesListActivity;
 import com.example.orient_me.schedules.ViewScheduleListActivity;
+import com.example.orient_me.contacts.ViewContactsListActivity;
 
 public class DocumentActivity extends ActionBarActivity implements OnClickListener {		
 	Button stuHandbook, modList, campMap, orientSch, myNotes;	
