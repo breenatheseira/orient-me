@@ -57,6 +57,10 @@
             android:label="@string/title_activity_add_note" >
         </activity>
         <activity
+            android:name=".notes.EditNoteActivity"
+            android:label="@string/title_activity_add_note" >
+        </activity>
+        <activity
             android:name=".notes.ViewNoteActivity"
             android:label="@string/title_activity_view_note" >
         </activity>
