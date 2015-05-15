@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.util.Log;
 
 import com.example.orient_me.helpers.DatabaseHelper;
-import com.example.orient_me.schedules.Schedule;
 
 public class ContactsDatabaseHelper extends DatabaseHelper {
 
