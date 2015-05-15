@@ -5,14 +5,14 @@ import java.util.Calendar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.orient_me.R;
 
-public class ViewScheduleActivity extends ActionBarActivity {
+public class ViewScheduleActivity extends AppCompatActivity {
 
 	TextView title_locTV, startTV, endTV, alertTV, notesTV;
 	Schedule schedule;

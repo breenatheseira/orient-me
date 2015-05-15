@@ -6,7 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,12 +15,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.orient_me.contacts.ViewContactsListActivity;
 import com.example.orient_me.helpers.PreferencesHelper;
 import com.example.orient_me.notes.ViewNotesListActivity;
 import com.example.orient_me.schedules.ViewScheduleListActivity;
-import com.example.orient_me.contacts.ViewContactsListActivity;
 
-public class DocumentActivity extends ActionBarActivity implements OnClickListener {		
+public class DocumentActivity extends AppCompatActivity implements OnClickListener {		
 	Button stuHandbook, modList, campMap, orientSch, myNotes;	
 	Intent intent;
 	@Override

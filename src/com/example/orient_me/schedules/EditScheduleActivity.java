@@ -8,7 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +18,7 @@ import android.widget.ToggleButton;
 
 import com.example.orient_me.R;
 
-public class EditScheduleActivity extends ActionBarActivity {
+public class EditScheduleActivity extends AppCompatActivity {
 
 	EditText titleET, locationET, notesET, startDateTV, startTimeTV, endDateTV,
 			endTimeTV;

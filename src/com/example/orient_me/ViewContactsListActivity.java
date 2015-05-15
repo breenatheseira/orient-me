@@ -1,11 +1,11 @@
 package com.example.orient_me;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ViewContactsListActivity extends ActionBarActivity {
+public class ViewContactsListActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

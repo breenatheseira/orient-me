@@ -4,19 +4,19 @@ package com.example.orient_me;
 import java.io.File;
 import java.io.IOException;
 
-import com.example.orient_me.helpers.FileDownloader;
-import com.example.orient_me.helpers.PreferencesHelper;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class SplashLoginActivity extends ActionBarActivity {
+import com.example.orient_me.helpers.FileDownloader;
+import com.example.orient_me.helpers.PreferencesHelper;
+
+public class SplashLoginActivity extends AppCompatActivity {
 	String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
 	
 	@Override

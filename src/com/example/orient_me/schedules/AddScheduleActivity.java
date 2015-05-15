@@ -8,7 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +19,7 @@ import android.widget.ToggleButton;
 
 import com.example.orient_me.R;
 
-public class AddScheduleActivity extends ActionBarActivity implements
+public class AddScheduleActivity extends AppCompatActivity implements
 		OnClickListener {
 
 	EditText titleET, locationET, notesET, startDateTV, startTimeTV, endDateTV,

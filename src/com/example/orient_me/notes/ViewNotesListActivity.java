@@ -5,7 +5,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +17,7 @@ import android.widget.ListView;
 
 import com.example.orient_me.R;
 
-public class ViewNotesListActivity extends ActionBarActivity {
+public class ViewNotesListActivity extends AppCompatActivity {
 
 	ListView noteList;
 	LinearLayout emptyLayout;

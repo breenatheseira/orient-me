@@ -3,13 +3,12 @@ package com.example.orient_me;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.orient_me.helpers.PreferencesHelper;
-import com.example.orient_me.schedules.ViewScheduleListActivity;
 
 // Tamada, R. (2013): http://www.androidhive.info/2013/07/how-to-implement-android-splash-screen-2/
-public class SplashActivity extends ActionBarActivity {
+public class SplashActivity extends AppCompatActivity {
 	private static int splash_timeout = 3000;
 	
 	
@@ -24,7 +23,7 @@ public class SplashActivity extends ActionBarActivity {
 			public void run() {						
 				PreferencesHelper pref = new PreferencesHelper(SplashActivity.this);
 				Intent intent_login = new Intent(SplashActivity.this,LoginActivity.class);
-				Intent intent_menu = new Intent(SplashActivity.this, ViewScheduleListActivity.class);
+				Intent intent_menu = new Intent(SplashActivity.this, DocumentActivity.class);
 				
 				if (pref.GetPreferences("AuthToken").length() == 0)
 					startActivity(intent_login);
