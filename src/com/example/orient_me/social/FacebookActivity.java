@@ -1,14 +1,11 @@
 package com.example.orient_me.social;
 
-import com.example.orient_me.R;
-import com.example.orient_me.R.id;
-import com.example.orient_me.R.layout;
-import com.example.orient_me.R.menu;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.orient_me.R;
 
 public class FacebookActivity extends AppCompatActivity {
 
