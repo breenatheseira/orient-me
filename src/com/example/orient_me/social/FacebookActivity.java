@@ -1,11 +1,16 @@
-package com.example.orient_me;
+package com.example.orient_me.social;
 
-import android.support.v7.app.ActionBarActivity;
+import com.example.orient_me.R;
+import com.example.orient_me.R.id;
+import com.example.orient_me.R.layout;
+import com.example.orient_me.R.menu;
+
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class FacebookActivity extends ActionBarActivity {
+public class FacebookActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

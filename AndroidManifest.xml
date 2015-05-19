@@ -85,7 +85,7 @@
             android:label="@string/title_activity_view_contacts_list" >
         </activity>
         <activity
-            android:name=".FacebookActivity"
+            android:name="com.example.orient_me.social.FacebookActivity"
             android:label="@string/title_activity_facebook" >
         </activity>
     </application>
