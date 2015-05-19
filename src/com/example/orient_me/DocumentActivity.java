@@ -19,6 +19,7 @@ import com.example.orient_me.contacts.ViewContactsListActivity;
 import com.example.orient_me.helpers.PreferencesHelper;
 import com.example.orient_me.notes.ViewNotesListActivity;
 import com.example.orient_me.schedules.ViewScheduleListActivity;
+import com.example.orient_me.social.FacebookActivity;
 
 public class DocumentActivity extends AppCompatActivity implements OnClickListener {		
 	Button stuHandbook, modList, campMap, orientSch, myNotes;	
@@ -63,6 +64,8 @@ public class DocumentActivity extends AppCompatActivity implements OnClickListen
         	startActivity(intent);
         	break;
         case R.id.mi_sMedia:
+        	intent = new Intent(this, FacebookActivity.class);
+        	startActivity(intent);
         	break;
         case R.id.mi_schedule:
         	intent = new Intent(this, ViewScheduleListActivity.class);
