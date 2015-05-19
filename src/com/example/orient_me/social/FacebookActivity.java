@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.example.orient_me.R;
 
@@ -13,6 +16,16 @@ public class FacebookActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_facebook);
+		
+		WebView w = new WebView(this);
+		w = (WebView) findViewById(R.id.facebookWebView); 
+		//Cristian (2010) What's the Difference Between setWebViewClient vs setWebChromeClient? [Online]. Available from: http://stackoverflow.com/questions/2835556/whats-the-difference-between-setwebviewclient-vs-setwebchromeclient [Accessed: 19 May 2015].
+		w.setWebChromeClient(new WebChromeClient()); 
+		w.setWebViewClient(new WebViewClient()); 
+		w.getSettings().setJavaScriptEnabled(true);
+		
+		String url = "http://m.facebook.com";
+		 w.loadUrl(url);
 	}
 
 	@Override
