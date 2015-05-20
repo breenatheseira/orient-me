@@ -1,5 +1,8 @@
 package com.example.orient_me.badges;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Badge {
 	String id, name, desc, picture, unlocked_at;
 
@@ -41,6 +44,11 @@ public class Badge {
 
 	public void setUnlocked_at(String unlocked_at) {
 		this.unlocked_at = unlocked_at;
+	}
+	
+	public String getTimeNow(){
+		SimpleDateFormat dtf = new SimpleDateFormat("dd MMM yyyy, HH:mm");
+		return dtf.format(Calendar.getInstance().getTime());
 	}
 	
 }
