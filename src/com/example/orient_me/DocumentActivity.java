@@ -77,6 +77,7 @@ public class DocumentActivity extends AppCompatActivity implements OnClickListen
 	
 	@Override
 	public void onClick(View v) {
+		Intent intent;
 		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
 		switch (v.getId()){
 		case R.id.daB_studentHandbook:
@@ -86,13 +87,14 @@ public class DocumentActivity extends AppCompatActivity implements OnClickListen
 			ViewPDF(prefs.GetPreferences("ModuleList"),v);
 			break;
 		case R.id.daB_campusMap:
-			ViewPDF(prefs.GetPreferences("StudentHandbook"),v);
+			intent = new Intent(this, MapActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.daB_orientSchedule:
 			ViewPDF(prefs.GetPreferences("OrientationSchedule"),v);
 			break;
 		case R.id.daB_myNotes:
-			Intent intent = new Intent(this, ViewNotesListActivity.class);
+			intent = new Intent(this, ViewNotesListActivity.class);
 			startActivity(intent);
 			break;
 		}
