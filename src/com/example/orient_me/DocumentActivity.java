@@ -2,7 +2,6 @@ package com.example.orient_me;
 
 import java.io.File;
 
-
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -16,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.orient_me.badges.ViewBadgesListActivity;
 import com.example.orient_me.contacts.ViewContactsListActivity;
 import com.example.orient_me.helpers.PreferencesHelper;
 import com.example.orient_me.maps.MapActivity;
@@ -58,22 +58,21 @@ public class DocumentActivity extends AppCompatActivity implements OnClickListen
         int id = item.getItemId();
         switch(id) {
         case R.id.mi_badges:
+        	intent = new Intent(this, ViewBadgesListActivity.class);
         	break;
         case R.id.mi_doc:
         	break;
         case R.id.mi_import:
         	intent = new Intent(this, ViewContactsListActivity.class);
-        	startActivity(intent);
         	break;
         case R.id.mi_sMedia:
         	intent = new Intent(this, FacebookActivity.class);
-        	startActivity(intent);
         	break;
         case R.id.mi_schedule:
         	intent = new Intent(this, ViewScheduleListActivity.class);
-        	startActivity(intent);
         	break;
         }
+        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 	
