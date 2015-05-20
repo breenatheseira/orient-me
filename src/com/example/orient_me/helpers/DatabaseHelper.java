@@ -20,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		protected static final String TABLE_NOTES = "notes";
 		protected static final String TABLE_SCHEDULES = "schedules";
 		protected static final String TABLE_CONTACTS = "contacts";
+		protected static final String TABLE_PLACES= "places";
 		
 		// Notes Column names
 		protected static final String NOTE_ID = "id";
@@ -41,6 +42,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		protected static final String CONTACT_NAME = "name";
 		protected static final String CONTACT_NUMBER = "c_number";
 		protected static final String CONTACT_IMPORTED = "imported";
+		
+		// Places Column Names
+		protected static final String PLACE_ID = "id";
+		protected static final String PLACE_TITLE = "title";
+		protected static final String PLACE_SNIPPET = "snippet";
+		protected static final String PLACE_ADDRESS = "address";
+		protected static final String PLACE_LAT = "lat";
+		protected static final String PLACE_LNG = "lng";
+		protected static final String PLACE_TYPE = "type";
 		
 		// Table Create Statements
 			// Note table create statement
@@ -68,6 +78,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					+ CONTACT_NUMBER + " TEXT,"
 					+ CONTACT_IMPORTED + " INTEGER" + ")";
 			
+			// Places table create statement
+			private static final String CREATE_TABLE_PLACES = "CREATE TABLE "
+					+ TABLE_PLACES + " ("
+					+ PLACE_ID + " INTEGER PRIMARY KEY,"
+					+ PLACE_TITLE + " TEXT,"
+					+ PLACE_SNIPPET + " TEXT,"
+					+ PLACE_ADDRESS + " ADDRESS,"
+					+ PLACE_LAT + " TEXT,"
+					+ PLACE_LNG + " TEXT,"
+					+ PLACE_TYPE + " TEXT " + ")";
+			
 		public DatabaseHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		}
@@ -78,8 +99,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			db.execSQL(CREATE_TABLE_NOTES);
 			db.execSQL(CREATE_TABLE_SCHEDULES);
 			db.execSQL(CREATE_TABLE_CONTACTS);
+			db.execSQL(CREATE_TABLE_PLACES);
 			
 			initContacts(db);
+			initPlaces(db);
 		}
 
 		private void initContacts(SQLiteDatabase db){
@@ -97,13 +120,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			}	
 		}
 		
+		private void initPlaces(SQLiteDatabase db){
+			try {
+				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('1','APU Main Campus', 'Main Campus of APU in Malaysia','Asia Pacific University of Technology & Innovation (APU)', '3.048050', '101.692782', 'U')");
+				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('2','ENT 3', 'Enterprise 3','0', '3.048133','101.690647', 'U')");
+//				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('3','Pappy','123123114','0')");
+//		
+//				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('4','Granny','98323423','0')");
+//				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('5','Sis-ty','23223321','0')");
+//				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('6','Bro-ey','0123451234','0')");
+				Log.d("PDH", "Places inserted successfully");
+			} catch (Exception e){
+				Log.d("PDH", "Error @ Places inserted: " + e.getMessage());
+			}	
+		}
+		
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			// on upgrade drop older tables
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTES);
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCHEDULES);
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
-
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLACES);
 			// create new tables
 			onCreate(db);
 		}
