@@ -35,7 +35,7 @@ public class BadgeDatabaseHelper extends DatabaseHelper {
 		Cursor c = rdb.rawQuery(sql, null);
 
 		if (c.moveToNext()) {
-			
+			 return setBadgesFromCursor(c);
 		}
 		return badge;
 	}

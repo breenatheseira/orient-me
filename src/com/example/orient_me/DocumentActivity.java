@@ -7,14 +7,21 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.orient_me.badges.Badge;
+import com.example.orient_me.badges.BadgeDatabaseHelper;
 import com.example.orient_me.badges.ViewBadgesListActivity;
 import com.example.orient_me.contacts.ViewContactsListActivity;
 import com.example.orient_me.helpers.PreferencesHelper;
@@ -26,12 +33,11 @@ import com.example.orient_me.social.FacebookActivity;
 public class DocumentActivity extends AppCompatActivity implements OnClickListener {		
 	Button stuHandbook, modList, campMap, orientSch, myNotes;	
 	Intent intent;
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_document);
-		
-		Toast.makeText(DocumentActivity.this, "Welcome, student!", Toast.LENGTH_SHORT).show();
 		
 		stuHandbook = (Button) findViewById(R.id.daB_studentHandbook);
 		modList = (Button) findViewById(R.id.daB_moduleList);
@@ -82,6 +88,7 @@ public class DocumentActivity extends AppCompatActivity implements OnClickListen
 		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
 		switch (v.getId()){
 		case R.id.daB_studentHandbook:
+			showAchievement(1);
 			ViewPDF(prefs.GetPreferences("StudentHandbook"),v);
 			break;
 		case R.id.daB_moduleList:
@@ -114,6 +121,27 @@ public class DocumentActivity extends AppCompatActivity implements OnClickListen
         }catch(ActivityNotFoundException e){
             Toast.makeText(DocumentActivity.this, "No Application available to view PDF", Toast.LENGTH_SHORT).show();
         }
+    }
+    
+    private void showAchievement(int id){
+    	
+    	BadgeDatabaseHelper db = new BadgeDatabaseHelper(this); 
+    	
+    	Badge badge = db.getOneBadgeRow(String.valueOf(id));
+    	
+		LayoutInflater inflater = getLayoutInflater();
+		View layout = inflater.inflate(R.layout.customtoast, (ViewGroup) findViewById (R.id.toast_container));
+		
+		ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
+		image.setImageResource(R.drawable.ic_action_edit);
+		TextView badgeName = (TextView) layout.findViewById(R.id.toast_text);
+		badgeName.setText(badge.getName());
+
+		Toast toast = new Toast(getApplicationContext());
+		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 100);
+		toast.setDuration(Toast.LENGTH_LONG);
+		toast.setView(layout);
+		toast.show();
     }
 
 }
