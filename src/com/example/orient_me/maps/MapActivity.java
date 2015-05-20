@@ -1,5 +1,6 @@
 package com.example.orient_me.maps;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.location.Geocoder;
@@ -9,7 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.orient_me.R;
-import com.google.android.gms.identity.intents.Address;
+import com.example.orient_me.notes.Note;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -28,17 +30,32 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-
+    
     public void onMapReady(GoogleMap map) {
-        LatLng APU = getLocationFromAddress("Asia Pacific University of Technology & Innovation (APU)");
-
-        map.setMyLocationEnabled(true);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(APU, 17));
-
-        map.addMarker(new MarkerOptions()
-                .title("APU TPM Campus")
-                .snippet("Main Campus of APU in Malaysia")
-                .position(APU));
+    	PlaceDatabaseHelper pdb = new PlaceDatabaseHelper(this); 
+    	List<Place> places = pdb.getAllPlaces();
+    	LatLng pos;
+        //LatLng APU = getLocationFromAddress("Asia Pacific University of Technology & Innovation (APU)");
+    	//LatLng APU = new LatLng(3.048050, 101.692782);
+    	//LatLng Ent3 = new LatLng(3.048133, 101.690647);
+    	
+    	map.setMyLocationEnabled(true);
+    	
+		places = pdb.getAllPlaces();
+		for (Place eachPlace : places){
+			if (eachPlace.getAddress().equalsIgnoreCase("0"))
+				pos = new LatLng(Double.parseDouble(eachPlace.getLat()), Double.parseDouble(eachPlace.getLng()));
+			else 
+				pos = getLocationFromAddress(eachPlace.getAddress());
+			
+	        map.addMarker(new MarkerOptions()
+	            .title(eachPlace.getTitle())
+	            .snippet(eachPlace.getSnippet())
+	            .position(pos));
+			
+			if (eachPlace.getId().equalsIgnoreCase("1"))
+				map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 17));	
+		}
     }
     
 	@Override
@@ -61,8 +78,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	}
 	
 	// Gupte, N. A. (2015) How Can I Find the Latitude and Longitude From Address? [Online]. Available from: http://stackoverflow.com/questions/3574644/how-can-i-find-the-latitude-and-longitude-from-address/27834110#27834110 [Accessed: 20 May 2015].
-	public LatLng getLocationFromAddress(String strAddress) {
-
+	private LatLng getLocationFromAddress(String strAddress) {
 	    Geocoder coder = new Geocoder(this);
 	    List<android.location.Address> address;
 	    LatLng p1 = null;
@@ -83,4 +99,5 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	    }
 	    return p1;
 	}
+
 }
