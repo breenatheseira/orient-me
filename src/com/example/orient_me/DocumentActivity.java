@@ -1,8 +1,6 @@
 package com.example.orient_me;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -37,12 +35,14 @@ public class DocumentActivity extends AppCompatActivity implements
 		OnClickListener {
 	Button stuHandbook, modList, campMap, orientSch, myNotes;
 	Intent intent;
-
+	PreferencesHelper prefs;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_document);
-
+		prefs = new PreferencesHelper(getApplicationContext());
+		
 		stuHandbook = (Button) findViewById(R.id.daB_studentHandbook);
 		modList = (Button) findViewById(R.id.daB_moduleList);
 		campMap = (Button) findViewById(R.id.daB_campusMap);
@@ -88,14 +88,17 @@ public class DocumentActivity extends AppCompatActivity implements
 
 	@Override
 	public void onClick(View v) {
-		Intent intent;
-		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
+		Intent intent;		
 		switch (v.getId()) {
 		case R.id.daB_studentHandbook:
+			prefs.SavePreferences("sh_count", "v");
 			showAchievement(1);
+			docViewCheck();
 			ViewPDF(prefs.GetPreferences("StudentHandbook"), v);
 			break;
 		case R.id.daB_moduleList:
+			prefs.SavePreferences("ml_count", "v");
+			docViewCheck();
 			ViewPDF(prefs.GetPreferences("ModuleList"), v);
 			break;
 		case R.id.daB_campusMap:
@@ -103,6 +106,8 @@ public class DocumentActivity extends AppCompatActivity implements
 			startActivity(intent);
 			break;
 		case R.id.daB_orientSchedule:
+			prefs.SavePreferences("os_count", "v");
+			docViewCheck();
 			ViewPDF(prefs.GetPreferences("OrientationSchedule"), v);
 			break;
 		case R.id.daB_myNotes:
@@ -156,5 +161,8 @@ public class DocumentActivity extends AppCompatActivity implements
 			toast.show();
 		}
 	}
-
+	private void docViewCheck(){
+		if (prefs.GetPreferences("sh_count").contains("v") && prefs.GetPreferences("ml_count").contains("v") && prefs.GetPreferences("os_count").contains("v"))
+			showAchievement(4);
+	}
 }
