@@ -126,14 +126,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		private void initBadges(SQLiteDatabase db){
 			try {
-				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('1','Handbook Discovery','Found Student Handbook. Make sure to read it ;)','...')");
-				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('2','Resourceful Dialler','Obtained important contacts!','...')");
-				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('3','Never Alone','Be My Friend!','...')");
-				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('4','Better Nerd Than Dead','Opened more than 2 documents consecutively! Open one more...','...')");
-				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('5','Always Early!','Scheduled 5 Events','...')");
-				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('6','I Take Notes','Saved 3 Notes; Saved 1 Tree','...')");
-				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('7','Just Checking My Environment...','Viewed Map for More Than 5 Minutes','...')");
-				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('8','Officially APUian!','Hello Junior! - Logged in for the first time','...')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('1','Handbook Discovery','Found Student Handbook. Make sure to read it ;)','...','')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('2','Resourceful Dialler','Obtained important contacts!','...','')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('3','Never Alone','Be My Friend!','...','')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('4','Better Nerd Than Dead','Opened more than 2 documents consecutively! Open one more...','...','')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('5','Always Early!','Scheduled 5 Events','...','')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('6','I Take Notes','Saved 3 Notes; Saved 1 Tree','...','')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('7','Just Checking My Environment...','Viewed Map for More Than 5 Minutes','...','')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('8','Officially APUian!','Hello Junior! - Logged in for the first time','...','')");
 				Log.d("BDH", "Badges inserted successfully");
 			} catch (Exception e){
 				Log.d("BDH", "Error @ Badges inserted: " + e.getMessage());
