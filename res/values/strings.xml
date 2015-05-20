@@ -46,5 +46,5 @@
     <string name="title_activity_facebook">FacebookActivity</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_view_badges_list">ViewBadgesListActivity</string>
-
+	<string name="AchievementUnlocked">Achievement Unlocked!</string>
 </resources>
