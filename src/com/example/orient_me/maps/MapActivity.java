@@ -1,17 +1,27 @@
 package com.example.orient_me.maps;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.orient_me.R;
-import com.example.orient_me.notes.Note;
-import com.google.android.gms.location.places.Places;
+import com.example.orient_me.badges.Badge;
+import com.example.orient_me.badges.BadgeDatabaseHelper;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -20,17 +30,40 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
-
-    @Override
+	BadgeDatabaseHelper db;
+	
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        
+        db = new BadgeDatabaseHelper(this);
+        if (db.getOneBadgeRow("7").getUnlocked_at().isEmpty())
+        	setAchievementTimer();
         
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
     
+	public void setAchievementTimer(){
+		//Arshed, F. (2013) How Can I Create Timer Tick in Android? [Online]. Available from: http://stackoverflow.com/questions/14384016/how-can-i-create-timer-tick-in-android [Accessed: 20 May 2015].
+		final Handler handler = new Handler();
+		Timer timer = new Timer(false);
+		TimerTask timerTask = new TimerTask() {
+		    @Override
+		    public void run() {
+		        handler.post(new Runnable() {
+		            @Override
+		            public void run() {
+		                showAchievement(7);
+		            }
+		        });
+		    }
+		};
+		timer.schedule(timerTask, 1000*60*5); // 1000 = 1 second; so 1000*60*5 = 5 mins
+	}
+	
     public void onMapReady(GoogleMap map) {
     	PlaceDatabaseHelper pdb = new PlaceDatabaseHelper(this); 
     	List<Place> places = pdb.getAllPlaces();
@@ -57,19 +90,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 				map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 17));	
 		}
     }
-    
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.map, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
@@ -99,5 +128,29 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	    }
 	    return p1;
 	}
+	
+	 private void showAchievement(int id) {
+		
+		Badge badge = db.getOneBadgeRow(String.valueOf(id));
 
+		badge.setUnlocked_at(badge.getTimeNow());
+		Log.d("MA - Checking time format", badge.getUnlocked_at());
+		db.updateBadge(badge);
+		
+		LayoutInflater inflater = getLayoutInflater();
+		View layout = inflater.inflate(R.layout.customtoast,
+				(ViewGroup) findViewById(R.id.toast_container));
+
+		ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
+		image.setImageResource(R.drawable.ic_action_edit);
+		TextView badgeName = (TextView) layout
+				.findViewById(R.id.toast_text);
+		badgeName.setText(badge.getName());
+
+		Toast toast = new Toast(getApplicationContext());
+		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 100);
+		toast.setDuration(Toast.LENGTH_LONG);
+		toast.setView(layout);
+		toast.show();
+	}
 }
