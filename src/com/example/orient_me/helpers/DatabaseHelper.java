@@ -20,7 +20,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		protected static final String TABLE_NOTES = "notes";
 		protected static final String TABLE_SCHEDULES = "schedules";
 		protected static final String TABLE_CONTACTS = "contacts";
-		protected static final String TABLE_PLACES= "places";
+		protected static final String TABLE_PLACES = "places";
+		protected static final String TABLE_BADGES = "badges";
 		
 		// Notes Column names
 		protected static final String NOTE_ID = "id";
@@ -52,6 +53,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		protected static final String PLACE_LNG = "lng";
 		protected static final String PLACE_TYPE = "type";
 		
+		// Badges Column Names
+		protected static final String BADGE_ID = "id";
+		protected static final String BADGE_NAME = "name";
+		protected static final String BADGE_DESC = "desc";
+		protected static final String BADGE_PICTURE = "picture";
+		protected static final String BADGE_UNLOCKED_AT = "unlocked_at";
+		
 		// Table Create Statements
 			// Note table create statement
 			private static final String CREATE_TABLE_NOTES = "CREATE TABLE "
@@ -78,7 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					+ CONTACT_NUMBER + " TEXT,"
 					+ CONTACT_IMPORTED + " INTEGER" + ")";
 			
-			// Places table create statement
+			// Place table create statement
 			private static final String CREATE_TABLE_PLACES = "CREATE TABLE "
 					+ TABLE_PLACES + " ("
 					+ PLACE_ID + " INTEGER PRIMARY KEY,"
@@ -88,6 +96,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					+ PLACE_LAT + " TEXT,"
 					+ PLACE_LNG + " TEXT,"
 					+ PLACE_TYPE + " TEXT " + ")";
+			
+			// Badge table create statement
+			private static final String CREATE_TABLE_BADGES = "CREATE TABLE "
+					+ TABLE_BADGES + " ("
+					+ BADGE_ID + " INTEGER PRIMARY KEY,"
+					+ BADGE_NAME + " TEXT,"
+					+ BADGE_DESC + " TEXT,"
+					+ BADGE_PICTURE + " TEXT,"
+					+ BADGE_UNLOCKED_AT + " TEXT" + ")"; 
 			
 		public DatabaseHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -100,9 +117,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			db.execSQL(CREATE_TABLE_SCHEDULES);
 			db.execSQL(CREATE_TABLE_CONTACTS);
 			db.execSQL(CREATE_TABLE_PLACES);
+			db.execSQL(CREATE_TABLE_BADGES);
 			
 			initContacts(db);
 			initPlaces(db);
+			initBadges(db);		
+		}
+		
+		private void initBadges(SQLiteDatabase db){
+			try {
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('1','Handbook Discovery','Found Student Handbook. Make sure to read it ;)','...')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('2','Resourceful Dialler','Obtained important contacts!','...')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('3','Never Alone','Be My Friend!','...')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('4','Better Nerd Than Dead','Opened more than 2 documents consecutively! Open one more...','...')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('5','Always Early!','Scheduled 5 Events','...')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('6','I Take Notes','Saved 3 Notes; Saved 1 Tree','...')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('7','Just Checking My Environment...','Viewed Map for More Than 5 Minutes','...')");
+				db.execSQL("INSERT INTO " + TABLE_BADGES + " VALUES ('8','Officially APUian!','Hello Junior! - Logged in for the first time','...')");
+				Log.d("BDH", "Badges inserted successfully");
+			} catch (Exception e){
+				Log.d("BDH", "Error @ Badges inserted: " + e.getMessage());
+			}	
 		}
 
 		private void initContacts(SQLiteDatabase db){
@@ -142,6 +177,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCHEDULES);
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLACES);
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_BADGES);
 			// create new tables
 			onCreate(db);
 		}
