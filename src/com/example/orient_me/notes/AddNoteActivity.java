@@ -3,12 +3,21 @@ package com.example.orient_me.notes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.orient_me.R;
+import com.example.orient_me.badges.Badge;
+import com.example.orient_me.badges.BadgeDatabaseHelper;
 
 public class AddNoteActivity extends AppCompatActivity {
 
@@ -47,6 +56,9 @@ public class AddNoteActivity extends AppCompatActivity {
 			
 			Toast.makeText(this, newNote.getTitle() + " saved!", Toast.LENGTH_SHORT).show();
 			
+			if (newNote.getId().equals("3"))
+				showAchievement(6);
+			
 			Intent intent = new Intent(AddNoteActivity.this,ViewNotesListActivity.class);
 			startActivity(intent);
 			finish();
@@ -70,5 +82,34 @@ public class AddNoteActivity extends AppCompatActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+    private void showAchievement(int id) {
+
+		BadgeDatabaseHelper db = new BadgeDatabaseHelper(this);
+
+		Badge badge = db.getOneBadgeRow(String.valueOf(id));
+
+		if (badge.getUnlocked_at().isEmpty()) {
+			badge.setUnlocked_at(badge.getTimeNow());
+			Log.d("DA - Checking time format", badge.getUnlocked_at());
+			db.updateBadge(badge);
+			
+			LayoutInflater inflater = getLayoutInflater();
+			View layout = inflater.inflate(R.layout.customtoast,
+					(ViewGroup) findViewById(R.id.toast_container));
+
+			ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
+			image.setImageResource(R.drawable.ic_action_edit);
+			TextView badgeName = (TextView) layout
+					.findViewById(R.id.toast_text);
+			badgeName.setText(badge.getName());
+
+			Toast toast = new Toast(getApplicationContext());
+			toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 100);
+			toast.setDuration(Toast.LENGTH_LONG);
+			toast.setView(layout);
+			toast.show();
+		}
 	}
 }
