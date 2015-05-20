@@ -2,6 +2,7 @@ package com.example.orient_me;
 
 import java.io.File;
 
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.orient_me.contacts.ViewContactsListActivity;
 import com.example.orient_me.helpers.PreferencesHelper;
+import com.example.orient_me.maps.MapActivity;
 import com.example.orient_me.notes.ViewNotesListActivity;
 import com.example.orient_me.schedules.ViewScheduleListActivity;
 import com.example.orient_me.social.FacebookActivity;

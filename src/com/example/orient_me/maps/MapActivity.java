@@ -1,10 +1,14 @@
-package com.example.orient_me;
+package orient_me.maps;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.orient_me.R;
+import com.example.orient_me.R.id;
+import com.example.orient_me.R.layout;
+import com.example.orient_me.R.menu;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
