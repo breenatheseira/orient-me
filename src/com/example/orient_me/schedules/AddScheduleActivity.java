@@ -115,7 +115,8 @@ public class AddScheduleActivity extends AppCompatActivity implements
 						intent.putExtra("alarm", schedule.getAlert());
 						startActivity(intent);
 						
-						Toast.makeText(this, "Schedule added", Toast.LENGTH_LONG).show();
+						Toast.makeText(this, "Export and save your schedule in your calendar", Toast.LENGTH_LONG).show();
+						
 						finish();
 					} else
 						Toast.makeText(this, "Error: Schedule could not be added", Toast.LENGTH_LONG).show();
