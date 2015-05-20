@@ -1,12 +1,15 @@
 package com.example.orient_me;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,21 +33,22 @@ import com.example.orient_me.notes.ViewNotesListActivity;
 import com.example.orient_me.schedules.ViewScheduleListActivity;
 import com.example.orient_me.social.FacebookActivity;
 
-public class DocumentActivity extends AppCompatActivity implements OnClickListener {		
-	Button stuHandbook, modList, campMap, orientSch, myNotes;	
+public class DocumentActivity extends AppCompatActivity implements
+		OnClickListener {
+	Button stuHandbook, modList, campMap, orientSch, myNotes;
 	Intent intent;
-		
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) { 
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_document);
-		
+
 		stuHandbook = (Button) findViewById(R.id.daB_studentHandbook);
 		modList = (Button) findViewById(R.id.daB_moduleList);
 		campMap = (Button) findViewById(R.id.daB_campusMap);
-		orientSch= (Button) findViewById(R.id.daB_orientSchedule);
+		orientSch = (Button) findViewById(R.id.daB_orientSchedule);
 		myNotes = (Button) findViewById(R.id.daB_myNotes);
-		
+
 		stuHandbook.setOnClickListener(this);
 		modList.setOnClickListener(this);
 		campMap.setOnClickListener(this);
@@ -55,51 +59,51 @@ public class DocumentActivity extends AppCompatActivity implements OnClickListen
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);	
+		inflater.inflate(R.menu.main, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch(id) {
-        case R.id.mi_badges:
-        	intent = new Intent(this, ViewBadgesListActivity.class);
-        	break;
-        case R.id.mi_doc:
-        	break;
-        case R.id.mi_import:
-        	intent = new Intent(this, ViewContactsListActivity.class);
-        	break;
-        case R.id.mi_sMedia:
-        	intent = new Intent(this, FacebookActivity.class);
-        	break;
-        case R.id.mi_schedule:
-        	intent = new Intent(this, ViewScheduleListActivity.class);
-        	break;
-        }
-        startActivity(intent);
-        return super.onOptionsItemSelected(item);
-    }
-	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		switch (id) {
+		case R.id.mi_badges:
+			intent = new Intent(this, ViewBadgesListActivity.class);
+			break;
+		case R.id.mi_doc:
+			break;
+		case R.id.mi_import:
+			intent = new Intent(this, ViewContactsListActivity.class);
+			break;
+		case R.id.mi_sMedia:
+			intent = new Intent(this, FacebookActivity.class);
+			break;
+		case R.id.mi_schedule:
+			intent = new Intent(this, ViewScheduleListActivity.class);
+			break;
+		}
+		startActivity(intent);
+		return super.onOptionsItemSelected(item);
+	}
+
 	@Override
 	public void onClick(View v) {
 		Intent intent;
 		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
-		switch (v.getId()){
+		switch (v.getId()) {
 		case R.id.daB_studentHandbook:
 			showAchievement(1);
-			ViewPDF(prefs.GetPreferences("StudentHandbook"),v);
+			ViewPDF(prefs.GetPreferences("StudentHandbook"), v);
 			break;
 		case R.id.daB_moduleList:
-			ViewPDF(prefs.GetPreferences("ModuleList"),v);
+			ViewPDF(prefs.GetPreferences("ModuleList"), v);
 			break;
 		case R.id.daB_campusMap:
 			intent = new Intent(this, MapActivity.class);
 			startActivity(intent);
 			break;
 		case R.id.daB_orientSchedule:
-			ViewPDF(prefs.GetPreferences("OrientationSchedule"),v);
+			ViewPDF(prefs.GetPreferences("OrientationSchedule"), v);
 			break;
 		case R.id.daB_myNotes:
 			intent = new Intent(this, ViewNotesListActivity.class);
@@ -108,40 +112,49 @@ public class DocumentActivity extends AppCompatActivity implements OnClickListen
 		}
 	}
 
-    public void ViewPDF(String filepath, View v)
-    {
-        File pdfFile = new File(filepath);
-        Uri path = Uri.fromFile(pdfFile);
-        Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
-        pdfIntent.setDataAndType(path, "application/pdf");
-        pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	public void ViewPDF(String filepath, View v) {
+		File pdfFile = new File(filepath);
+		Uri path = Uri.fromFile(pdfFile);
+		Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+		pdfIntent.setDataAndType(path, "application/pdf");
+		pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        try{
-            startActivity(pdfIntent);
-        }catch(ActivityNotFoundException e){
-            Toast.makeText(DocumentActivity.this, "No Application available to view PDF", Toast.LENGTH_SHORT).show();
-        }
-    }
-    
-    private void showAchievement(int id){
-    	
-    	BadgeDatabaseHelper db = new BadgeDatabaseHelper(this); 
-    	
-    	Badge badge = db.getOneBadgeRow(String.valueOf(id));
-    	
-		LayoutInflater inflater = getLayoutInflater();
-		View layout = inflater.inflate(R.layout.customtoast, (ViewGroup) findViewById (R.id.toast_container));
-		
-		ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
-		image.setImageResource(R.drawable.ic_action_edit);
-		TextView badgeName = (TextView) layout.findViewById(R.id.toast_text);
-		badgeName.setText(badge.getName());
+		try {
+			startActivity(pdfIntent);
+		} catch (ActivityNotFoundException e) {
+			Toast.makeText(DocumentActivity.this,
+					"No Application available to view PDF", Toast.LENGTH_SHORT)
+					.show();
+		}
+	}
 
-		Toast toast = new Toast(getApplicationContext());
-		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 100);
-		toast.setDuration(Toast.LENGTH_LONG);
-		toast.setView(layout);
-		toast.show();
-    }
+	private void showAchievement(int id) {
+
+		BadgeDatabaseHelper db = new BadgeDatabaseHelper(this);
+
+		Badge badge = db.getOneBadgeRow(String.valueOf(id));
+
+		if (badge.getUnlocked_at().isEmpty()) {
+			badge.setUnlocked_at(badge.getTimeNow());
+			Log.d("DA - Checking time format", badge.getUnlocked_at());
+			db.updateBadge(badge);
+			
+			LayoutInflater inflater = getLayoutInflater();
+			View layout = inflater.inflate(R.layout.customtoast,
+					(ViewGroup) findViewById(R.id.toast_container));
+
+			ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
+			image.setImageResource(R.drawable.ic_action_edit);
+			TextView badgeName = (TextView) layout
+					.findViewById(R.id.toast_text);
+			badgeName.setText(badge.getName());
+
+			Toast toast = new Toast(getApplicationContext());
+			toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 100);
+			toast.setDuration(Toast.LENGTH_LONG);
+			toast.setView(layout);
+			toast.show();
+		}
+	}
 
 }
