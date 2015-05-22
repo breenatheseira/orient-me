@@ -34,28 +34,11 @@ public class ViewBadgesListActivity extends AppCompatActivity {
 	private void loadListView() {
 		db = new BadgeDatabaseHelper(this);
 
-		ArrayList<String> names = new ArrayList<String>();
-		ArrayList<String> desc = new ArrayList<String>(); 
-		ArrayList<String> time = new ArrayList<String>(); 
-
 		//Tamada, R. (2013) Android SQLite Database with Multiple Tables. [Online]. Available from: http://www.androidhive.info/2013/09/android-sqlite-database-with-multiple-tables/ [Accessed: 1 May 2015].
 		badges = db.getAllBadges();
-
-		for (Badge badge : badges){
-			names.add(badge.getName());
-			desc.add(badge.getDesc());
-			time.add(badge.getUnlocked_at());
-		}
-		
-		String[] nameArr = new String[names.size()];
-		nameArr = names.toArray(nameArr);
-		String[] descArr = new String[desc.size()];
-		descArr = desc.toArray(descArr);
-		String[] timeArr = new String[time.size()];
-		timeArr = time.toArray(timeArr);
 		
 		// Developers (n.d.) Layouts. [Online]. Available from: http://developer.android.com/guide/topics/ui/declaring-layout.html#AdapterViews [Accessed: 1 May 2015]. 		
-		BadgesListAdapter adapter = new BadgesListAdapter(this, R.layout.custom_badges_list, nameArr, descArr, timeArr);
+		BadgesListAdapter adapter = new BadgesListAdapter(this, R.layout.custom_badges_list, badges);
 		
 		badgesList.setAdapter(adapter);
 		badgesList.setEmptyView(emptyLayout);

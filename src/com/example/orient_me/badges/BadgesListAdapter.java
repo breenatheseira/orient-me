@@ -1,5 +1,6 @@
 package com.example.orient_me.badges;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -15,17 +16,32 @@ import android.widget.TextView;
 import com.example.orient_me.R;
 
 @SuppressLint("ViewHolder")
-public class BadgesListAdapter extends ArrayAdapter<String> {
+public class BadgesListAdapter extends ArrayAdapter<Badge> {
 
 	Context context;
-	String[] names, desc, time;
-
-	public BadgesListAdapter(Context context, int resource, String[] names, String[] desc, String[] time) {
-		super(context, resource, names);
+	String[] namesArr, descArr, timeArr;
+	List<Badge> badges;
+	ArrayList<String> names = new ArrayList<String>();
+	ArrayList<String> desc = new ArrayList<String>(); 
+	ArrayList<String> time = new ArrayList<String>(); 
+	
+	
+	public BadgesListAdapter(Context context, int resource, List<Badge> badges) {
+		super(context, resource, badges);
 		this.context = context;
-		this.names = names;
-		this.desc = desc;
-		this.time = time;
+
+		for (Badge badge : badges){
+			names.add(badge.getName());
+			desc.add(badge.getDesc());
+			time.add(badge.getUnlocked_at());
+		}
+		
+		namesArr = new String[names.size()];
+		namesArr = names.toArray(namesArr);
+		descArr = new String[desc.size()];
+		descArr = desc.toArray(descArr);
+		timeArr = new String[time.size()];
+		timeArr = time.toArray(timeArr);
 	}
 
 	@Override
@@ -69,14 +85,14 @@ public class BadgesListAdapter extends ArrayAdapter<String> {
 			break;
 		}
 		
-		name.setText(names[position]);
-		desc.setText(this.desc[position]);
+		name.setText(namesArr[position]);
+		desc.setText(descArr[position]);
 		String timeMessage;
-		if (this.time[position].isEmpty()) {
+		if (timeArr[position].isEmpty()) {
 			pic.setImageResource(R.drawable.badge_0);
 			timeMessage = "Still at large! Explore to unlock!";
 		} else {
-			timeMessage = "Congrats! Unlocked on: " + this.time[position];
+			timeMessage = "Congrats! Unlocked on: " + timeArr[position];
 		}
 		time.setText(timeMessage);
 		return badgeListItem;
