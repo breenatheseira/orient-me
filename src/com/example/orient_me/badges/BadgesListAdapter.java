@@ -26,25 +26,21 @@ public class BadgesListAdapter extends ArrayAdapter<String> {
 		this.names = names;
 		this.desc = desc;
 		this.time = time;
-		Log.d("BLAdapter","Passed constructor");
 	}
 
 	@Override
 	// Rakhita (2011) Custom Adapter For List View. [Online]. Available from: http://stackoverflow.com/questions/8166497/custom-adapter-for-list-view [Accessed: 22 May 2015].
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Log.d("BLAdapter","In getView");
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View badgeListItem = inflater.inflate(R.layout.custom_badges_list,
 				parent, false);
-		Log.d("BLAdapter","In getView2");
 		ImageView pic = (ImageView) badgeListItem.findViewById(R.id.cbIV_badgepic);
 		
 		TextView name = (TextView) badgeListItem.findViewById(R.id.cbIV_name);
 		TextView desc = (TextView) badgeListItem.findViewById(R.id.cbIV_desc);
 		TextView time = (TextView) badgeListItem.findViewById(R.id.cbIV_unlocked_at);
 		
-		Log.d("BLAdapter","Done declaring");
 		
 		switch (position+1) {
 		case 1:
@@ -75,9 +71,14 @@ public class BadgesListAdapter extends ArrayAdapter<String> {
 		
 		name.setText(names[position]);
 		desc.setText(this.desc[position]);
-		time.setText("Unlocked at: " + this.time[position]);
-		Log.d("BLAdapter","Done setting views.");
-		
+		String timeMessage;
+		if (this.time[position].isEmpty()) {
+			pic.setImageResource(R.drawable.badge_0);
+			timeMessage = "Still at large! Explore to unlock!";
+		} else {
+			timeMessage = "Congrats! Unlocked on: " + this.time[position];
+		}
+		time.setText(timeMessage);
 		return badgeListItem;
 	}
 }
