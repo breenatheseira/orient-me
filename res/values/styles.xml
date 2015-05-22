@@ -14,7 +14,7 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->        
+        <!-- All customizations that are NOT specific to a particular API-level can go here. --> 
     </style>
 
     <style name="defaultbutton">
@@ -23,7 +23,8 @@
 		<item name="android:background">@color/middleblue</item>
 		<item name="android:textColor">@color/lightblue</item>
 		<item name="android:gravity">center</item>
+		<!-- Groppe (2012) Android - Margins Specified in Custom Style Not Taking Effect. [Online]. Available from: http://stackoverflow.com/questions/13167529/android-margins-specified-in-custom-style-not-taking-effect [Accessed: 22 May 2015 -->
 		<item name="android:layout_margin">10dp</item>
     </style>
-    
+            
 </resources>
