@@ -6,8 +6,12 @@
 
     <ImageView
         android:id="@+id/saIV_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        
-        android:src="@drawable/ic_launcher" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/activity_splash_desc"
+        android:scaleType="centerCrop"
+        android:src="@drawable/apu_logo_final"
+        android:layout_margin="10dp" 
+        android:padding="60dp" />
 
 </LinearLayout>
