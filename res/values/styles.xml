@@ -15,6 +15,9 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. --> 
+        <!-- Ozbek (2013) Android: Background Change in Styles.xml [Online]. Available from: http://stackoverflow.com/questions/16901934/android-background-change-in-styles-xml [Accessed: 22 May 2015] -->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
     </style>
 
     <style name="defaultbutton">
