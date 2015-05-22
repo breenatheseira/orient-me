@@ -26,9 +26,6 @@ public class ScheduleListAdapter extends ArrayAdapter<Schedule> {
 	List<Schedule> schedules;
 	SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
-   public ScheduleListAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
-    }
 	public ScheduleListAdapter(Context context, int resource, List<Schedule> schedules) {
 		super(context, resource, schedules);
 		this.schedules = schedules;
