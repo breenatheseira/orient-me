@@ -100,7 +100,7 @@ public class AddNoteActivity extends AppCompatActivity {
 					(ViewGroup) findViewById(R.id.toast_container));
 
 			ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
-			image.setImageResource(R.drawable.ic_action_edit);
+			image.setImageResource(R.drawable.badge_6);
 			TextView badgeName = (TextView) layout
 					.findViewById(R.id.toast_text);
 			badgeName.setText(badge.getName());
