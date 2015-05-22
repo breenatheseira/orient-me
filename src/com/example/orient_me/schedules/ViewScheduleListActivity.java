@@ -1,6 +1,5 @@
 package com.example.orient_me.schedules;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -58,22 +56,15 @@ public class ViewScheduleListActivity extends AppCompatActivity {
 	
 	private void loadListView(){
 		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(ViewScheduleListActivity.this);
-		ArrayList<String> titles = new ArrayList<String>();
-		ArrayList<String> start = new ArrayList<String>();
-		ArrayList<String> loc = new ArrayList<String>();
 		
 		if (!db.getAllSchedules().isEmpty()){
 			schedules = db.getAllSchedules();
-			for (Schedule eachSchedule : schedules){
-				titles.add(eachSchedule.getTitle());
-				start.add(eachSchedule.getStart());
-				loc.add(eachSchedule.getLocation());
-				
+			for (Schedule eachSchedule : schedules){				
 				if (eachSchedule.getId().equalsIgnoreCase("5"))
 					showAchievement(5);
 			}
 			
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewScheduleListActivity.this, android.R.layout.simple_list_item_1,titles);
+			ScheduleListAdapter adapter = new ScheduleListAdapter(this, R.layout.custom_schedules_list, schedules);
 			scheduleList.setAdapter(adapter);
 			scheduleList.setEmptyView(emptyLayout);
 		} else {

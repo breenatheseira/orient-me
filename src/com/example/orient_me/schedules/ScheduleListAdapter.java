@@ -68,7 +68,7 @@ public class ScheduleListAdapter extends ArrayAdapter<Schedule> {
 		end.setTimeInMillis(Long.parseLong(eTimeArr[position]));
 		
 		title.setText(titleArr[position]);
-		time.setText(dtf.format(start.getTime()) + " to " + dtf.format(end.getTime()));
+		time.setText(dtf.format(start.getTime()) + "\nto\n" + dtf.format(end.getTime()));
 		loc.setText(locArr[position]);
 		
 		return scheduleListItem;
