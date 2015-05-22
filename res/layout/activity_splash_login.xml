@@ -4,9 +4,21 @@
     android:orientation="vertical" >
 
     <ProgressBar
-        android:id="@+id/progressBar1"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/slaPB_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.33"
+        android:indeterminateDrawable="@drawable/drawable_progress_bar"
+        android:scaleX="1.5"
+        android:scaleY="1.5" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.33"
+        android:gravity="center_horizontal"
+        android:text="@string/activity_splash_login_message"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>
