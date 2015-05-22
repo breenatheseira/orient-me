@@ -24,36 +24,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="5dp" >
 
         <Button
             android:id="@+id/daB_studentHandbook"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/defaultbutton"
             android:text="@string/student_handbook" />
 
         <Button
             android:id="@+id/daB_moduleList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/defaultbutton"
             android:text="@string/module_list" />
 
         <Button
             android:id="@+id/daB_orientSchedule"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/defaultbutton"
             android:text="@string/orientation_schedule" />
 
         <Button
             android:id="@+id/daB_campusMap"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+			style="@style/defaultbutton"
             android:text="@string/campus_map" />
 
         <Button
             android:id="@+id/daB_myNotes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/defaultbutton"
             android:text="@string/my_notes" />
 
     </LinearLayout>
