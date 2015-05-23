@@ -6,18 +6,18 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,36 +31,35 @@ import com.example.orient_me.notes.ViewNotesListActivity;
 import com.example.orient_me.schedules.ViewScheduleListActivity;
 import com.example.orient_me.social.FacebookActivity;
 
-public class DocumentActivity extends AppCompatActivity implements
+public class DocumentActivity extends Fragment implements
 		OnClickListener {
+	
 	Button stuHandbook, modList, campMap, orientSch, myNotes;
 	Intent intent;
 	PreferencesHelper prefs;
+	FragmentActivity context;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_document);
-		prefs = new PreferencesHelper(getApplicationContext());
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	    
+		context = (FragmentActivity) super.getActivity();
+	    LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.activity_document, container, false);
+
+    	prefs = new PreferencesHelper(context);
 		
-		stuHandbook = (Button) findViewById(R.id.daB_studentHandbook);
-		modList = (Button) findViewById(R.id.daB_moduleList);
-		campMap = (Button) findViewById(R.id.daB_campusMap);
-		orientSch = (Button) findViewById(R.id.daB_orientSchedule);
-		myNotes = (Button) findViewById(R.id.daB_myNotes);
+		stuHandbook = (Button) layout.findViewById(R.id.daB_studentHandbook);
+		modList = (Button) layout.findViewById(R.id.daB_moduleList);
+		campMap = (Button) layout.findViewById(R.id.daB_campusMap);
+		orientSch = (Button) layout.findViewById(R.id.daB_orientSchedule);
+		myNotes = (Button) layout.findViewById(R.id.daB_myNotes);
 
 		stuHandbook.setOnClickListener(this);
 		modList.setOnClickListener(this);
 		campMap.setOnClickListener(this);
 		orientSch.setOnClickListener(this);
 		myNotes.setOnClickListener(this);
-	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
+	    return layout;
 	}
 
 	@Override
@@ -68,18 +67,18 @@ public class DocumentActivity extends AppCompatActivity implements
 		int id = item.getItemId();
 		switch (id) {
 		case R.id.mi_badges:
-			intent = new Intent(this, ViewBadgesListActivity.class);
+			intent = new Intent(context, ViewBadgesListActivity.class);
 			break;
 		case R.id.mi_doc:
 			break;
 		case R.id.mi_import:
-			intent = new Intent(this, ViewContactsListActivity.class);
+			intent = new Intent(context, ViewContactsListActivity.class);
 			break;
 		case R.id.mi_sMedia:
-			intent = new Intent(this, FacebookActivity.class);
+			intent = new Intent(context, FacebookActivity.class);
 			break;
 		case R.id.mi_schedule:
-			intent = new Intent(this, ViewScheduleListActivity.class);
+			intent = new Intent(context, ViewScheduleListActivity.class);
 			break;
 		}
 		startActivity(intent);
@@ -102,7 +101,7 @@ public class DocumentActivity extends AppCompatActivity implements
 			ViewPDF(prefs.GetPreferences("ModuleList"), v);
 			break;
 		case R.id.daB_campusMap:
-			intent = new Intent(this, MapActivity.class);
+			intent = new Intent(context, MapActivity.class);
 			startActivity(intent);
 			break;
 		case R.id.daB_orientSchedule:
@@ -111,7 +110,7 @@ public class DocumentActivity extends AppCompatActivity implements
 			ViewPDF(prefs.GetPreferences("OrientationSchedule"), v);
 			break;
 		case R.id.daB_myNotes:
-			intent = new Intent(this, ViewNotesListActivity.class);
+			intent = new Intent(context, ViewNotesListActivity.class);
 			startActivity(intent);
 			break;
 		}
@@ -127,7 +126,7 @@ public class DocumentActivity extends AppCompatActivity implements
 		try {
 			startActivity(pdfIntent);
 		} catch (ActivityNotFoundException e) {
-			Toast.makeText(DocumentActivity.this,
+			Toast.makeText(context,
 					"No Application available to view PDF", Toast.LENGTH_SHORT)
 					.show();
 		}
@@ -135,7 +134,7 @@ public class DocumentActivity extends AppCompatActivity implements
 
 	private void showAchievement(int id) {
 
-		BadgeDatabaseHelper db = new BadgeDatabaseHelper(this);
+		BadgeDatabaseHelper db = new BadgeDatabaseHelper(context);
 
 		Badge badge = db.getOneBadgeRow(String.valueOf(id));
 
@@ -144,9 +143,9 @@ public class DocumentActivity extends AppCompatActivity implements
 			Log.d("DA - Checking time format", badge.getUnlocked_at());
 			db.updateBadge(badge);
 			
-			LayoutInflater inflater = getLayoutInflater();
+			LayoutInflater inflater = context.getLayoutInflater();
 			View layout = inflater.inflate(R.layout.customtoast,
-					(ViewGroup) findViewById(R.id.toast_container));
+					(ViewGroup) context.findViewById(R.id.toast_container));
 
 			ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
 			if (badge.getId().equals("1"))
@@ -157,7 +156,7 @@ public class DocumentActivity extends AppCompatActivity implements
 					.findViewById(R.id.toast_text);
 			badgeName.setText(badge.getName());
 
-			Toast toast = new Toast(getApplicationContext());
+			Toast toast = new Toast(context );
 			toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 100);
 			toast.setDuration(Toast.LENGTH_LONG);
 			toast.setView(layout);
