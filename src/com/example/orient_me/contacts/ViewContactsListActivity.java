@@ -77,6 +77,7 @@ public class ViewContactsListActivity extends AppCompatActivity {
 				eachContact.setImported("1");
 				db.updateContact(eachContact);
 			}
+			loadListView();
 		}
 		return super.onOptionsItemSelected(item);
 	}
