@@ -2,7 +2,7 @@
 
 package com.example.orient_me.tabs;
 
-import com.example.orient_me.DocumentActivity;
+import com.example.orient_me.DocumentFragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -27,7 +27,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     	Fragment item = new Fragment();
         if(position == 0) // if the position is 0 we are returning the First tab
         {
-            item = new DocumentActivity();
+            item = new DocumentFragment();
         }
         
         return item;

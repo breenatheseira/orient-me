@@ -31,7 +31,7 @@ import com.example.orient_me.notes.ViewNotesListActivity;
 import com.example.orient_me.schedules.ViewScheduleListActivity;
 import com.example.orient_me.social.FacebookActivity;
 
-public class DocumentActivity extends Fragment implements
+public class DocumentFragment extends Fragment implements
 		OnClickListener {
 	
 	Button stuHandbook, modList, campMap, orientSch, myNotes;
