@@ -49,14 +49,13 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_view_badges_list">ViewBadgesListActivity</string>
     <string name="AchievementUnlocked">Achievement Unlocked!</string>
-
+	<string name="title_activity_main">APU Orient Me</string>
+	<string name="Add_Schedule">Add Schedule</string>
+	
     <color name="darkblue">#01579B</color>
     <color name="middleblue">#03A9F4</color>
     <color name="lightblue">#B3E5FC</color>
     <color name="accentyellow">#FFB300</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-
-    <string name="title_activity_main">MainActivity</string>
-
 </resources>
