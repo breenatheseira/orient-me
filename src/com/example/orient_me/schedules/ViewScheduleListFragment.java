@@ -10,9 +10,11 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,12 +25,14 @@ import com.example.orient_me.R;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 
-public class ViewScheduleListFragment extends Fragment {
+public class ViewScheduleListFragment extends Fragment implements OnClickListener {
 
 	ListView scheduleList;
 	LinearLayout emptyLayout;
 	List<Schedule> schedules;
+	Button addSchedule;
 	FragmentActivity context;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	     context = (FragmentActivity) super.getActivity();
@@ -37,6 +41,9 @@ public class ViewScheduleListFragment extends Fragment {
 	    
 		scheduleList = (ListView) layout.findViewById(R.id.vnsLV_listview);
 		emptyLayout = (LinearLayout) layout.findViewById(R.id.vnslLL_emptyList);
+		addSchedule = (Button) layout.findViewById(R.id.vslfB_addSchedule);
+		
+		addSchedule.setOnClickListener(this);
 		
 		loadListView();
 		scheduleList.setOnItemClickListener(new OnItemClickListener() {
@@ -99,5 +106,12 @@ public class ViewScheduleListFragment extends Fragment {
 			toast.setView(layout);
 			toast.show();
 		}
+	}
+
+	@Override
+	
+	public void onClick(View v) {
+		Intent intent = new Intent(context, AddScheduleActivity.class);
+		startActivity(intent);
 	}
 }
