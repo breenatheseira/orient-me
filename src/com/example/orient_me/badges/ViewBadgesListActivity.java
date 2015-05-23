@@ -1,13 +1,11 @@
 package com.example.orient_me.badges;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 

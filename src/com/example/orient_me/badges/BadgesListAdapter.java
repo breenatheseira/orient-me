@@ -1,11 +1,9 @@
 package com.example.orient_me.badges;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,29 +17,13 @@ import com.example.orient_me.R;
 public class BadgesListAdapter extends ArrayAdapter<Badge> {
 
 	Context context;
-	String[] namesArr, descArr, timeArr;
 	List<Badge> badges;
-	ArrayList<String> names = new ArrayList<String>();
-	ArrayList<String> desc = new ArrayList<String>(); 
-	ArrayList<String> time = new ArrayList<String>(); 
 	
 	
 	public BadgesListAdapter(Context context, int resource, List<Badge> badges) {
 		super(context, resource, badges);
 		this.context = context;
-
-		for (Badge badge : badges){
-			names.add(badge.getName());
-			desc.add(badge.getDesc());
-			time.add(badge.getUnlocked_at());
-		}
-		
-		namesArr = new String[names.size()];
-		namesArr = names.toArray(namesArr);
-		descArr = new String[desc.size()];
-		descArr = desc.toArray(descArr);
-		timeArr = new String[time.size()];
-		timeArr = time.toArray(timeArr);
+		this.badges = badges;
 	}
 
 	@Override
@@ -85,14 +67,15 @@ public class BadgesListAdapter extends ArrayAdapter<Badge> {
 			break;
 		}
 		
-		name.setText(namesArr[position]);
-		desc.setText(descArr[position]);
-		String timeMessage;
-		if (timeArr[position].isEmpty()) {
+		name.setText(badges.get(position).getName());
+		desc.setText(badges.get(position).getDesc());
+		String timeMessage, badgeTime = badges.get(position).getUnlocked_at();
+		
+		if (badgeTime.isEmpty()) {
 			pic.setImageResource(R.drawable.badge_0);
 			timeMessage = "Still at large! Explore to unlock!";
 		} else {
-			timeMessage = "Congrats! Unlocked on: " + timeArr[position];
+			timeMessage = "Congrats! Unlocked on: " + badgeTime;
 		}
 		time.setText(timeMessage);
 		return badgeListItem;
