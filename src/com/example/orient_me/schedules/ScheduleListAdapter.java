@@ -1,7 +1,6 @@
 package com.example.orient_me.schedules;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,34 +17,14 @@ import com.example.orient_me.R;
 public class ScheduleListAdapter extends ArrayAdapter<Schedule> {
 
 	Context context;
-	String[] titleArr, sTimeArr, eTimeArr, locArr;
-	ArrayList<String> titles = new ArrayList<String>();
-	ArrayList<String> sTime = new ArrayList<String>(); 
-	ArrayList<String> eTime = new ArrayList<String>();
-	ArrayList<String> loc = new ArrayList<String>();
 	List<Schedule> schedules;
+	@SuppressLint("SimpleDateFormat")
 	SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
 	public ScheduleListAdapter(Context context, int resource, List<Schedule> schedules) {
 		super(context, resource, schedules);
 		this.schedules = schedules;
 		this.context = context;
-		
-		for (Schedule schedule : schedules){
-			titles.add(schedule.getTitle());
-			sTime.add(schedule.getStart());
-			eTime.add(schedule.getEnd());
-			loc.add(schedule.getLocation());
-		}
-		
-		titleArr = new String[schedules.size()];
-		titleArr = titles.toArray(titleArr);
-		sTimeArr = new String[schedules.size()];
-		sTimeArr = sTime.toArray(sTimeArr);
-		eTimeArr = new String[schedules.size()];
-		eTimeArr = eTime.toArray(eTimeArr);
-		locArr = new String[schedules.size()];
-		locArr = loc.toArray(locArr);
 	}
 	
 	@SuppressLint("ViewHolder")
@@ -60,13 +39,13 @@ public class ScheduleListAdapter extends ArrayAdapter<Schedule> {
 		TextView loc = (TextView) scheduleListItem.findViewById(R.id.cslT_loc);
 		
 		Calendar start = Calendar.getInstance();
-		start.setTimeInMillis(Long.parseLong(sTimeArr[position]));
+		start.setTimeInMillis(Long.parseLong(schedules.get(position).getStart()));
 		Calendar end = Calendar.getInstance();
-		end.setTimeInMillis(Long.parseLong(eTimeArr[position]));
+		end.setTimeInMillis(Long.parseLong(schedules.get(position).getEnd()));
 		
-		title.setText(titleArr[position]);
+		title.setText(schedules.get(position).getTitle());
 		time.setText(dtf.format(start.getTime()) + "\nto\n" + dtf.format(end.getTime()));
-		loc.setText(locArr[position]);
+		loc.setText(schedules.get(position).getLocation());
 		
 		return scheduleListItem;
 	}

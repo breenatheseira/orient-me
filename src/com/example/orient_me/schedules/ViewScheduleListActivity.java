@@ -57,19 +57,18 @@ public class ViewScheduleListActivity extends AppCompatActivity {
 	private void loadListView(){
 		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(ViewScheduleListActivity.this);
 		
-		if (!db.getAllSchedules().isEmpty()){
-			schedules = db.getAllSchedules();
-			for (Schedule eachSchedule : schedules){				
-				if (eachSchedule.getId().equalsIgnoreCase("5"))
-					showAchievement(5);
-			}
-			
-			ScheduleListAdapter adapter = new ScheduleListAdapter(this, R.layout.custom_schedules_list, schedules);
-			scheduleList.setAdapter(adapter);
-			scheduleList.setEmptyView(emptyLayout);
-		} else {
+		if (db.getAllSchedules().isEmpty()){
 			Toast.makeText(this, "Add a Schedule to View Your List", Toast.LENGTH_LONG).show();
+			return;
 		}
+		
+		schedules = db.getAllSchedules();
+		if (schedules.size() == 5)
+			showAchievement(5);
+		
+		ScheduleListAdapter adapter = new ScheduleListAdapter(this, R.layout.custom_schedules_list, schedules);
+		scheduleList.setAdapter(adapter);
+		scheduleList.setEmptyView(emptyLayout);
 	}
 
 	@Override
