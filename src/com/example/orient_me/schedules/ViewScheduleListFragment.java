@@ -32,6 +32,7 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 	List<Schedule> schedules;
 	Button addSchedule;
 	FragmentActivity context;
+	boolean isVisible = false;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,8 +67,9 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 	private void loadListView(){
 		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(context);
 		
-		if (db.getAllSchedules().isEmpty()){
-			Toast.makeText(context, "Add a Schedule to View Your List", Toast.LENGTH_LONG).show();
+		if (db.getAllSchedules().isEmpty() && isVisible){
+			Log.d("VSLF", "display toast");
+			Toast.makeText(context, "Add a Schedule to View Your List", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		
@@ -79,7 +81,17 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 		scheduleList.setAdapter(adapter);
 		scheduleList.setEmptyView(emptyLayout);
 	}
-
+	
+	// 
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+	    super.setUserVisibleHint(isVisibleToUser);
+	    
+	    isVisible = isVisibleToUser;
+	    if (isVisible)
+	    	loadListView();
+	}
+	
     private void showAchievement(int id) {
 
 		BadgeDatabaseHelper db = new BadgeDatabaseHelper(context);
