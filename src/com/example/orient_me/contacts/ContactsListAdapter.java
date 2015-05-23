@@ -32,10 +32,10 @@ public class ContactsListAdapter extends ArrayAdapter<Contact>{
 				parent, false);
 		
 		TextView name = (TextView) contactListItem.findViewById(R.id.cclT_name);
-		ImageView phone = (ImageView) contactListItem.findViewById(R.id.cclIV_import);
+		ImageView imported = (ImageView) contactListItem.findViewById(R.id.cclIV_import);
 		
 		if ("1".equals(contacts.get(position).getImported()))
-			phone.setImageResource(R.drawable.ic_action_accept);
+			imported.setImageResource(R.drawable.ic_action_accept);
 		
 		name.setText(contacts.get(position).getName());
 		

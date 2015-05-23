@@ -13,14 +13,6 @@
             android:layout_weight="2" />
 
         <ImageView
-            android:id="@+id/cclIV_call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_call"
-            android:layout_weight="1" 
-            android:gravity="center" />
-
-        <ImageView
             android:id="@+id/cclIV_import"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

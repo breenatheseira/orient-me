@@ -38,6 +38,7 @@ public class ViewContactsListActivity extends AppCompatActivity {
 		emptyLayout = (LinearLayout) findViewById(R.id.avcLL_list_layout);
 
 		loadListView();
+		
 	}
 
 	private void loadListView() {
