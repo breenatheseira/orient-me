@@ -24,7 +24,7 @@ import com.example.orient_me.R;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 
-public class ViewScheduleListActivity extends AppCompatActivity {
+public class ViewScheduleListFragment extends AppCompatActivity {
 
 	ListView scheduleList;
 	LinearLayout emptyLayout;
@@ -47,7 +47,7 @@ public class ViewScheduleListActivity extends AppCompatActivity {
 				
 				String id = schedules.get(position).getId(); 
 				
-				Intent intent = new Intent(ViewScheduleListActivity.this, ViewScheduleActivity.class);
+				Intent intent = new Intent(ViewScheduleListFragment.this, ViewScheduleActivity.class);
 				intent.putExtra("id", id);
 				startActivity(intent);
 			}
@@ -55,7 +55,7 @@ public class ViewScheduleListActivity extends AppCompatActivity {
 	}
 	
 	private void loadListView(){
-		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(ViewScheduleListActivity.this);
+		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(ViewScheduleListFragment.this);
 		
 		if (db.getAllSchedules().isEmpty()){
 			Toast.makeText(this, "Add a Schedule to View Your List", Toast.LENGTH_LONG).show();

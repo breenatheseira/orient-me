@@ -28,7 +28,7 @@ import com.example.orient_me.contacts.ViewContactsListActivity;
 import com.example.orient_me.helpers.PreferencesHelper;
 import com.example.orient_me.maps.MapActivity;
 import com.example.orient_me.notes.ViewNotesListActivity;
-import com.example.orient_me.schedules.ViewScheduleListActivity;
+import com.example.orient_me.schedules.ViewScheduleListFragment;
 import com.example.orient_me.social.FacebookActivity;
 
 public class DocumentFragment extends Fragment implements
@@ -78,7 +78,7 @@ public class DocumentFragment extends Fragment implements
 			intent = new Intent(context, FacebookActivity.class);
 			break;
 		case R.id.mi_schedule:
-			intent = new Intent(context, ViewScheduleListActivity.class);
+			intent = new Intent(context, ViewScheduleListFragment.class);
 			break;
 		}
 		startActivity(intent);
