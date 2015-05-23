@@ -65,10 +65,6 @@
             android:label="@string/title_activity_view_note" >
         </activity>
         <activity
-            android:name=".schedules.ViewScheduleListActivity"
-            android:label="@string/title_activity_view_schedule_list" >
-        </activity>
-        <activity
             android:name=".schedules.AddScheduleActivity"
             android:label="@string/title_activity_add_schedule" >
         </activity>
@@ -79,22 +75,6 @@
         <activity
             android:name=".schedules.EditScheduleActivity"
             android:label="@string/title_activity_edit_schedule" >
-        </activity>
-        <activity
-            android:name=".contacts.ViewContactsListActivity"
-            android:label="@string/title_activity_view_contacts_list" >
-        </activity>
-        <activity
-            android:name=".social.FacebookActivity"
-            android:label="@string/title_activity_facebook" >
-        </activity>
-        <activity
-            android:name=".maps.MapActivity"
-            android:label="@string/title_activity_map" >
-        </activity>
-        <activity
-            android:name=".badges.ViewBadgesListActivity"
-            android:label="@string/title_activity_view_badges_list" >
         </activity>
 
         <meta-data
