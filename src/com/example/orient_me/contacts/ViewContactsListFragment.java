@@ -21,7 +21,7 @@ import com.example.orient_me.R;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 
-public class ViewContactsListActivity extends AppCompatActivity {
+public class ViewContactsListFragment extends AppCompatActivity {
 	
 	ListView contactList;
 	LinearLayout emptyLayout;
@@ -32,7 +32,7 @@ public class ViewContactsListActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_view_contacts_list);
+		setContentView(R.layout.fragment_view_contacts_list);
 		
 		contactList = (ListView) findViewById(R.id.avcLV_contact_list);
 		emptyLayout = (LinearLayout) findViewById(R.id.avcLL_list_layout);
