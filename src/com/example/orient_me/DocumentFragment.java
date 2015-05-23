@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -23,13 +22,9 @@ import android.widget.Toast;
 
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
-import com.example.orient_me.badges.ViewBadgesListActivity;
-import com.example.orient_me.contacts.ViewContactsListFragment;
 import com.example.orient_me.helpers.PreferencesHelper;
-import com.example.orient_me.maps.MapActivity;
+import com.example.orient_me.maps.MapPlaceFragment;
 import com.example.orient_me.notes.ViewNotesListActivity;
-import com.example.orient_me.schedules.ViewScheduleListFragment;
-import com.example.orient_me.social.FacebookActivity;
 
 public class DocumentFragment extends Fragment implements
 		OnClickListener {
@@ -78,7 +73,7 @@ public class DocumentFragment extends Fragment implements
 			ViewPDF(prefs.GetPreferences("ModuleList"), v);
 			break;
 		case R.id.daB_campusMap:
-			intent = new Intent(context, MapActivity.class);
+			intent = new Intent(context, MapPlaceFragment.class);
 			startActivity(intent);
 			break;
 		case R.id.daB_orientSchedule:
