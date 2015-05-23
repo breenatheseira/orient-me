@@ -16,68 +16,77 @@ import com.example.orient_me.R;
 @SuppressLint("ViewHolder")
 public class BadgesListAdapter extends ArrayAdapter<Badge> {
 
-	Context context;
 	List<Badge> badges;
 	
-	
-	public BadgesListAdapter(Context context, int resource, List<Badge> badges) {
-		super(context, resource, badges);
-		this.context = context;
+	public BadgesListAdapter(Context context, List<Badge> badges) {
+		super(context, R.layout.custom_badges_list, badges);
 		this.badges = badges;
 	}
 
 	@Override
 	// Rakhita (2011) Custom Adapter For List View. [Online]. Available from: http://stackoverflow.com/questions/8166497/custom-adapter-for-list-view [Accessed: 22 May 2015].
 	public View getView(int position, View convertView, ViewGroup parent) {
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View badgeListItem = inflater.inflate(R.layout.custom_badges_list,
-				parent, false);
-		ImageView pic = (ImageView) badgeListItem.findViewById(R.id.cbIV_badgepic);
+		ViewHolder viewHolder;
+		if (convertView == null){
 		
-		TextView name = (TextView) badgeListItem.findViewById(R.id.cbIV_name);
-		TextView desc = (TextView) badgeListItem.findViewById(R.id.cbIV_desc);
-		TextView time = (TextView) badgeListItem.findViewById(R.id.cbIV_unlocked_at);
-		
+			LayoutInflater inflater = LayoutInflater.from(getContext());
+			convertView = inflater.inflate(R.layout.custom_badges_list, parent, false);
+			
+			viewHolder = new ViewHolder();
+			viewHolder.pic = (ImageView) convertView.findViewById(R.id.cbIV_badgepic);
+			viewHolder.name = (TextView) convertView.findViewById(R.id.cbIV_name);
+			viewHolder.desc = (TextView) convertView.findViewById(R.id.cbIV_desc);
+			viewHolder.time = (TextView) convertView.findViewById(R.id.cbIV_unlocked_at);
+			convertView.setTag(viewHolder);
+			
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
 		
 		switch (position+1) {
 		case 1:
-			pic.setImageResource(R.drawable.badge_1);
+			viewHolder.pic.setImageResource(R.drawable.badge_1);
 			break;
 		case 2:
-			pic.setImageResource(R.drawable.badge_2);
+			viewHolder.pic.setImageResource(R.drawable.badge_2);
 			break;
 		case 3:
-			pic.setImageResource(R.drawable.badge_3);
+			viewHolder.pic.setImageResource(R.drawable.badge_3);
 			break;
 		case 4:
-			pic.setImageResource(R.drawable.badge_4);
+			viewHolder.pic.setImageResource(R.drawable.badge_4);
 			break;
 		case 5:
-			pic.setImageResource(R.drawable.badge_5);
+			viewHolder.pic.setImageResource(R.drawable.badge_5);
 			break;
 		case 6:
-			pic.setImageResource(R.drawable.badge_6);
+			viewHolder.pic.setImageResource(R.drawable.badge_6);
 			break;
 		case 7:
-			pic.setImageResource(R.drawable.badge_7);
+			viewHolder.pic.setImageResource(R.drawable.badge_7);
 			break;
 		case 8:
-			pic.setImageResource(R.drawable.badge_8);
+			viewHolder.pic.setImageResource(R.drawable.badge_8);
 			break;
 		}
 		
-		name.setText(badges.get(position).getName());
-		desc.setText(badges.get(position).getDesc());
-		String timeMessage, badgeTime = badges.get(position).getUnlocked_at();
+		Badge badge = getItem(position);
+		viewHolder.name.setText(badge.getName());
+		viewHolder.desc.setText(badge.getDesc());
+		String timeMessage, badgeTime = badge.getUnlocked_at();
 		
 		if (badgeTime.isEmpty()) {
-			pic.setImageResource(R.drawable.badge_0);
+			viewHolder.pic.setImageResource(R.drawable.badge_0);
 			timeMessage = "Still at large! Explore to unlock!";
 		} else {
 			timeMessage = "Congrats! Unlocked on: " + badgeTime;
 		}
-		time.setText(timeMessage);
-		return badgeListItem;
+		viewHolder.time.setText(timeMessage);
+		return convertView;
+	}
+	
+	private static class ViewHolder{
+		TextView name, desc, time;
+		ImageView pic;
 	}
 }
