@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
 	    ViewPager pager;
 	    ViewPagerAdapter adapter;
 	    SlidingTabLayout tabs;
-	    CharSequence Titles[]={"Home","Events"};
-	    int Numboftabs =2;
+	    CharSequence Titles[] = {"Home","Schedules", "Contacts", "Map", "Social", "Badges"};
+	    int tabsAmount = 6;
 	 
 	    @Override
 	    protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 	        toolbar = (Toolbar) findViewById(R.id.tool_bar);
 	        setSupportActionBar(toolbar);
 	 
-	        adapter =  new ViewPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs);
+	        adapter =  new ViewPagerAdapter(getSupportFragmentManager(), Titles, tabsAmount);
 	 
 	        pager = (ViewPager) findViewById(R.id.pager);
 	        pager.setAdapter(adapter);
