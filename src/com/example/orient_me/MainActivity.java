@@ -1,34 +1,47 @@
+//Bangad, A. (2015) How to Make Material Design Sliding Tabs. [Online]. Available from: http://www.android4devs.com/2015/01/how-to-make-material-design-sliding-tabs.html [Accessed: 23 May 2015]. 
+
 package com.example.orient_me;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
-public class MainActivity extends Activity {
+import com.example.orient_me.tabs.SlidingTabLayout;
+import com.example.orient_me.tabs.ViewPagerAdapter;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+public class MainActivity extends AppCompatActivity {
+		 
+	    Toolbar toolbar;
+	    ViewPager pager;
+	    ViewPagerAdapter adapter;
+	    SlidingTabLayout tabs;
+	    CharSequence Titles[]={"Home","Events"};
+	    int Numboftabs =2;
+	 
+	    @Override
+	    protected void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.activity_main);
+	 
+	        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+	        setSupportActionBar(toolbar);
+	 
+	        adapter =  new ViewPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs);
+	 
+	        pager = (ViewPager) findViewById(R.id.pager);
+	        pager.setAdapter(adapter);
+	 
+	        tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+	        tabs.setDistributeEvenly(true); 
+	 
+	        tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+	            @Override
+	            public int getIndicatorColor(int position) {
+	                return getResources().getColor(R.color.lightblue);
+	            }
+	        });
+	 
+	        tabs.setViewPager(pager);
+	    }
 }
