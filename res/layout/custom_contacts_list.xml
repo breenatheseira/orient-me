@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" 
+    android:background="@color/darkblue">
+
+        <TextView
+            android:id="@+id/cclT_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_weight="2" />
+
+        <ImageView
+            android:id="@+id/cclIV_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_call"
+            android:layout_weight="1" 
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/cclIV_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_download" 
+            android:layout_weight="1" 
+            android:gravity="center" />
+
+</LinearLayout>
