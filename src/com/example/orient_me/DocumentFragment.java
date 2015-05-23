@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 import com.example.orient_me.badges.ViewBadgesListActivity;
-import com.example.orient_me.contacts.ViewContactsListActivity;
+import com.example.orient_me.contacts.ViewContactsListFragment;
 import com.example.orient_me.helpers.PreferencesHelper;
 import com.example.orient_me.maps.MapActivity;
 import com.example.orient_me.notes.ViewNotesListActivity;
@@ -60,29 +60,6 @@ public class DocumentFragment extends Fragment implements
 		myNotes.setOnClickListener(this);
 
 	    return layout;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		switch (id) {
-		case R.id.mi_badges:
-			intent = new Intent(context, ViewBadgesListActivity.class);
-			break;
-		case R.id.mi_doc:
-			break;
-		case R.id.mi_import:
-			intent = new Intent(context, ViewContactsListActivity.class);
-			break;
-		case R.id.mi_sMedia:
-			intent = new Intent(context, FacebookActivity.class);
-			break;
-		case R.id.mi_schedule:
-			intent = new Intent(context, ViewScheduleListFragment.class);
-			break;
-		}
-		startActivity(intent);
-		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
