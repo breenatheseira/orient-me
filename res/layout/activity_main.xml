@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         layout="@layout/toolbar" />
 
-    <com.android4devs.slidingtab.SlidingTabLayout
+    <com.example.orient_me.tabs.SlidingTabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
