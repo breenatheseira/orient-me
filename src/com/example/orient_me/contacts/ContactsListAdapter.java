@@ -1,5 +1,5 @@
 package com.example.orient_me.contacts;
-
+//PerfectAPK (2014) AndroidListFragment Tutorial [Online]. Available from: http://www.perfectapk.com/android-listfragment-tutorial.html [Accessed: 23 May 2015].
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -16,58 +16,60 @@ import com.example.orient_me.R;
 
 public class ContactsListAdapter extends ArrayAdapter<Contact>{
 	
-	Context context;
-	List<Contact> contacts;
-	int position;
-		
-	public ContactsListAdapter(Context context, int resource, List<Contact> contacts) {
-		super(context, resource, contacts);
-		this.context = context;
-		this.contacts = contacts;
+	public ContactsListAdapter(Context context, List<Contact> contacts) {
+		super(context, R.layout.custom_contacts_list, contacts);
 	}
 
 	@SuppressLint("ViewHolder")
 	public View getView(int position, View convertView, ViewGroup parent) {
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View contactListItem = inflater.inflate(R.layout.custom_contacts_list,
-				parent, false);
+		final ViewHolder viewHolder;
 		
-		Contact contact = new Contact();
-		contact = contacts.get(position);
+		if (convertView == null){
 		
-		TextView name = (TextView) contactListItem.findViewById(R.id.cclT_name);
-		ImageView imported = (ImageView) contactListItem.findViewById(R.id.cclIV_import);
+			LayoutInflater inflater = LayoutInflater.from(getContext());
+			convertView = inflater.inflate(R.layout.custom_contacts_list, parent, false);
+			
+			viewHolder = new ViewHolder(); 
+			viewHolder.name = (TextView) convertView.findViewById(R.id.cclT_name);
+			viewHolder.imported = (ImageView) convertView.findViewById(R.id.cclIV_import);
+			convertView.setTag(viewHolder);
+			
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
 		
-		name.setText(contact.getName());
-		
-		// Arlan (2011) Click ImageView Within a ListView ListItem and Get the Position? [Online]. Available from: http://stackoverflow.com/questions/8571166/click-imageview-within-a-listview-listitem-and-get-the-position [Accessed: 23 May 2014].
-		imported.setTag(contact);
-		
+		Contact contact = getItem(position);
+		viewHolder.contact = contact;
+		viewHolder.name.setText(contact.getName());
 		
 		if ("1".equals(contact.getImported())) {
-			imported.setImageResource(R.drawable.ic_action_accept);
+			viewHolder.imported.setImageResource(R.drawable.ic_action_accept);
 		} else {
-			imported.setOnClickListener(new View.OnClickListener() {
+			viewHolder.imported.setOnClickListener(new View.OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					
-					Contact innerContact = (Contact) v.getTag();
+					Contact innerContact = viewHolder.contact;
 					ContactsProviderHelper cph = new ContactsProviderHelper(innerContact);
-					cph.insertDataToContactsContractTable(context);
+					cph.insertDataToContactsContractTable(getContext());
 					
-					if (cph.applyBatchInsertOperations(context) == 1) {
-						Toast.makeText(context, "Error inserting contact!", Toast.LENGTH_SHORT).show();
+					if (cph.applyBatchInsertOperations(getContext()) == 1) {
+						Toast.makeText(getContext(), "Error inserting contact!", Toast.LENGTH_SHORT).show();
 					} else {
 						innerContact.setImported("1");
-						new ContactsDatabaseHelper(context).updateContact(innerContact);
+						new ContactsDatabaseHelper(getContext()).updateContact(innerContact);
 						((ImageView) v).setImageResource(R.drawable.ic_action_accept);
 					}
 				}
 			});
 		}
-		
-		return contactListItem;
+		return convertView;
+	}
+	
+	private static class ViewHolder {
+		TextView name;
+		ImageView imported;
+		Contact contact;
 	}
 }
