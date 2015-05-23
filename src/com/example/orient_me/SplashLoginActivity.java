@@ -12,8 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -27,8 +25,6 @@ import com.example.orient_me.helpers.PreferencesHelper;
 
 public class SplashLoginActivity extends AppCompatActivity {
 	String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-	
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +44,6 @@ public class SplashLoginActivity extends AppCompatActivity {
 		files[7] = "FeeSchedule.pdf";
 				
     	new DownloadFile().execute(files);
-    	
 	}
 	
     // Zakaria, M. (2014) Android Download PDF From Url Then Open It With a PDF Reader. [Online]. Available from: http://stackoverflow.com/questions/24740228/android-download-pdf-from-url-then-open-it-with-a-pdf-reader. [Accessed: 25 April 2015].
@@ -84,7 +79,7 @@ public class SplashLoginActivity extends AppCompatActivity {
         	prefs.SavePreferences("ModuleList", extStorageDirectory + "/orientmepdf/ModuleList.pdf");
         	prefs.SavePreferences("FeeSchedule", extStorageDirectory + "/orientmepdf/FeeSchedule.pdf");
             
-            Intent intent = new Intent (getApplicationContext(), DocumentActivity.class);
+            Intent intent = new Intent (getApplicationContext(), MainActivity.class);
             showAchievement(8);
             startActivity(intent);
             finish();
@@ -119,5 +114,4 @@ public class SplashLoginActivity extends AppCompatActivity {
 			toast.show();
 		}
 	}
-	
 }

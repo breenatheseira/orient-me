@@ -43,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
 			public void run() {						
 				PreferencesHelper pref = new PreferencesHelper(SplashActivity.this);
 				Intent intent_login = new Intent(SplashActivity.this,LoginActivity.class);
-				Intent intent_menu = new Intent(SplashActivity.this, DocumentActivity.class);
+				Intent intent_menu = new Intent(SplashActivity.this, MainActivity.class);
 				
 				if (pref.GetPreferences("AuthToken").length() == 0)
 					startActivity(intent_login);
