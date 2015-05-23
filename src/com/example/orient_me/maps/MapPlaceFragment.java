@@ -7,14 +7,14 @@ import java.util.TimerTask;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,22 +29,24 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
-	BadgeDatabaseHelper db;
+public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 	
+	BadgeDatabaseHelper db;
+	FragmentActivity context;
+
 	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
-        
-        db = new BadgeDatabaseHelper(this);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	     context = (FragmentActivity) super.getActivity();
+
+	    FrameLayout layout = (FrameLayout) inflater.inflate(R.layout.fragment_map_place, container, false);
+        db = new BadgeDatabaseHelper(context);
         if (db.getOneBadgeRow("7").getUnlocked_at().isEmpty())
         	setAchievementTimer();
         
-        MapFragment mapFragment = (MapFragment) getFragmentManager()
-                .findFragmentById(R.id.map);
+        MapFragment mapFragment = (MapFragment) context.getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-    }
+	    return layout; 
+	}
     
 	public void setAchievementTimer(){
 		//Arshed, F. (2013) How Can I Create Timer Tick in Android? [Online]. Available from: http://stackoverflow.com/questions/14384016/how-can-i-create-timer-tick-in-android [Accessed: 20 May 2015].
@@ -65,7 +67,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	}
 	
     public void onMapReady(GoogleMap map) {
-    	PlaceDatabaseHelper pdb = new PlaceDatabaseHelper(this); 
+    	PlaceDatabaseHelper pdb = new PlaceDatabaseHelper(context); 
     	List<Place> places = pdb.getAllPlaces();
     	LatLng pos;
         //LatLng APU = getLocationFromAddress("Asia Pacific University of Technology & Innovation (APU)");
@@ -91,24 +93,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		}
     }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.map, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-	
-	// Gupte, N. A. (2015) How Can I Find the Latitude and Longitude From Address? [Online]. Available from: http://stackoverflow.com/questions/3574644/how-can-i-find-the-latitude-and-longitude-from-address/27834110#27834110 [Accessed: 20 May 2015].
+    // Gupte, N. A. (2015) How Can I Find the Latitude and Longitude From Address? [Online]. Available from: http://stackoverflow.com/questions/3574644/how-can-i-find-the-latitude-and-longitude-from-address/27834110#27834110 [Accessed: 20 May 2015].
 	private LatLng getLocationFromAddress(String strAddress) {
-	    Geocoder coder = new Geocoder(this);
+	    Geocoder coder = new Geocoder(context);
 	    List<android.location.Address> address;
 	    LatLng p1 = null;
 
@@ -137,9 +124,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		Log.d("MA - Checking time format", badge.getUnlocked_at());
 		db.updateBadge(badge);
 		
-		LayoutInflater inflater = getLayoutInflater();
+		LayoutInflater inflater = context.getLayoutInflater();
 		View layout = inflater.inflate(R.layout.customtoast,
-				(ViewGroup) findViewById(R.id.toast_container));
+				(ViewGroup) context.findViewById(R.id.toast_container));
 
 		ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
 		image.setImageResource(R.drawable.badge_7);
@@ -147,7 +134,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 				.findViewById(R.id.toast_text);
 		badgeName.setText(badge.getName());
 
-		Toast toast = new Toast(getApplicationContext());
+		Toast toast = new Toast(context);
 		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 100);
 		toast.setDuration(Toast.LENGTH_LONG);
 		toast.setView(layout);

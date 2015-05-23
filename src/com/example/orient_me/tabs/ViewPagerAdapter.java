@@ -7,7 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.orient_me.DocumentFragment;
+import com.example.orient_me.badges.ViewBadgesListFragment;
+import com.example.orient_me.contacts.ViewContactsListFragment;
+import com.example.orient_me.maps.MapPlaceFragment;
 import com.example.orient_me.schedules.ViewScheduleListFragment;
+import com.example.orient_me.social.FacebookFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 	 
@@ -36,7 +40,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     		item = new ViewContactsListFragment();
     		break;
     	case 3:
-    		item = new MapFragment();
+    		item = new MapPlaceFragment();
     		break;
     	case 4:
     		item = new FacebookFragment();
