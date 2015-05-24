@@ -1,5 +1,6 @@
 package com.example.orient_me.maps;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -11,10 +12,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,28 +25,52 @@ import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 	
-	BadgeDatabaseHelper db;
 	FragmentActivity context;
-
+	private static View view;
+	List<Marker> marker;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	     context = (FragmentActivity) super.getActivity();
-
-	    FrameLayout layout = (FrameLayout) inflater.inflate(R.layout.fragment_map_place, container, false);
-        db = new BadgeDatabaseHelper(context);
-        if (db.getOneBadgeRow("7").getUnlocked_at().isEmpty())
-        	setAchievementTimer();
-        
-        MapFragment mapFragment = (MapFragment) context.getFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-	    return layout; 
+		context = (FragmentActivity) super.getActivity();
+		
+		// Wahlberg, V. (2013) Duplicate ID, Tag Null, or Parent Id with Another Fragment For com.google.android.gms.maps.MapFragment [Online]. Available from: http://stackoverflow.com/questions/14083950/duplicate-id-tag-null-or-parent-id-with-another-fragment-for-com-google-androi/19815266#19815266 [Accessed: 24 May 2015]. 
+		if (view != null) {
+		    ViewGroup parent = (ViewGroup) view.getParent();
+		    if (parent != null){
+		    	// Removing markers to prevent memory leaks
+		    	for (int i = 0; i < marker.size(); i++){
+		    		marker.get(i).remove();
+		    	}
+		        parent.removeView(view);
+		    }
+		}
+		try {
+		    view = inflater.inflate(R.layout.fragment_map_place, container, false);
+		    // Prvn (2013) MapView Casting Exception Bug? [Online]. Available from: http://stackoverflow.com/questions/16886183/mapview-casting-exception-bug [Accessed: 24 May 2015]. 
+		    GoogleMap mMap = ((SupportMapFragment) getChildFragmentManager()
+	                .findFragmentById(R.id.mapFragment)).getMap();
+		    onMapReady(mMap);
+		    		    
+		    BadgeDatabaseHelper db = new BadgeDatabaseHelper(context);
+		    Badge badge = db.getOneBadgeRow("7");
+		    db.close();
+		    
+		    if (badge.getUnlocked_at().isEmpty())
+		    	setAchievementTimer();
+		    
+		 } catch (InflateException e) {
+		     /* map is already there, just return view as it is */
+			 Log.d("MPFrag Inflate Exception", e.toString());
+		 }
+		 return view;
 	}
     
 	public void setAchievementTimer(){
@@ -67,26 +92,26 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 	}
 	
     public void onMapReady(GoogleMap map) {
-    	PlaceDatabaseHelper pdb = new PlaceDatabaseHelper(context); 
-    	List<Place> places = pdb.getAllPlaces();
+    	marker = new ArrayList<Marker>();
+    	List<Place> places = new ArrayList<Place>();
     	LatLng pos;
-        //LatLng APU = getLocationFromAddress("Asia Pacific University of Technology & Innovation (APU)");
-    	//LatLng APU = new LatLng(3.048050, 101.692782);
-    	//LatLng Ent3 = new LatLng(3.048133, 101.690647);
-    	
     	map.setMyLocationEnabled(true);
     	
+    	PlaceDatabaseHelper pdb = new PlaceDatabaseHelper(context);
 		places = pdb.getAllPlaces();
+		pdb.close();
+		
 		for (Place eachPlace : places){
 			if (eachPlace.getAddress().equalsIgnoreCase("0"))
 				pos = new LatLng(Double.parseDouble(eachPlace.getLat()), Double.parseDouble(eachPlace.getLng()));
 			else 
 				pos = getLocationFromAddress(eachPlace.getAddress());
 			
-	        map.addMarker(new MarkerOptions()
-	            .title(eachPlace.getTitle())
-	            .snippet(eachPlace.getSnippet())
-	            .position(pos));
+	        Marker pin = map.addMarker(new MarkerOptions()
+					            .title(eachPlace.getTitle())
+					            .snippet(eachPlace.getSnippet())
+					            .position(pos));
+	        marker.add(pin);
 			
 			if (eachPlace.getId().equalsIgnoreCase("1"))
 				map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 17));	
@@ -117,12 +142,13 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 	}
 	
 	 private void showAchievement(int id) {
-		
+		BadgeDatabaseHelper db = new BadgeDatabaseHelper(context); 
 		Badge badge = db.getOneBadgeRow(String.valueOf(id));
 
 		badge.setUnlocked_at(badge.getTimeNow());
 		Log.d("MA - Checking time format", badge.getUnlocked_at());
 		db.updateBadge(badge);
+		db.close();
 		
 		LayoutInflater inflater = context.getLayoutInflater();
 		View layout = inflater.inflate(R.layout.customtoast,
@@ -139,5 +165,5 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 		toast.setDuration(Toast.LENGTH_LONG);
 		toast.setView(layout);
 		toast.show();
-	}
+	 }
 }
