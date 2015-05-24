@@ -14,39 +14,51 @@ import android.widget.TextView;
 
 import com.example.orient_me.R;
 
+@SuppressLint("ViewHolder")
 public class ScheduleListAdapter extends ArrayAdapter<Schedule> {
 
-	Context context;
-	List<Schedule> schedules;
 	@SuppressLint("SimpleDateFormat")
 	SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
-	public ScheduleListAdapter(Context context, int resource, List<Schedule> schedules) {
-		super(context, resource, schedules);
-		this.schedules = schedules;
-		this.context = context;
+	public ScheduleListAdapter(Context context, List<Schedule> schedules) {
+		super(context, R.layout.custom_schedules_list, schedules);
 	}
 	
 	@SuppressLint("ViewHolder")
 	public View getView(int position, View convertView, ViewGroup parent) {
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View scheduleListItem = inflater.inflate(R.layout.custom_schedules_list,
-				parent, false);
+		final ViewHolder viewHolder;
 		
-		TextView title = (TextView) scheduleListItem.findViewById(R.id.cslT_title);
-		TextView time = (TextView) scheduleListItem.findViewById(R.id.cslT_time);
-		TextView loc = (TextView) scheduleListItem.findViewById(R.id.cslT_loc);
+		if (convertView == null) {
+			
+			LayoutInflater inflater = LayoutInflater.from(getContext());
+			convertView = inflater.inflate(R.layout.custom_contacts_list, parent, false);
+			
+			viewHolder = new ViewHolder();
+			
+			viewHolder.title = (TextView) convertView.findViewById(R.id.cslT_title);
+			viewHolder.time = (TextView) convertView.findViewById(R.id.cslT_time);
+			viewHolder.loc = (TextView) convertView.findViewById(R.id.cslT_loc);
+			
+			convertView.setTag(viewHolder);
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
+		
+		Schedule schedule = getItem(position);
 		
 		Calendar start = Calendar.getInstance();
-		start.setTimeInMillis(Long.parseLong(schedules.get(position).getStart()));
+		start.setTimeInMillis(Long.parseLong(schedule.getStart()));
 		Calendar end = Calendar.getInstance();
-		end.setTimeInMillis(Long.parseLong(schedules.get(position).getEnd()));
+		end.setTimeInMillis(Long.parseLong(schedule.getEnd()));
 		
-		title.setText(schedules.get(position).getTitle());
-		time.setText(dtf.format(start.getTime()) + "\nto\n" + dtf.format(end.getTime()));
-		loc.setText(schedules.get(position).getLocation());
+		viewHolder.title.setText(schedule.getTitle());
+		viewHolder.time.setText(dtf.format(start.getTime()) + "\nto\n" + dtf.format(end.getTime()));
+		viewHolder.loc.setText(schedule.getLocation());
 		
-		return scheduleListItem;
+		return convertView;
+	}
+	
+	private static class ViewHolder {
+		TextView title, time, loc;		
 	}
 }

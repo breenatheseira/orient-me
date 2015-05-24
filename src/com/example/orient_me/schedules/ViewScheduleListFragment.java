@@ -77,7 +77,7 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 		if (schedules.size() == 5)
 			showAchievement(5);
 		
-		ScheduleListAdapter adapter = new ScheduleListAdapter(context, R.layout.custom_schedules_list, schedules);
+		ScheduleListAdapter adapter = new ScheduleListAdapter(context, schedules);
 		scheduleList.setAdapter(adapter);
 		scheduleList.setEmptyView(emptyLayout);
 	}
