@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.orient_me.helpers.DatabaseHelper;
@@ -17,22 +18,23 @@ public class ContactsDatabaseHelper extends DatabaseHelper {
 	}
 	
 	public List<Contact> getAllContacts(){
-		List<Contact> schedules = new ArrayList<Contact>();
+		List<Contact> contacts = new ArrayList<Contact>();
 		String sql = "SELECT * FROM " + TABLE_CONTACTS;
-
+		SQLiteDatabase rdb = this.getReadableDatabase();
 		try {
 			Cursor c = rdb.rawQuery(sql, null);
 	
 			if (c.moveToFirst()) {
 				do {
-					schedules.add(setContactsFromCursor(c));
+					contacts.add(setContactsFromCursor(c));
 				} while (c.moveToNext());
 			}
 		} catch (Exception e) {
-			schedules = null;
+			contacts = null;
 			Log.d(this.getClass().getSimpleName(), "Error returning all Contacts: " + e.getMessage());
 		}
-		return schedules;
+		rdb.close();
+		return contacts;
 	}
 	
 	public int updateContact(Contact contact){
@@ -40,12 +42,14 @@ public class ContactsDatabaseHelper extends DatabaseHelper {
 		values.put(CONTACT_NAME, contact.getName());
 		values.put(CONTACT_NUMBER, contact.getNumber());
 		values.put(CONTACT_IMPORTED, contact.getImported());
-		
+		int error = 0;
 		Log.d("update values", String.valueOf(contact.getId()) + " > contact name: " + contact.getName() + ", imported: "
 				+ contact.getImported());
-		
-		return wdb.update(TABLE_CONTACTS, values, CONTACT_ID + " = ?",
+		SQLiteDatabase wdb = this.getWritableDatabase();
+		error = wdb.update(TABLE_CONTACTS, values, CONTACT_ID + " = ?",
 				new String[] { String.valueOf(contact.getId()) });
+		wdb.close();
+		return error;
 	}
 	
 	private Contact setContactsFromCursor(Cursor c){

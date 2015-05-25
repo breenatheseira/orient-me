@@ -61,7 +61,6 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 		    		    
 		    BadgeDatabaseHelper db = new BadgeDatabaseHelper(context);
 		    Badge badge = db.getOneBadgeRow("7");
-		    db.close();
 		    
 		    if (badge.getUnlocked_at().isEmpty())
 		    	setAchievementTimer();
@@ -98,8 +97,7 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
     	map.setMyLocationEnabled(true);
     	
     	PlaceDatabaseHelper pdb = new PlaceDatabaseHelper(context);
-		places = pdb.getAllPlaces();
-		pdb.close();
+		places = pdb.getAllPlaces();	
 		
 		for (Place eachPlace : places){
 			if (eachPlace.getAddress().equalsIgnoreCase("0"))
@@ -147,8 +145,7 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 
 		badge.setUnlocked_at(badge.getTimeNow());
 		Log.d("MA - Checking time format", badge.getUnlocked_at());
-		db.updateBadge(badge);
-		db.close();
+		db.updateBadge(badge);		
 		
 		LayoutInflater inflater = context.getLayoutInflater();
 		View layout = inflater.inflate(R.layout.customtoast,

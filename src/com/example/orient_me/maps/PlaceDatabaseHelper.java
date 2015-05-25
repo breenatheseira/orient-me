@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.orient_me.helpers.DatabaseHelper;
 
@@ -17,7 +18,7 @@ public class PlaceDatabaseHelper extends DatabaseHelper {
 	public List<Place> getAllPlaces() {
 		List<Place> places = new ArrayList<Place>();
 		String sql = "SELECT * FROM " + TABLE_PLACES;
-
+		SQLiteDatabase rdb = this.getReadableDatabase();
 		Cursor c = rdb.rawQuery(sql, null);
 
 		if (c.moveToFirst()) {
@@ -34,6 +35,7 @@ public class PlaceDatabaseHelper extends DatabaseHelper {
 				places.add(place);
 			} while (c.moveToNext());
 		}
+		rdb.close();
 		return places;
 	}
 }
