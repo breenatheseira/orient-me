@@ -36,7 +36,8 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	     context = (FragmentActivity) super.getActivity();
+	    // laalto (2014) Running Database Query in FragmentStatePagerAdapter NPE [Online]. Available from: http://stackoverflow.com/questions/24662325/running-database-query-in-fragmentstatepageradapter-npe [Accessed: 25 May 2015]. 
+		context = (FragmentActivity) super.getActivity();
 
 	    LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.activity_view_schedule_list, container, false);
 	    
@@ -65,6 +66,7 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 	}
 	
 	private void loadListView(){
+	    context = (FragmentActivity) super.getActivity();
 		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(context);
 		
 		if (db.getAllSchedules().isEmpty() && isVisible){
