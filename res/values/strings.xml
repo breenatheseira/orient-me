@@ -51,6 +51,7 @@
     <string name="AchievementUnlocked">Achievement Unlocked!</string>
 	<string name="title_activity_main">APU Orient Me</string>
 	<string name="Add_Schedule">Add Schedule</string>
+	<string name="Add_Note">Add Note</string>
 	
     <color name="darkblue">#01579B</color>
     <color name="middleblue">#03A9F4</color>

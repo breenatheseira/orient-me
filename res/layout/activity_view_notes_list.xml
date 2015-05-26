@@ -4,29 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <include
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/toolbar" />
+    <Button
+        android:id="@+id/vnlfB_addNote"
+		style="@style/defaultbutton"
+        android:text="@string/Add_Note" />
 
-    <ListView
-        android:id="@+id/vnalLV_listview"
+    <fragment
+        android:id="@+id/vnlfB_listFragment"
+        android:name="com.example.orient_me.notes.NoteListFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
-
-    <LinearLayout
-        android:id="@+id/vnalLL_emptyList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/vnalTV_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
