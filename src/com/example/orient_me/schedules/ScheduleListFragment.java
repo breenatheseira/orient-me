@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import com.example.orient_me.R;
 
 public class ScheduleListFragment extends Fragment implements OnClickListener {
-	
 	FragmentActivity context;
 	
 	@Override
@@ -24,8 +23,8 @@ public class ScheduleListFragment extends Fragment implements OnClickListener {
 	     LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.activity_view_schedule_list, container, false);
 	     Button addButton = (Button) layout.findViewById(R.id.vslfB_addSchedule);
 	     
-         ViewScheduleListFragment details = (ViewScheduleListFragment) getChildFragmentManager().findFragmentById(R.id.vslfB_scheduleList);
-         details.getListView();
+	     ViewScheduleListFragment scheduleList = (ViewScheduleListFragment) getChildFragmentManager().findFragmentById(R.id.vslfB_scheduleList);
+         scheduleList.getListView();
 	     addButton.setOnClickListener(this);
 	     
 	     return layout; 
@@ -36,6 +35,4 @@ public class ScheduleListFragment extends Fragment implements OnClickListener {
 		Intent intent = new Intent(context, AddScheduleActivity.class);
 		startActivity(intent);
 	}
-
-
 }

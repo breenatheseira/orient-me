@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
@@ -13,11 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +20,6 @@ import android.widget.Toast;
 import com.example.orient_me.R;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
-import com.example.orient_me.contacts.ContactsDatabaseHelper;
 
 public class ViewScheduleListFragment extends ListFragment {
 	List<Schedule> schedules;
@@ -33,6 +27,7 @@ public class ViewScheduleListFragment extends ListFragment {
 	FragmentActivity context;
 	ScheduleDatabaseHelper db;
 	boolean isVisible = false;
+	ScheduleListAdapter sla;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +36,10 @@ public class ViewScheduleListFragment extends ListFragment {
         // initialize the items list
         schedules = new ArrayList<Schedule>();
         
+        loadList();        
+    }
+    
+    private void loadList(){
         db = new ScheduleDatabaseHelper(context);
         schedules = db.getAllSchedules();
         
@@ -53,9 +52,8 @@ public class ViewScheduleListFragment extends ListFragment {
 			return;
 		}
         // initialize and set the list adapter
-		ScheduleListAdapter sla = new ScheduleListAdapter(getActivity(), schedules); 
+		sla = new ScheduleListAdapter(getActivity(), schedules); 
         setListAdapter(sla);
-        sla.setNotifyOnChange(true);
     }
 	
     @Override
@@ -63,19 +61,15 @@ public class ViewScheduleListFragment extends ListFragment {
         // retrieve theListView item
         Schedule schedule = schedules.get(position);
         
-        // do something
 		Intent intent = new Intent(context, ViewScheduleActivity.class);
 		intent.putExtra("id", schedule.getId());
 		startActivity(intent);
+		loadList();
     }
 	
-	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-	    super.setUserVisibleHint(isVisibleToUser);
-	    
-	    isVisible = isVisibleToUser;
-	    if (isVisible)
-	    	setListAdapter(new ScheduleListAdapter(getActivity(), schedules));
+	public void onResume(){
+		loadList();
+		super.onResume();
 	}
 	
     private void showAchievement(int id) {
