@@ -42,6 +42,6 @@ public class NoteListAdapter extends ArrayAdapter<Note>{
 	}
 	
 	private static class ViewHolder {
-		TextView title, note;
+		TextView title;
 	}
 }
