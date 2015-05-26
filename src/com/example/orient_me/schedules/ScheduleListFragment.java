@@ -24,6 +24,8 @@ public class ScheduleListFragment extends Fragment implements OnClickListener {
 	     LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.activity_view_schedule_list, container, false);
 	     Button addButton = (Button) layout.findViewById(R.id.vslfB_addSchedule);
 	     
+         ViewScheduleListFragment details = (ViewScheduleListFragment) getChildFragmentManager().findFragmentById(R.id.vslfB_scheduleList);
+         details.getListView();
 	     addButton.setOnClickListener(this);
 	     
 	     return layout; 

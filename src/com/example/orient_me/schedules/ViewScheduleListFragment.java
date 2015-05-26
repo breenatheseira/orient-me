@@ -25,11 +25,13 @@ import android.widget.Toast;
 import com.example.orient_me.R;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
+import com.example.orient_me.contacts.ContactsDatabaseHelper;
 
 public class ViewScheduleListFragment extends ListFragment {
 	List<Schedule> schedules;
 		
 	FragmentActivity context;
+	ScheduleDatabaseHelper db;
 	boolean isVisible = false;
 	
     @Override
@@ -38,6 +40,9 @@ public class ViewScheduleListFragment extends ListFragment {
         context = (FragmentActivity) super.getActivity();
         // initialize the items list
         schedules = new ArrayList<Schedule>();
+        
+        db = new ScheduleDatabaseHelper(context);
+        schedules = db.getAllSchedules();
         
         if (schedules.size() == 5)
         	showAchievement(5);
@@ -48,7 +53,9 @@ public class ViewScheduleListFragment extends ListFragment {
 			return;
 		}
         // initialize and set the list adapter
-        setListAdapter(new ScheduleListAdapter(getActivity(), schedules));
+		ScheduleListAdapter sla = new ScheduleListAdapter(getActivity(), schedules); 
+        setListAdapter(sla);
+        sla.setNotifyOnChange(true);
     }
 	
     @Override
