@@ -4,9 +4,7 @@
 
     <TextView
         android:id="@+id/vblfT_instructions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        style="@style/instructTextView"
         android:gravity="center" />
 
     <fragment

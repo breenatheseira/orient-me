@@ -24,11 +24,12 @@
     <style name="defaultbutton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/middleblue</item>
-        <item name="android:textColor">@color/lightblue</item>
+        <item name="android:background">@color/darkblue</item>
+        <item name="android:textColor">@color/accentyellow</item>
         <item name="android:gravity">center</item>
         <!-- Groppe (2012) Android - Margins Specified in Custom Style Not Taking Effect. [Online]. Available from: http://stackoverflow.com/questions/13167529/android-margins-specified-in-custom-style-not-taking-effect [Accessed: 22 May 2015 -->
         <item name="android:layout_margin">10dp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="mainOuterLayout">
@@ -37,4 +38,12 @@
         <item name="android:padding">10dp</item>
     </style>
 
+    <style name="instructTextView" parent="@android:attr/textAppearanceMedium">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/darkblue</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17sp</item>
+    </style>
 </resources>

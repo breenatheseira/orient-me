@@ -5,9 +5,7 @@
 
     <TextView
         android:id="@+id/vclfT_instructions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        style="@style/instructTextView" />
 
     <fragment
         android:id="@+id/vclf_contactList"
