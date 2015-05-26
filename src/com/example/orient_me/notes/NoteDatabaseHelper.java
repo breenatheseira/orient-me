@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.orient_me.helpers.DatabaseHelper;
@@ -23,6 +24,7 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 		values.put(NOTE, note.getNote());
 
 		// insert row
+		SQLiteDatabase wdb = this.getWritableDatabase();
 		wdb.insert(TABLE_NOTES, null, values);
 		wdb.close();
 	}
@@ -30,17 +32,20 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 	public int getLastNoteId() {
 		String sql = "SELECT " + NOTE_ID + " FROM " + TABLE_NOTES;
 		int id = -1;
+		SQLiteDatabase rdb = this.getReadableDatabase();
 		try {
 			Cursor c = rdb.rawQuery(sql, null);
 
 			if (c.moveToLast()) {
 				id = Integer.parseInt(c.getString(0));
+				rdb.close();
 				return id;
 			}
 			Log.d("Get Last ID", "Success");
 		} catch (Exception e) {
 			Log.d("Get Last ID", e.toString());
 		}
+		rdb.close();
 		return id;
 	}
 
@@ -51,7 +56,8 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 	public List<Note> getAllNote() {
 		List<Note> notes = new ArrayList<Note>();
 		String sql = "SELECT * FROM " + TABLE_NOTES;
-
+		
+		SQLiteDatabase rdb = this.getReadableDatabase();
 		Cursor c = rdb.rawQuery(sql, null);
 
 		if (c.moveToFirst()) {
@@ -64,6 +70,7 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 				notes.add(note);
 			} while (c.moveToNext());
 		}
+		rdb.close();
 		return notes;
 	}
 
@@ -71,11 +78,13 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 		String value = null;
 		String sql = "Select " + key + " FROM " + TABLE_NOTES + " WHERE id = "
 				+ id;
+		SQLiteDatabase rdb = this.getReadableDatabase();
 		Cursor c = rdb.rawQuery(sql, null);
 
 		if (c.moveToNext()) {
 			value = c.getString(0);
 		}
+		rdb.close();
 		return value;
 	}
 
@@ -83,17 +92,22 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 		ContentValues values = new ContentValues();
 		values.put(TITLE, note.getTitle());
 		values.put(NOTE, note.getNote());
-
+		
+		SQLiteDatabase wdb = this.getWritableDatabase();
 		// updating row
 		int i = wdb.update(TABLE_NOTES, values, NOTE_ID + " = ?",
 				new String[] { String.valueOf(note.getId()) });
 		Log.d("update values", i + " > doc id: " + note.getTitle() + ", note: "
 				+ note.getNote());
+		wdb.close();
 		return i;
 	}
 
 	public int deleteNote(String id) {
-		return wdb.delete(TABLE_NOTES, NOTE_ID + " = ?",new String[] { String.valueOf(id) });
+		SQLiteDatabase wdb = this.getWritableDatabase();
+		int i = wdb.delete(TABLE_NOTES, NOTE_ID + " = ?",new String[] { String.valueOf(id) });
+		wdb.close();
+		return i;
 	}
 }
 
