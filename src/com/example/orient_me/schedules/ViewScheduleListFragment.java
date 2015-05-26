@@ -26,7 +26,6 @@ public class ViewScheduleListFragment extends ListFragment {
 		
 	FragmentActivity context;
 	ScheduleDatabaseHelper db;
-	boolean isVisible = false;
 	ScheduleListAdapter sla;
 	
     @Override
@@ -46,7 +45,7 @@ public class ViewScheduleListFragment extends ListFragment {
         if (schedules.size() == 5)
         	showAchievement(5);
         
-		if (schedules.isEmpty() && isVisible){
+		if (schedules.isEmpty()){
 			Log.d("VSLF", "display toast");
 			Toast.makeText(context, "Add a Schedule to View Your List", Toast.LENGTH_SHORT).show();
 			return;
