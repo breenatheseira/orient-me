@@ -14,51 +14,39 @@ import android.widget.TextView;
 
 import com.example.orient_me.R;
 
-@SuppressLint("ViewHolder")
 public class ScheduleListAdapter extends ArrayAdapter<Schedule> {
 
+	Context context;
+	List<Schedule> schedules;
 	@SuppressLint("SimpleDateFormat")
 	SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
 	public ScheduleListAdapter(Context context, List<Schedule> schedules) {
 		super(context, R.layout.custom_schedules_list, schedules);
+		this.schedules = schedules;
+		this.context = context;
 	}
 	
 	@SuppressLint("ViewHolder")
 	public View getView(int position, View convertView, ViewGroup parent) {
-		final ViewHolder viewHolder;
+		LayoutInflater inflater = (LayoutInflater) context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View scheduleListItem = inflater.inflate(R.layout.custom_schedules_list,
+				parent, false);
 		
-		if (convertView == null) {
-			
-			LayoutInflater inflater = LayoutInflater.from(getContext());
-			convertView = inflater.inflate(R.layout.custom_contacts_list, parent, false);
-			
-			viewHolder = new ViewHolder();
-			
-			viewHolder.title = (TextView) convertView.findViewById(R.id.cslT_title);
-			viewHolder.time = (TextView) convertView.findViewById(R.id.cslT_time);
-			viewHolder.loc = (TextView) convertView.findViewById(R.id.cslT_loc);
-			
-			convertView.setTag(viewHolder);
-		} else {
-			viewHolder = (ViewHolder) convertView.getTag();
-		}
-		
-		Schedule schedule = getItem(position);
+		TextView title = (TextView) scheduleListItem.findViewById(R.id.cslT_title);
+		TextView time = (TextView) scheduleListItem.findViewById(R.id.cslT_time);
+		TextView loc = (TextView) scheduleListItem.findViewById(R.id.cslT_loc);
 		
 		Calendar start = Calendar.getInstance();
-		start.setTimeInMillis(Long.parseLong(schedule.getStart()));
+		start.setTimeInMillis(Long.parseLong(schedules.get(position).getStart()));
 		Calendar end = Calendar.getInstance();
-		end.setTimeInMillis(Long.parseLong(schedule.getEnd()));
+		end.setTimeInMillis(Long.parseLong(schedules.get(position).getEnd()));
 		
-		viewHolder.title.setText(schedule.getTitle());
-		viewHolder.time.setText(dtf.format(start.getTime()) + "\nto\n" + dtf.format(end.getTime()));
-		viewHolder.loc.setText(schedule.getLocation());
+		title.setText(schedules.get(position).getTitle());
+		time.setText(dtf.format(start.getTime()) + "\nto\n" + dtf.format(end.getTime()));
+		loc.setText(schedules.get(position).getLocation());
 		
-		return convertView;
-	}
-	
-	private static class ViewHolder {
-		TextView title, time, loc;		
+		return scheduleListItem;
 	}
 }

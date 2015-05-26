@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -27,6 +28,10 @@ public class EditNoteActivity extends AppCompatActivity {
 		note = (EditText) findViewById(R.id.vna_note);
 		db = new NoteDatabaseHelper(EditNoteActivity.this);
 
+		Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
+		toolbar.setTitle("Edit Note");
+		setSupportActionBar(toolbar);
+		
 		setNotesContents();
 	}
 

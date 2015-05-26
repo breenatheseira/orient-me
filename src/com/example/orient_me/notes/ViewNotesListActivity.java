@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,11 @@ public class ViewNotesListActivity extends AppCompatActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_notes_list);
+		
+		Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
+		
+		toolbar.setTitle("Notes List");
+		setSupportActionBar(toolbar);
 		
 		noteList = (ListView) findViewById(R.id.vnalLV_listview);
 		emptyLayout = (LinearLayout) findViewById(R.id.vnalLL_emptyList);

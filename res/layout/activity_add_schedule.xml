@@ -3,6 +3,12 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <include
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/toolbar" />
+
     <EditText
         android:id="@+id/asaTB_title"
         android:layout_width="match_parent"
@@ -29,21 +35,21 @@
             android:id="@+id/asaDB_startDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:ems="10"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:weightSum="1"
             android:onClick="onClick"
-            android:clickable="true" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:weightSum="1" />
 
         <EditText
             android:id="@+id/asaDB_startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:ems="10"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:weightSum="1"
             android:onClick="onClick"
-            android:clickable="true" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:weightSum="1" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,21 +70,21 @@
             android:id="@+id/asaDB_endDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:ems="10"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:weightSum="1"
             android:onClick="onClick"
-            android:clickable="true" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:weightSum="1" />
 
         <EditText
             android:id="@+id/asaDB_endTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:ems="10"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:weightSum="1"
             android:onClick="onClick"
-            android:clickable="true" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:weightSum="1" />
     </LinearLayout>
 
     <EditText
@@ -99,16 +105,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:text="@string/Alert"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:weightSum="1" 
-            android:text="@string/Alert"/>
+            android:weightSum="1" />
 
         <ToggleButton
             android:id="@+id/asaSw_alert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:weightSum="1"
-            android:onClick="onToggleClicked"/>
+            android:onClick="onToggleClicked"
+            android:weightSum="1" />
     </LinearLayout>
 
     <EditText

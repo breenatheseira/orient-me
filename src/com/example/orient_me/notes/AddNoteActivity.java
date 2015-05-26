@@ -3,6 +3,7 @@ package com.example.orient_me.notes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,6 +30,10 @@ public class AddNoteActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_note);
 
+		Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
+		toolbar.setTitle("Add Notes");
+		setSupportActionBar(toolbar);
+		
 		title_text = (EditText) findViewById(R.id.anaTB_Title);
 		note_text = (EditText) findViewById(R.id.anaTA_Note);
 	}

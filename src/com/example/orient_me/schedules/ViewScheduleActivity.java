@@ -3,15 +3,18 @@ package com.example.orient_me.schedules;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.orient_me.R;
 
+@SuppressLint("SimpleDateFormat")
 public class ViewScheduleActivity extends AppCompatActivity {
 
 	TextView title_locTV, startTV, endTV, alertTV, notesTV;
@@ -25,6 +28,10 @@ public class ViewScheduleActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_schedule);
+		
+		Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
+		toolbar.setTitle("View Schedule");
+		setSupportActionBar(toolbar);
 		
 		title_locTV = (TextView) findViewById(R.id.vsaTV_title_loc);
 		startTV = (TextView) findViewById(R.id.vsaTV_startsAt);

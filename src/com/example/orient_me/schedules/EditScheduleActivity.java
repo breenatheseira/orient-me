@@ -4,11 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.ToggleButton;
 
 import com.example.orient_me.R;
 
+@SuppressLint("SimpleDateFormat")
 public class EditScheduleActivity extends AppCompatActivity {
 
 	EditText titleET, locationET, notesET, startDateTV, startTimeTV, endDateTV,
@@ -37,6 +40,10 @@ public class EditScheduleActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_schedule);
+		
+		Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
+		toolbar.setTitle("Edit Schedule");
+		setSupportActionBar(toolbar);
 		
 		titleET = (EditText) findViewById(R.id.asaTB_title);
 		locationET = (EditText) findViewById(R.id.asaTB_location);

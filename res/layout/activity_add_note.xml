@@ -3,6 +3,12 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <include
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/toolbar" />
+
     <EditText
         android:id="@+id/anaTB_Title"
         android:layout_width="match_parent"
@@ -18,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textMultiLine" 
-        android:hint="@string/ana_instructions"/>
+        android:hint="@string/ana_instructions"
+        android:inputType="textMultiLine" />
 
 </LinearLayout>

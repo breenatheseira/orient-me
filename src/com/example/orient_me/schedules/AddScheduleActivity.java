@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.ToggleButton;
 
 import com.example.orient_me.R;
 
+@SuppressLint("SimpleDateFormat")
 public class AddScheduleActivity extends AppCompatActivity implements
 		OnClickListener {
 
@@ -39,6 +41,10 @@ public class AddScheduleActivity extends AppCompatActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_schedule);
 
+		Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
+		toolbar.setTitle("Add Schedule");
+		setSupportActionBar(toolbar);
+		
 		titleET = (EditText) findViewById(R.id.asaTB_title);
 		locationET = (EditText) findViewById(R.id.asaTB_location);
 		notesET = (EditText) findViewById(R.id.asaTA_notes);
