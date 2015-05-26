@@ -37,17 +37,20 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     		item = new ScheduleListFragment();
     		break;
     	case 2:
-    		item = new ViewContactsListFragment();
-    		break;
-    	case 3:
-    		item = new MapPlaceFragment();
-    		break;
-    	case 4:
     		item = new FacebookFragment();
     		break;
+    	case 3:
+    		item = new ViewContactsListFragment();
+    		break;
+    	case 4:
+    		item = new MapPlaceFragment();
+    		break;
     	case 5:
+    		item = new FacebookFragment();
+    		break;
+    	case 6:
     		item = new ViewBadgesListFragment();
-    		break;    		
+    		break;
     	}
         return item;
     }

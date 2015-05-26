@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
 	    ViewPager pager;
 	    ViewPagerAdapter adapter;
 	    SlidingTabLayout tabs;
-	    CharSequence Titles[] = {"Home","Schedules", "Contacts", "Map", "Social", "Badges"};
-	    int tabsAmount = 6;
+	    CharSequence Titles[] = {"Home","Schedules", "Notes", "Contacts", "Map", "Social", "Badges"};
+	    int tabsAmount = 7;
 	 
 	    @Override
 	    protected void onCreate(Bundle savedInstanceState) {
