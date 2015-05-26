@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/vslfB_scheduleList"
-        android:name="com.example.orient_me.schedules.ViewScheduleListFragment"
+        android:name="com.example.orient_me.schedules.ScheduleListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
