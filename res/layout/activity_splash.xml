@@ -12,6 +12,6 @@
         android:scaleType="centerCrop"
         android:src="@drawable/apu_logo_final"
         android:layout_margin="10dp" 
-        android:padding="60dp" />
+        android:padding="100dp" />
 
 </LinearLayout>
