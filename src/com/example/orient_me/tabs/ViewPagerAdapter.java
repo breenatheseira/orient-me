@@ -10,7 +10,7 @@ import com.example.orient_me.DocumentFragment;
 import com.example.orient_me.badges.ViewBadgesListFragment;
 import com.example.orient_me.contacts.ViewContactsListFragment;
 import com.example.orient_me.maps.MapPlaceFragment;
-import com.example.orient_me.schedules.ViewScheduleListFragment;
+import com.example.orient_me.schedules.ScheduleListFragment;
 import com.example.orient_me.social.FacebookFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -34,7 +34,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     		item = new DocumentFragment();
     		break;
     	case 1:
-    		item = new ViewScheduleListFragment();
+    		item = new ScheduleListFragment();
     		break;
     	case 2:
     		item = new ViewContactsListFragment();
