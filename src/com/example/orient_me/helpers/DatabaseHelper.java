@@ -12,10 +12,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// Database Name
 		protected static final String DATABASE_NAME = "orientMe";
 		
-		// Database methods
-		protected SQLiteDatabase rdb = this.getReadableDatabase();
-		protected SQLiteDatabase wdb = this.getWritableDatabase();
-		
 		// Table Names
 		protected static final String TABLE_NOTES = "notes";
 		protected static final String TABLE_SCHEDULES = "schedules";
