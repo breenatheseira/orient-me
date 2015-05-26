@@ -1,5 +1,6 @@
 package com.example.orient_me.schedules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
@@ -68,14 +69,15 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 	private void loadListView(){
 	    context = (FragmentActivity) super.getActivity();
 		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(context);
+		schedules = new ArrayList<Schedule>();
+		schedules = db.getAllSchedules();
 		
-		if (db.getAllSchedules().isEmpty() && isVisible){
+		if (schedules.isEmpty() && isVisible){
 			Log.d("VSLF", "display toast");
 			Toast.makeText(context, "Add a Schedule to View Your List", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		
-		schedules = db.getAllSchedules();
 		if (schedules.size() == 5)
 			showAchievement(5);
 		
