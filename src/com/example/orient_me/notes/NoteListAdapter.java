@@ -15,7 +15,7 @@ import com.example.orient_me.R;
 public class NoteListAdapter extends ArrayAdapter<Note>{
 
 	public NoteListAdapter(Context context, List<Note> notes) {
-		super(context, android.R.layout.simple_list_item_1, notes);
+		super(context, R.layout.custom_notes_list, notes);
 	}
 
 	@SuppressLint("ViewHolder")
@@ -24,13 +24,12 @@ public class NoteListAdapter extends ArrayAdapter<Note>{
 		
 		if (convertView == null){
 			LayoutInflater inflater = LayoutInflater.from(getContext());
-			convertView = inflater.inflate(android.R.layout.simple_list_item_1,
+			convertView = inflater.inflate(R.layout.custom_notes_list,
 					parent, false);	
 			
 			viewHolder = new ViewHolder(); 
 			
-			viewHolder.title = (TextView) convertView.findViewById(R.id.cslT_title); 
-			viewHolder.note = (TextView) convertView.findViewById(R.id.cslT_time);
+			viewHolder.title = (TextView) convertView.findViewById(R.id.cnl_title); 
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
@@ -38,7 +37,6 @@ public class NoteListAdapter extends ArrayAdapter<Note>{
 				
 		Note note = getItem(position);
 		viewHolder.title.setText(note.getTitle());
-		viewHolder.note.setText(note.getNote());
 		
 		return convertView;
 	}
