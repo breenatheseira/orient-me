@@ -20,7 +20,7 @@ import com.example.orient_me.R;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 
-public class ViewContactsListFragment extends ListFragment {
+public class ContactsListFragment extends ListFragment {
 	
 	List<Contact> contacts;
 	ContactsDatabaseHelper db;

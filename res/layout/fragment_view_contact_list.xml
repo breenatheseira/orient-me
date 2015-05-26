@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/vclf_contactList"
-        android:name="com.example.orient_me.contacts.ViewContactsListFragment"
+        android:name="com.example.orient_me.contacts.ContactsListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
