@@ -14,20 +14,27 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. --> 
+
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <!-- Ozbek (2013) Android: Background Change in Styles.xml [Online]. Available from: http://stackoverflow.com/questions/16901934/android-background-change-in-styles-xml [Accessed: 22 May 2015] -->
         <item name="android:windowBackground">@color/white</item>
         <item name="android:colorBackground">@color/white</item>
     </style>
 
     <style name="defaultbutton">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:background">@color/middleblue</item>
-		<item name="android:textColor">@color/lightblue</item>
-		<item name="android:gravity">center</item>
-		<!-- Groppe (2012) Android - Margins Specified in Custom Style Not Taking Effect. [Online]. Available from: http://stackoverflow.com/questions/13167529/android-margins-specified-in-custom-style-not-taking-effect [Accessed: 22 May 2015 -->
-		<item name="android:layout_margin">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/middleblue</item>
+        <item name="android:textColor">@color/lightblue</item>
+        <item name="android:gravity">center</item>
+        <!-- Groppe (2012) Android - Margins Specified in Custom Style Not Taking Effect. [Online]. Available from: http://stackoverflow.com/questions/13167529/android-margins-specified-in-custom-style-not-taking-effect [Accessed: 22 May 2015 -->
+        <item name="android:layout_margin">10dp</item>
     </style>
-            
+
+    <style name="mainOuterLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
 </resources>
