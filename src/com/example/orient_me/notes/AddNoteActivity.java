@@ -64,7 +64,7 @@ public class AddNoteActivity extends AppCompatActivity {
 			if (newNote.getId().equals("3"))
 				showAchievement(6);
 			
-			Intent intent = new Intent(AddNoteActivity.this,ViewNotesListActivity.class);
+			Intent intent = new Intent(AddNoteActivity.this,ViewNotesListFragment.class);
 			startActivity(intent);
 			finish();
 			

@@ -24,7 +24,7 @@ import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 import com.example.orient_me.helpers.PreferencesHelper;
 import com.example.orient_me.maps.MapPlaceFragment;
-import com.example.orient_me.notes.ViewNotesListActivity;
+import com.example.orient_me.notes.ViewNotesListFragment;
 
 public class DocumentFragment extends Fragment implements
 		OnClickListener {
@@ -82,7 +82,7 @@ public class DocumentFragment extends Fragment implements
 			ViewPDF(prefs.GetPreferences("OrientationSchedule"), v);
 			break;
 		case R.id.daB_myNotes:
-			intent = new Intent(context, ViewNotesListActivity.class);
+			intent = new Intent(context, ViewNotesListFragment.class);
 			startActivity(intent);
 			break;
 		}
