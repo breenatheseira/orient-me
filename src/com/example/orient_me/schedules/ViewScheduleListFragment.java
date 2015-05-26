@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -26,74 +26,49 @@ import com.example.orient_me.R;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 
-public class ViewScheduleListFragment extends Fragment implements OnClickListener {
-
-	ListView scheduleList;
-	LinearLayout emptyLayout;
+public class ViewScheduleListFragment extends ListFragment {
 	List<Schedule> schedules;
-	Button addSchedule;
+		
 	FragmentActivity context;
 	boolean isVisible = false;
 	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	    // laalto (2014) Running Database Query in FragmentStatePagerAdapter NPE [Online]. Available from: http://stackoverflow.com/questions/24662325/running-database-query-in-fragmentstatepageradapter-npe [Accessed: 25 May 2015]. 
-		context = (FragmentActivity) super.getActivity();
-
-	    LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.activity_view_schedule_list, container, false);
-	    
-		scheduleList = (ListView) layout.findViewById(R.id.vnsLV_listview);
-		emptyLayout = (LinearLayout) layout.findViewById(R.id.vnslLL_emptyList);
-		addSchedule = (Button) layout.findViewById(R.id.vslfB_addSchedule);
-		
-		addSchedule.setOnClickListener(this);
-		
-		loadListView();
-		scheduleList.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long l) {
-				
-				String id = schedules.get(position).getId(); 
-				
-				Intent intent = new Intent(context, ViewScheduleActivity.class);
-				intent.putExtra("id", id);
-				startActivity(intent);
-			}
-		});
-	    
-	    return layout ; 
-	}
-	
-	private void loadListView(){
-	    context = (FragmentActivity) super.getActivity();
-		ScheduleDatabaseHelper db = new ScheduleDatabaseHelper(context);
-		schedules = new ArrayList<Schedule>();
-		schedules = db.getAllSchedules();
-		
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        context = (FragmentActivity) super.getActivity();
+        // initialize the items list
+        schedules = new ArrayList<Schedule>();
+        
+        if (schedules.size() == 5)
+        	showAchievement(5);
+        
 		if (schedules.isEmpty() && isVisible){
 			Log.d("VSLF", "display toast");
 			Toast.makeText(context, "Add a Schedule to View Your List", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		
-		if (schedules.size() == 5)
-			showAchievement(5);
-		
-		ScheduleListAdapter adapter = new ScheduleListAdapter(context, schedules);
-		scheduleList.setAdapter(adapter);
-		scheduleList.setEmptyView(emptyLayout);
-	}
+        // initialize and set the list adapter
+        setListAdapter(new ScheduleListAdapter(getActivity(), schedules));
+    }
 	
-	// 
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        // retrieve theListView item
+        Schedule schedule = schedules.get(position);
+        
+        // do something
+		Intent intent = new Intent(context, ViewScheduleActivity.class);
+		intent.putExtra("id", schedule.getId());
+		startActivity(intent);
+    }
+	
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 	    super.setUserVisibleHint(isVisibleToUser);
 	    
 	    isVisible = isVisibleToUser;
 	    if (isVisible)
-	    	loadListView();
+	    	setListAdapter(new ScheduleListAdapter(getActivity(), schedules));
 	}
 	
     private void showAchievement(int id) {
@@ -122,12 +97,5 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 			toast.setView(layout);
 			toast.show();
 		}
-	}
-
-	@Override
-	
-	public void onClick(View v) {
-		Intent intent = new Intent(context, AddScheduleActivity.class);
-		startActivity(intent);
 	}
 }
