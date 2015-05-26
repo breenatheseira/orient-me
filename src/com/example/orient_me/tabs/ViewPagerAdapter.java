@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.orient_me.DocumentFragment;
-import com.example.orient_me.badges.BadgesListFragment;
+import com.example.orient_me.badges.ViewBadgesListFragment;
 import com.example.orient_me.contacts.ViewContactsListFragment;
 import com.example.orient_me.maps.MapPlaceFragment;
 import com.example.orient_me.notes.ViewNotesListFragment;
@@ -50,7 +50,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     		item = new FacebookFragment();
     		break;
     	case 6:
-    		item = new BadgesListFragment();
+    		item = new ViewBadgesListFragment();
     		break;
     	}
         return item;
