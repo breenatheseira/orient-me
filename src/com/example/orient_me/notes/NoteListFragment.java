@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class NoteListFragment extends ListFragment {
 	List<Note> notes;
@@ -33,12 +31,8 @@ public class NoteListFragment extends ListFragment {
         db = new NoteDatabaseHelper(context);
         notes = db.getAllNote();
         
-		if (notes.isEmpty()){
-			Log.d("NLF", "display toast");
-			Toast.makeText(context, "Add a Note", Toast.LENGTH_SHORT).show();
-		} 
         // initialize and set the list adapter
-		nla = new NoteListAdapter(getActivity(), notes);
+        nla = new NoteListAdapter(getActivity(), notes);
 		nla.notifyDataSetChanged();
 		setListAdapter(nla);
     }
@@ -58,5 +52,4 @@ public class NoteListFragment extends ListFragment {
 		loadList();
 		super.onResume();
 	}
-	    
 }

@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.orient_me.R;
+import com.example.orient_me.notes.NoteDatabaseHelper;
 
 public class ViewScheduleListFragment extends Fragment implements OnClickListener {
 	FragmentActivity context;
@@ -35,5 +38,16 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 	public void onClick(View v) {
 		Intent intent = new Intent(context, AddScheduleActivity.class);
 		startActivity(intent);
+	}
+	
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) { 
+	    super.setUserVisibleHint(isVisibleToUser);
+	    ScheduleDatabaseHelper sdb = new ScheduleDatabaseHelper(context);
+	    
+	    if (isVisibleToUser && sdb.getAllSchedules().isEmpty()) { 
+	    	Toast.makeText(context, "Add a Schedule to View Your Schedule List", Toast.LENGTH_SHORT).show();
+	        Log.d("NSLF", "this fragment is now visible");
+	    }
 	}
 }
