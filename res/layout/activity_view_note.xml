@@ -8,21 +8,26 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/toolbar" />    
-    
-    <EditText
-        android:id="@+id/vna_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium" 
-        android:hint="@string/Title" />
+        layout="@layout/toolbar" />
 
-    <EditText
-        android:id="@+id/vna_note"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:hint="@string/ana_instructions" 
-        android:gravity="top|start"/>
+    <LinearLayout
+        style="@style/mainOuterLayout"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/vna_title"
+            style="@style/defaultEditText"
+            android:hint="@string/Title"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/vna_note"
+            style="@style/defaultEditText"
+            android:layout_height="fill_parent"
+            android:gravity="top|start"
+            android:hint="@string/ana_instructions"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
 
 </LinearLayout>

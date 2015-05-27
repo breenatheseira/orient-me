@@ -9,22 +9,26 @@
         android:layout_height="wrap_content"
         layout="@layout/toolbar" />
 
-    <EditText
-        android:id="@+id/anaTB_Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/Title" >
+    <LinearLayout
+        style="@style/mainOuterLayout"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/anaTB_Title"
+            style="@style/defaultEditText"
+            android:hint="@string/Title" >
 
-    <EditText
-        android:id="@+id/anaTA_Note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/ana_instructions"
-        android:inputType="textMultiLine" />
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/anaTA_Note"
+            style="@style/defaultEditText"
+            android:layout_height="fill_parent"
+            android:gravity="top|start"
+            android:hint="@string/ana_instructions"
+            android:inputType="textMultiLine" />
+    </LinearLayout>
 
 </LinearLayout>
