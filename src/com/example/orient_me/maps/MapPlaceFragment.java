@@ -45,11 +45,15 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 		if (view != null) {
 		    ViewGroup parent = (ViewGroup) view.getParent();
 		    if (parent != null){
-		    	// Removing markers to prevent memory leaks
-		    	for (int i = 0; i < marker.size(); i++){
-		    		marker.get(i).remove();
-		    	}
-		        parent.removeView(view);
+		    	try {
+					// Removing markers to prevent memory leaks
+					for (int i = 0; i < marker.size(); i++){
+						marker.get(i).remove();
+					}
+					parent.removeView(view);
+				} catch (Exception e) {
+					Log.d("Map P Fragment: onCreateView", "Error: " + e.getMessage());
+				}
 		    }
 		}
 		try {
@@ -96,24 +100,29 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
     	LatLng pos;
     	map.setMyLocationEnabled(true);
     	
-    	PlaceDatabaseHelper pdb = new PlaceDatabaseHelper(context);
-		places = pdb.getAllPlaces();	
-		
-		for (Place eachPlace : places){
-			if (eachPlace.getAddress().equalsIgnoreCase("0"))
-				pos = new LatLng(Double.parseDouble(eachPlace.getLat()), Double.parseDouble(eachPlace.getLng()));
-			else 
-				pos = getLocationFromAddress(eachPlace.getAddress());
+    	try {
+	    	PlaceDatabaseHelper pdb = new PlaceDatabaseHelper(context);
+			places = pdb.getAllPlaces();	
 			
-	        Marker pin = map.addMarker(new MarkerOptions()
-					            .title(eachPlace.getTitle())
-					            .snippet(eachPlace.getSnippet())
-					            .position(pos));
-	        marker.add(pin);
-			
-			if (eachPlace.getId().equalsIgnoreCase("1"))
-				map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 17));	
-		}
+			for (Place eachPlace : places){
+				if (eachPlace.getAddress().equalsIgnoreCase("0"))
+					pos = new LatLng(Double.parseDouble(eachPlace.getLat()), Double.parseDouble(eachPlace.getLng()));
+				else 
+					pos = getLocationFromAddress(eachPlace.getAddress());
+				
+		        Marker pin = map.addMarker(new MarkerOptions()
+						            .title(eachPlace.getTitle())
+						            .snippet(eachPlace.getSnippet())
+						            .position(pos));
+		        marker.add(pin);
+				
+				if (eachPlace.getId().equalsIgnoreCase("1"))
+					map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 17));	
+			}
+    	} catch (Exception e) {
+    		Log.d("MapPF Adding Markers", "Error: " + e.getMessage());
+    	}
+    	
     }
 
     // Gupte, N. A. (2015) How Can I Find the Latitude and Longitude From Address? [Online]. Available from: http://stackoverflow.com/questions/3574644/how-can-i-find-the-latitude-and-longitude-from-address/27834110#27834110 [Accessed: 20 May 2015].
@@ -134,7 +143,7 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 	        p1 = new LatLng(location.getLatitude(), location.getLongitude() );
 
 	    } catch (Exception ex) {
-	        ex.printStackTrace();
+	    	Log.d("MapPF get GPS from Address", "Error: " + ex.getMessage());
 	    }
 	    return p1;
 	}
