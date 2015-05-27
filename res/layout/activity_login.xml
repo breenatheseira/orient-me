@@ -1,47 +1,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:padding="10dp" >
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/toolbar" />
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10dp" >
+        style="@style/mainOuterLayout"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
 
         <EditText
             android:id="@+id/laTF_Username"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
+            style="@style/defaultEditText"
             android:hint="@string/username_text"
             android:inputType="textEmailAddress" >
 
             <requestFocus />
         </EditText>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
 
         <EditText
             android:id="@+id/laTF_Password"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
+            style="@style/defaultEditText"
             android:hint="@string/password_text"
             android:inputType="textPassword" >
         </EditText>
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/laB_Submit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="login"
-        android:text="@string/submit_text" />
+        <Button
+            android:id="@+id/laB_Submit"
+			android:onClick="login"
+            android:text="@string/submit_text"
+            style="@style/defaultbutton" />
+    </LinearLayout>
 
 </LinearLayout>
