@@ -1,6 +1,5 @@
 package com.example.orient_me.notes;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -63,8 +62,6 @@ public class AddNoteActivity extends AppCompatActivity {
 			if (newNote.getId().equals("3"))
 				showAchievement(6);
 			
-			Intent intent = new Intent(AddNoteActivity.this,ViewNotesListFragment.class);
-			startActivity(intent);
 			finish();
 			
 		} else {
