@@ -19,6 +19,9 @@
         <!-- Ozbek (2013) Android: Background Change in Styles.xml [Online]. Available from: http://stackoverflow.com/questions/16901934/android-background-change-in-styles-xml [Accessed: 22 May 2015] -->
         <item name="android:windowBackground">@color/white</item>
         <item name="android:colorBackground">@color/white</item>
+        <item name="colorControlNormal">@color/middleblue</item>
+        <item name="colorControlActivated">@color/accentyellow</item>
+        <item name="colorControlHighlight">@color/accentyellow</item>
     </style>
 
     <style name="defaultbutton">
@@ -46,4 +49,11 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">17sp</item>
     </style>
+
+    <style name="defaultEditText" parent="@android:style/Widget.EditText">
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:ems">10</item>
+    </style>
+
 </resources>
