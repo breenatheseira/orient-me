@@ -19,10 +19,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.example.orient_me.R;
 
@@ -33,7 +33,7 @@ public class AddScheduleActivity extends AppCompatActivity implements
 	EditText titleET, locationET, notesET;
 	TextView startDateTV, startTimeTV, endDateTV, endTimeTV;
 	String title, location, notes, alert = "0", tempDate;
-	ToggleButton alertButton;
+	Switch alertButton;
 	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
 	SimpleDateFormat dtf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -61,7 +61,7 @@ public class AddScheduleActivity extends AppCompatActivity implements
 		startTimeTV = (TextView) findViewById(R.id.asaTV_startTime);
 		endDateTV = (TextView) findViewById(R.id.asaTV_endDate);
 		endTimeTV = (TextView) findViewById(R.id.asaTV_endTime);
-		alertButton = (ToggleButton) findViewById(R.id.asaSw_alert);
+		alertButton = (Switch) findViewById(R.id.asaSw_alert);
 
 		dateDialog = new DatePickerDialog(this,datePickerListener, Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
 		timeDialog = new TimePickerDialog(this, timePickerListener, Calendar.HOUR_OF_DAY, Calendar.MINUTE, true);
@@ -149,9 +149,9 @@ public class AddScheduleActivity extends AppCompatActivity implements
 	}
 
 	// Developer (n.d.) Toggle Buttons [Online]. Available from: http://developer.android.com/guide/topics/ui/controls/togglebutton.html [Accessed: 3 May 2015].
-	public void onToggleClicked(View view) {
+	public void onSwitchClicked(View view) {
 		// Is the toggle on?
-		boolean on = ((ToggleButton) view).isChecked();
+		boolean on = ((Switch) view).isChecked();
 
 		if (on) {
 			alert = "1";

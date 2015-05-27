@@ -21,8 +21,7 @@
         </EditText>
 
         <LinearLayout
-            style="@style/innerLayout"
-            android:weightSum="3" >
+            style="@style/innerLayout" >
 
             <TextView
                 android:id="@+id/asaT_startTime"
@@ -33,31 +32,34 @@
 
             <TextView
                 android:id="@+id/asaTV_startDate"
-                android:weightSum="1" />
+                style="@style/datetimeTextView"
+                android:gravity="end"  
+                android:paddingRight="10dp" />
 
             <TextView
                 android:id="@+id/asaTV_startTime"
-                android:weightSum="1" />
+                style="@style/datetimeTextView"
+                android:gravity="start" />
         </LinearLayout>
 
         <LinearLayout
-            style="@style/innerLayout"
-            android:weightSum="3" >
+            style="@style/innerLayout" >
 
             <TextView
                 android:id="@+id/asaT_endTime"
                 style="@style/instructTextView"
                 android:layout_width="wrap_content"
-                android:text="@string/End"
-                android:weightSum="1" />
-
+                android:text="@string/End" />
             <TextView
                 android:id="@+id/asaTV_endDate"
-                android:weightSum="1" />
+                style="@style/datetimeTextView"
+                android:layout_marginRight="10dp"
+                android:gravity="end" />
 
             <TextView
                 android:id="@+id/asaTV_endTime"
-                android:weightSum="1" />
+                style="@style/datetimeTextView"
+                android:gravity="start" />
         </LinearLayout>
 
         <EditText
@@ -66,22 +68,22 @@
             android:hint="@string/Location" />
 
         <LinearLayout
-            style="@style/innerLayout"
-            android:weightSum="3" >
+            style="@style/innerLayout"  >
 
             <TextView
                 android:id="@+id/asaTV_alert"
                 style="@style/instructTextView"
                 android:layout_width="wrap_content"
                 android:text="@string/Alert"
-                android:weightSum="1" />
+                android:layout_weight="1" 
+                android:gravity="left"/>
 
-            <ToggleButton
+            <Switch
                 android:id="@+id/asaSw_alert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onToggleClicked"
-                android:weightSum="1" />
+                android:gravity="right"
+                android:onClick="onSwitchClicked" />
         </LinearLayout>
 
         <EditText

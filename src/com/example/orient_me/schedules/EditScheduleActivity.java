@@ -20,10 +20,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.example.orient_me.R;
 
@@ -35,7 +35,7 @@ OnClickListener {
 	TextView startDateTV, startTimeTV, endDateTV,
 			endTimeTV;
 	String id, title, location, notes, alert = "0";
-	ToggleButton alertButton;
+	Switch alertButton;
 	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
 	SimpleDateFormat dtf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -65,7 +65,7 @@ OnClickListener {
 		startTimeTV = (TextView) findViewById(R.id.asaTV_startTime);
 		endDateTV = (TextView) findViewById(R.id.asaTV_endDate);
 		endTimeTV = (TextView) findViewById(R.id.asaTV_endTime);
-		alertButton = (ToggleButton) findViewById(R.id.asaSw_alert);
+		alertButton = (Switch) findViewById(R.id.asaSw_alert);
 		
 		db = new ScheduleDatabaseHelper(this);
 		
@@ -147,9 +147,9 @@ OnClickListener {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void onToggleClicked(View view) {
+	public void onSwitchClicked(View view) {
 		// Is the toggle on?
-		boolean on = ((ToggleButton) view).isChecked();
+		boolean on = ((Switch) view).isChecked();
 
 		if (on) {
 			alert = "1";
