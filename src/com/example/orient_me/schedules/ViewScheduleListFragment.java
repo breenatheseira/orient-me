@@ -25,6 +25,7 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 	     
 	     ScheduleListFragment scheduleList = (ScheduleListFragment) getChildFragmentManager().findFragmentById(R.id.vslfB_scheduleList);
          scheduleList.getListView();
+         scheduleList.setListShown(true);
 	     addButton.setOnClickListener(this);
 	     
 	     return layout; 

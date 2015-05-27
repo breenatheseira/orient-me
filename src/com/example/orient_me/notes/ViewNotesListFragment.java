@@ -26,6 +26,7 @@ public class ViewNotesListFragment extends Fragment implements OnClickListener {
 	     
 	     NoteListFragment noteList = (NoteListFragment) getChildFragmentManager().findFragmentById(R.id.vnlfB_listFragment);
 	     noteList.getListView();
+	     noteList.setListShown(true);
 	     addButton.setOnClickListener(this);
 	     
 	     return layout; 
