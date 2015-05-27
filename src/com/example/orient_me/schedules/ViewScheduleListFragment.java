@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.orient_me.R;
-import com.example.orient_me.notes.NoteDatabaseHelper;
 
 public class ViewScheduleListFragment extends Fragment implements OnClickListener {
 	FragmentActivity context;
@@ -43,11 +42,12 @@ public class ViewScheduleListFragment extends Fragment implements OnClickListene
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) { 
 	    super.setUserVisibleHint(isVisibleToUser);
+	    context = (FragmentActivity) super.getActivity();
 	    ScheduleDatabaseHelper sdb = new ScheduleDatabaseHelper(context);
 	    
 	    if (isVisibleToUser && sdb.getAllSchedules().isEmpty()) { 
 	    	Toast.makeText(context, "Add a Schedule to View Your Schedule List", Toast.LENGTH_SHORT).show();
-	        Log.d("NSLF", "this fragment is now visible");
+	        Log.d("VSLF", "this fragment is now visible");
 	    }
 	}
 }

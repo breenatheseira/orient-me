@@ -43,6 +43,7 @@ public class ViewNotesListFragment extends Fragment implements OnClickListener {
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) { 
 	    super.setUserVisibleHint(isVisibleToUser);
+	    context = (FragmentActivity) super.getActivity();
 	    NoteDatabaseHelper ndb = new NoteDatabaseHelper(context);
 	    
 	    if (isVisibleToUser && ndb.getAllNote().isEmpty()) { 
