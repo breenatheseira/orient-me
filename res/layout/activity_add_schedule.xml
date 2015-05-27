@@ -27,15 +27,15 @@
             android:weightSum="3" >
 
             <TextView
-                android:id="@+id/asaTV_startTime"
+                android:id="@+id/asaT_startTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Start"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:weightSum="1" />
 
-            <EditText
-                android:id="@+id/asaDB_startDate"
+            <TextView
+                android:id="@+id/asaTV_startDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -44,8 +44,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:weightSum="1" />
 
-            <EditText
-                android:id="@+id/asaDB_startTime"
+            <TextView
+                android:id="@+id/asaTV_startTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -62,15 +62,15 @@
             android:weightSum="3" >
 
             <TextView
-                android:id="@+id/asaTV_endTime"
+                android:id="@+id/asaT_endTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/End"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:weightSum="1" />
 
-            <EditText
-                android:id="@+id/asaDB_endDate"
+            <TextView
+                android:id="@+id/asaTV_endDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -79,8 +79,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:weightSum="1" />
 
-            <EditText
-                android:id="@+id/asaDB_endTime"
+            <TextView
+                android:id="@+id/asaTV_endTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
