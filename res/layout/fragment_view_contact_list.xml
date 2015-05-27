@@ -5,7 +5,9 @@
 
     <TextView
         android:id="@+id/vclfT_instructions"
-        style="@style/instructTextView" />
+        style="@style/instructTextView"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" />
 
     <fragment
         android:id="@+id/vclf_contactList"

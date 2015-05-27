@@ -5,7 +5,9 @@
     <TextView
         android:id="@+id/vblfT_instructions"
         style="@style/instructTextView"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" />
 
     <fragment
         android:id="@+id/vblfT_badgeList"

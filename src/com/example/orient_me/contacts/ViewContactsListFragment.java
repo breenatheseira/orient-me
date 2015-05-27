@@ -21,7 +21,7 @@ public class ViewContactsListFragment extends Fragment {
 	     LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.fragment_view_contact_list, container, false);
 	     TextView ins = (TextView) layout.findViewById(R.id.vclfT_instructions);
 	     
-	     ins.setText("Touch the download icons to save important APU contacts.");
+	     ins.setText("Touch the download icons to \nsave important APU contacts.");
 	     
 	     ContactsListFragment contactslist = (ContactsListFragment) getChildFragmentManager().findFragmentById(R.id.vclf_contactList);
 	     contactslist.getListView();
