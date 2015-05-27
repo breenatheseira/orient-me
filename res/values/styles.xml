@@ -71,12 +71,16 @@
         <item name="android:layout_marginBottom">10dp</item>
     </style>
 
-    <style name="datetimeTextView" parent="@android:attr/textAppearanceMedium">
+    <style name="defaultTextView" parent="@android:attr/textAppearanceMedium">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
+        <item name="android:ems">10</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="datetimeTextView" parent="defaultTextView">
+        <item name="android:onClick">onClick</item>
         <item name="android:clickable">true</item>
-        <item name="android:ems">15</item>
-		<item name="android:onClick">onClick</item>
     </style>
 
 </resources>
