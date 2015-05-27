@@ -48,10 +48,10 @@ public class ScheduleListFragment extends ListFragment {
 		if (schedules.isEmpty()){
 			Log.d("VSLF", "display toast");
 			Toast.makeText(context, "Add a Schedule to View Your List", Toast.LENGTH_SHORT).show();
-			return;
 		}
         // initialize and set the list adapter
 		sla = new ScheduleListAdapter(getActivity(), schedules); 
+		sla.notifyDataSetChanged();
         setListAdapter(sla);
     }
 	
