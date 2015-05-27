@@ -36,11 +36,11 @@ public class NoteListFragment extends ListFragment {
 		if (notes.isEmpty()){
 			Log.d("NLF", "display toast");
 			Toast.makeText(context, "Add a Note", Toast.LENGTH_SHORT).show();
-			return;
-		}
+		} 
         // initialize and set the list adapter
-		nla = new NoteListAdapter(getActivity(), notes); 
-        setListAdapter(nla);
+		nla = new NoteListAdapter(getActivity(), notes);
+		nla.notifyDataSetChanged();
+		setListAdapter(nla);
     }
     
     @Override
@@ -58,6 +58,5 @@ public class NoteListFragment extends ListFragment {
 		loadList();
 		super.onResume();
 	}
-	
-    
+	    
 }
