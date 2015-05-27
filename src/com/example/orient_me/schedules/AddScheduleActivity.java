@@ -42,7 +42,6 @@ public class AddScheduleActivity extends AppCompatActivity implements
 		setContentView(R.layout.activity_add_schedule);
 
 		Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
-		toolbar.setTitle("Add Schedule");
 		setSupportActionBar(toolbar);
 		
 		titleET = (EditText) findViewById(R.id.asaTB_title);

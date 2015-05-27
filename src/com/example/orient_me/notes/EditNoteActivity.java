@@ -29,7 +29,6 @@ public class EditNoteActivity extends AppCompatActivity {
 		db = new NoteDatabaseHelper(EditNoteActivity.this);
 
 		Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
-		toolbar.setTitle("Edit Note");
 		setSupportActionBar(toolbar);
 		
 		setNotesContents();

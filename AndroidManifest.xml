@@ -41,16 +41,11 @@
             android:noHistory="true" >
         </activity>
         <activity
-            android:name=".SplashLoginActivity"
-            android:label="@string/title_activity_splash_login" >
+            android:name=".SplashLoginActivity" >
         </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/main_menu" >
-        </activity>
-        <activity
-            android:name=".notes.ViewNotesListActivity"
-            android:label="@string/title_activity_view_notes_list" >
         </activity>
         <activity
             android:name=".notes.AddNoteActivity"
@@ -58,7 +53,7 @@
         </activity>
         <activity
             android:name=".notes.EditNoteActivity"
-            android:label="@string/title_activity_add_note" >
+            android:label="@string/title_activity_edit_note" >
         </activity>
         <activity
             android:name=".notes.ViewNoteActivity"
@@ -79,7 +74,7 @@
 
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:value="@integer/google_play_services_version" />        
     </application>
 
 </manifest>

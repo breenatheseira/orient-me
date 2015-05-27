@@ -31,7 +31,6 @@ public class AddNoteActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_add_note);
 
 		Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
-		toolbar.setTitle("Add Notes");
 		setSupportActionBar(toolbar);
 		
 		title_text = (EditText) findViewById(R.id.anaTB_Title);

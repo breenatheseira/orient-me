@@ -5,7 +5,7 @@
     <Button
         android:id="@+id/vslfB_addSchedule"
 		style="@style/defaultbutton"
-        android:text="@string/Add_Schedule" />
+        android:text="@string/title_activity_add_schedule" />
 
     <fragment
         android:id="@+id/vslfB_scheduleList"

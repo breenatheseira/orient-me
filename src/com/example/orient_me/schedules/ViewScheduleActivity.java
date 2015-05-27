@@ -30,7 +30,6 @@ public class ViewScheduleActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_view_schedule);
 		
 		Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
-		toolbar.setTitle("View Schedule");
 		setSupportActionBar(toolbar);
 		
 		title_locTV = (TextView) findViewById(R.id.vsaTV_title_loc);

@@ -6,7 +6,7 @@
     <Button
         android:id="@+id/vnlfB_addNote"
 		style="@style/defaultbutton"
-        android:text="@string/Add_Note" />
+        android:text="@string/title_activity_add_note" />
 
     <fragment
         android:id="@+id/vnlfB_listFragment"
