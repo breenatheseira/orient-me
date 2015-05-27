@@ -15,9 +15,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         submitButton = (Button) findViewById(R.id.laB_Submit);
         usernameTextF = (EditText) findViewById(R.id.laTF_Username);
         passwordTextF = (EditText) findViewById(R.id.laTF_Password);
+        
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     public void login(View button){    	

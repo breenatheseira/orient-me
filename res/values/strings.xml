@@ -3,6 +3,7 @@
 
     <string name="app_name">orient-me</string>
     
+    <string name="title_activity_login">Log In to Orient-Me</string>
     <string name="main_menu">APU Orient-Me</string>
     <string name="title_activity_add_note">Add Note</string>
     <string name="title_activity_edit_note">Edit Note</string>
