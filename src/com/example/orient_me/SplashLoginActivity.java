@@ -33,7 +33,7 @@ public class SplashLoginActivity extends AppCompatActivity {
 		
 		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
 		
-		String[] files = new String[8]; 
+		String[] files = new String[10]; 
 		files[0] = prefs.GetPreferences("StudentHandbook");
 		files[1] = prefs.GetPreferences("ImportantDetails");
 		files[2] = prefs.GetPreferences("OrientationSchedule");
@@ -43,7 +43,7 @@ public class SplashLoginActivity extends AppCompatActivity {
 		files[6] = "ImportantDetails.pdf";
 		files[7] = "OrientationSchedule.pdf";
 		files[8] = "FeeSchedule.pdf";
-		files[9] = "CourseSchedule";
+		files[9] = "CourseSchedule.pdf";
 				
     	new DownloadFile().execute(files);
 	}
@@ -58,7 +58,7 @@ public class SplashLoginActivity extends AppCompatActivity {
             if (!folder.exists())
             	folder.mkdir();
 
-            for (int i = 0; i < 4; i++){
+            for (int i = 0; i < 5; i++){
 	            File pdfFile = new File(folder, files[i+5]);
 	
 	            try{

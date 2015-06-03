@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 	
                 	prefs.SavePreferences("OrientationSchedule", doc.getJSONArray("orientation_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
                 	prefs.SavePreferences("StudentHandbook", doc.getJSONArray("handbook").getJSONObject(0).getJSONObject("document_url").getString("url"));
-                	prefs.SavePreferences("ImportantDetails", doc.getJSONArray("impt_details").getJSONObject(0).getJSONObject("document_url").getString("url"));
+                	prefs.SavePreferences("ImportantDetails", doc.getJSONArray("important_details").getJSONObject(0).getJSONObject("document_url").getString("url"));
                 	prefs.SavePreferences("FeeSchedule",  doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
                 	prefs.SavePreferences("CourseSchedule",  "http://titan.apiit.edu.my/courseschedule/" + getCourseType(prefs.GetPreferences("IntakeCode")) + "/" + prefs.GetPreferences("IntakeCode") + ".pdf");
                 }
@@ -132,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
             } finally {
                 super.onPostExecute(json);
+                Log.d("Login Activity", prefs.GetPreferences("CourseSchedule"));
                 Intent intent = new Intent (context, SplashLoginActivity.class);
                 startActivity(intent);
             	finish();

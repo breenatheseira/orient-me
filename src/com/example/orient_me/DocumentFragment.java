@@ -29,7 +29,7 @@ import com.example.orient_me.notes.ViewNotesListFragment;
 public class DocumentFragment extends Fragment implements
 		OnClickListener {
 	
-	Button stuHandbook, impDetails, feeSch, orientSch, myNotes;
+	Button stuHandbook, impDetails, feeSch, orientSch, courseSch;
 	Intent intent;
 	PreferencesHelper prefs;
 	FragmentActivity context;
@@ -46,13 +46,13 @@ public class DocumentFragment extends Fragment implements
 		impDetails = (Button) layout.findViewById(R.id.daB_imptDetails);
 		feeSch = (Button) layout.findViewById(R.id.daB_feeSchedule);
 		orientSch = (Button) layout.findViewById(R.id.daB_orientSchedule);
-		myNotes = (Button) layout.findViewById(R.id.daB_myNotes);
+		courseSch = (Button) layout.findViewById(R.id.daB_courseSchedule);
 
 		stuHandbook.setOnClickListener(this);
 		impDetails.setOnClickListener(this);
 		feeSch.setOnClickListener(this);
 		orientSch.setOnClickListener(this);
-		myNotes.setOnClickListener(this);
+		courseSch.setOnClickListener(this);
 
 	    return layout;
 	}
@@ -80,9 +80,8 @@ public class DocumentFragment extends Fragment implements
 			docViewCheck();
 			ViewPDF(prefs.GetPreferences("OrientationSchedule"), v);
 			break;
-		case R.id.daB_myNotes:
-			intent = new Intent(context, ViewNotesListFragment.class);
-			startActivity(intent);
+		case R.id.daB_courseSchedule:
+			ViewPDF(prefs.GetPreferences("CourseSchedule"), v);
 			break;
 		}
 	}

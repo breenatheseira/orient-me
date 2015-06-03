@@ -42,9 +42,9 @@
             android:text="@string/orientation_schedule" />
 
         <Button
-            android:id="@+id/daB_myNotes"
+            android:id="@+id/daB_courseSchedule"
             style="@style/defaultbutton"
-            android:text="@string/my_notes" />
+            android:text="@string/course_schedule" />
     </LinearLayout>
 
 </LinearLayout>
