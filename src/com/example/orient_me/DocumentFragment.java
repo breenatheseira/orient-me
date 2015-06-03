@@ -29,7 +29,7 @@ import com.example.orient_me.notes.ViewNotesListFragment;
 public class DocumentFragment extends Fragment implements
 		OnClickListener {
 	
-	Button stuHandbook, impDetails, campMap, orientSch, myNotes;
+	Button stuHandbook, impDetails, feeSch, orientSch, myNotes;
 	Intent intent;
 	PreferencesHelper prefs;
 	FragmentActivity context;
@@ -44,13 +44,13 @@ public class DocumentFragment extends Fragment implements
 		
 		stuHandbook = (Button) layout.findViewById(R.id.daB_studentHandbook);
 		impDetails = (Button) layout.findViewById(R.id.daB_imptDetails);
-		campMap = (Button) layout.findViewById(R.id.daB_campusMap);
+		feeSch = (Button) layout.findViewById(R.id.daB_feeSchedule);
 		orientSch = (Button) layout.findViewById(R.id.daB_orientSchedule);
 		myNotes = (Button) layout.findViewById(R.id.daB_myNotes);
 
 		stuHandbook.setOnClickListener(this);
 		impDetails.setOnClickListener(this);
-		campMap.setOnClickListener(this);
+		feeSch.setOnClickListener(this);
 		orientSch.setOnClickListener(this);
 		myNotes.setOnClickListener(this);
 
@@ -72,9 +72,8 @@ public class DocumentFragment extends Fragment implements
 			docViewCheck();
 			ViewPDF(prefs.GetPreferences("ImportantDetails"), v);
 			break;
-		case R.id.daB_campusMap:
-			intent = new Intent(context, MapPlaceFragment.class);
-			startActivity(intent);
+		case R.id.daB_feeSchedule:
+			ViewPDF(prefs.GetPreferences("FeeSchedule"), v);
 			break;
 		case R.id.daB_orientSchedule:
 			prefs.SavePreferences("os_count", "v");

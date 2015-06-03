@@ -38,9 +38,9 @@
             android:text="@string/orientation_schedule" />
 
         <Button
-            android:id="@+id/daB_campusMap"
+            android:id="@+id/daB_feeSchedule"
 			style="@style/defaultbutton"
-            android:text="@string/campus_map" />
+            android:text="@string/fee_schedule" />
 
         <Button
             android:id="@+id/daB_myNotes"
