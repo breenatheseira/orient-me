@@ -29,7 +29,7 @@ import com.example.orient_me.notes.ViewNotesListFragment;
 public class DocumentFragment extends Fragment implements
 		OnClickListener {
 	
-	Button stuHandbook, modList, campMap, orientSch, myNotes;
+	Button stuHandbook, impDetails, campMap, orientSch, myNotes;
 	Intent intent;
 	PreferencesHelper prefs;
 	FragmentActivity context;
@@ -43,13 +43,13 @@ public class DocumentFragment extends Fragment implements
     	prefs = new PreferencesHelper(context);
 		
 		stuHandbook = (Button) layout.findViewById(R.id.daB_studentHandbook);
-		modList = (Button) layout.findViewById(R.id.daB_moduleList);
+		impDetails = (Button) layout.findViewById(R.id.daB_imptDetails);
 		campMap = (Button) layout.findViewById(R.id.daB_campusMap);
 		orientSch = (Button) layout.findViewById(R.id.daB_orientSchedule);
 		myNotes = (Button) layout.findViewById(R.id.daB_myNotes);
 
 		stuHandbook.setOnClickListener(this);
-		modList.setOnClickListener(this);
+		impDetails.setOnClickListener(this);
 		campMap.setOnClickListener(this);
 		orientSch.setOnClickListener(this);
 		myNotes.setOnClickListener(this);
@@ -67,10 +67,10 @@ public class DocumentFragment extends Fragment implements
 			docViewCheck();
 			ViewPDF(prefs.GetPreferences("StudentHandbook"), v);
 			break;
-		case R.id.daB_moduleList:
-			prefs.SavePreferences("ml_count", "v");
+		case R.id.daB_imptDetails:
+			prefs.SavePreferences("id_count", "v");
 			docViewCheck();
-			ViewPDF(prefs.GetPreferences("ModuleList"), v);
+			ViewPDF(prefs.GetPreferences("ImportantDetails"), v);
 			break;
 		case R.id.daB_campusMap:
 			intent = new Intent(context, MapPlaceFragment.class);
@@ -136,7 +136,7 @@ public class DocumentFragment extends Fragment implements
 		}
 	}
 	private void docViewCheck(){
-		if (prefs.GetPreferences("sh_count").contains("v") && prefs.GetPreferences("ml_count").contains("v") && prefs.GetPreferences("os_count").contains("v"))
+		if (prefs.GetPreferences("sh_count").contains("v") && prefs.GetPreferences("id_count").contains("v") && prefs.GetPreferences("os_count").contains("v"))
 			showAchievement(4);
 	}
 }

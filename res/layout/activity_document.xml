@@ -28,9 +28,9 @@
             android:text="@string/student_handbook" />
 
         <Button
-            android:id="@+id/daB_moduleList"
+            android:id="@+id/daB_imptDetails"
             style="@style/defaultbutton"
-            android:text="@string/module_list" />
+            android:text="@string/important_details" />
 
         <Button
             android:id="@+id/daB_orientSchedule"
