@@ -1,6 +1,7 @@
 package com.example.orient_me.notes;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -22,6 +23,7 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 		values.put(NOTE_ID , note.getId());
 		values.put(TITLE, note.getTitle());
 		values.put(NOTE, note.getNote());
+		values.put(NOTE_TIME, Calendar.getInstance().getTimeInMillis());
 
 		// insert row
 		SQLiteDatabase wdb = this.getWritableDatabase();
@@ -55,7 +57,7 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 	// [Accessed: 1 May 2015].
 	public List<Note> getAllNote() {
 		List<Note> notes = new ArrayList<Note>();
-		String sql = "SELECT * FROM " + TABLE_NOTES;
+		String sql = "SELECT * FROM " + TABLE_NOTES + " ORDER BY " + NOTE_TIME + " DESC";
 		
 		SQLiteDatabase rdb = this.getReadableDatabase();
 		Cursor c = rdb.rawQuery(sql, null);
@@ -92,6 +94,7 @@ public class NoteDatabaseHelper extends DatabaseHelper {
 		ContentValues values = new ContentValues();
 		values.put(TITLE, note.getTitle());
 		values.put(NOTE, note.getNote());
+		values.put(NOTE_TIME, Calendar.getInstance().getTimeInMillis());
 		
 		SQLiteDatabase wdb = this.getWritableDatabase();
 		// updating row

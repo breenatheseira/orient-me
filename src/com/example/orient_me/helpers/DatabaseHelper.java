@@ -23,6 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		protected static final String NOTE_ID = "id";
 		protected static final String TITLE = "title";
 		protected static final String NOTE = "note";
+		protected static final String NOTE_TIME = "note_time";
 
 		// Schedule Column names
 		protected static final String SCHEDULE_ID = "id";
@@ -60,7 +61,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			// Note table create statement
 			private static final String CREATE_TABLE_NOTES = "CREATE TABLE "
 					+ TABLE_NOTES + "(" + NOTE_ID + " INTEGER PRIMARY KEY,"
-					+ TITLE + " TEXT," + NOTE + " TEXT" + ")";
+					+ TITLE + " TEXT," + NOTE + " TEXT,"
+					+ NOTE_TIME + " DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL" + ")";
 			
 			// Schedule table create statement
 			private static final String CREATE_TABLE_SCHEDULES = "CREATE TABLE "
