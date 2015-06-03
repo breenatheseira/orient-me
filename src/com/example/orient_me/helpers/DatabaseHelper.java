@@ -146,8 +146,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		private void initContacts(SQLiteDatabase db){
 			try {
-				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('1','APU Main Campus Admin Services','0389942880','APU Services','Office General Line','admin@apu.edu.my','0')");
-				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('2','Nancy Quah','0389925009','APU Student Relations','Manager','nancy.quah@apu.edu.my','0')");
+				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('1','APU Admin Services','03-8994 2880','Asia Pacific University (APU)','APU Service Office General Line','admin@apu.edu.my','0')");
+				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('2','Ms Nancy Quah','03-8992 5009','Asia Pacific University (APU)','Student Relations Manager','nancy.quah@apu.edu.my','0')");
+				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('3','Ms Nurjahan Binti Othman','03-8992 5072','Asia Pacific University (APU)','Foundation Programme Leader','nurjahan@apu.edu.my','0')");
+				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('4','Ms Namita','03-8992 5159','Asia Pacific University (APU)','APU TPM Campus Central Library','namita@apu.edu.my','0')");
+				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('5','A.P.U (Night) Hotline','017-2381300','Asia Pacific University (APU)','APU Emergency','0','0')");
+				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('6','A.P.U (Off day) Hotline','017-3791700','Asia Pacific University (APU)','APU Emergency','0','0')");
 				Log.d("CDH", "Contacts inserted successfully");
 			} catch (Exception e){
 				Log.d("CDH", "Error @ Contacts inserted: " + e.getMessage());
