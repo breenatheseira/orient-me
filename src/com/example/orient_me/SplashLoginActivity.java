@@ -35,13 +35,15 @@ public class SplashLoginActivity extends AppCompatActivity {
 		
 		String[] files = new String[8]; 
 		files[0] = prefs.GetPreferences("StudentHandbook");
-		files[1] = prefs.GetPreferences("ModuleList");
+		files[1] = prefs.GetPreferences("ImportantDetails");
 		files[2] = prefs.GetPreferences("OrientationSchedule");
 		files[3] = prefs.GetPreferences("FeeSchedule");
-		files[4] = "StudentHandbook.pdf";
-		files[5] = "ModuleList.pdf";
-		files[6] = "OrientationSchedule.pdf";
-		files[7] = "FeeSchedule.pdf";
+		files[4] = prefs.GetPreferences("CourseSchedule");
+		files[5] = "StudentHandbook.pdf";
+		files[6] = "ImportantDetails.pdf";
+		files[7] = "OrientationSchedule.pdf";
+		files[8] = "FeeSchedule.pdf";
+		files[9] = "CourseSchedule";
 				
     	new DownloadFile().execute(files);
 	}
@@ -57,7 +59,7 @@ public class SplashLoginActivity extends AppCompatActivity {
             	folder.mkdir();
 
             for (int i = 0; i < 4; i++){
-	            File pdfFile = new File(folder, files[i+4]);
+	            File pdfFile = new File(folder, files[i+5]);
 	
 	            try{
 	                pdfFile.createNewFile();
@@ -76,8 +78,9 @@ public class SplashLoginActivity extends AppCompatActivity {
             PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
         	prefs.SavePreferences("OrientationSchedule", extStorageDirectory + "/orientmepdf/OrientationSchedule.pdf");
         	prefs.SavePreferences("StudentHandbook", extStorageDirectory + "/orientmepdf/StudentHandbook.pdf");
-        	prefs.SavePreferences("ModuleList", extStorageDirectory + "/orientmepdf/ModuleList.pdf");
+        	prefs.SavePreferences("ImportantDetails", extStorageDirectory + "/orientmepdf/ImportantDetails.pdf");
         	prefs.SavePreferences("FeeSchedule", extStorageDirectory + "/orientmepdf/FeeSchedule.pdf");
+        	prefs.SavePreferences("CourseSchedule", extStorageDirectory + "/orientmepdf/CourseSchedule.pdf");
             
             Intent intent = new Intent (getApplicationContext(), MainActivity.class);
             showAchievement(8);
