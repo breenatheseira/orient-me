@@ -61,15 +61,14 @@ public class ContactsProviderHelper {
 				.withValue(StructuredName.DISPLAY_NAME, name).build());
 
 		// Insert number in table ContactsContract.Data
-		ops.add(ContentProviderOperation
-				.newInsert(ContactsContract.Data.CONTENT_URI)
-				.withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID,
-						rawId)
-				.withValue(ContactsContract.Data.MIMETYPE,
-						Phone.CONTENT_ITEM_TYPE)
-				.withValue(Phone.NUMBER, number)
-				.withValue(Phone.TYPE, CommonDataKinds.Phone.TYPE_MOBILE)
-				.build());
+	     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+	             .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+	             .withValue(ContactsContract.Data.MIMETYPE,
+	         ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+	             .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, number)
+	             .withValue(ContactsContract.CommonDataKinds.Phone.TYPE,
+	         ContactsContract.CommonDataKinds.Phone.TYPE_WORK)
+	             .build());
 		
 		// Insert company & title in table ContactsContract.Data
 	     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
