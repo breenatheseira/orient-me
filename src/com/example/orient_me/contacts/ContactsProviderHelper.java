@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class ContactsProviderHelper {
 
 	ArrayList<ContentProviderOperation> ops;
-	String name, number;
+	String name, number, company, title, email;
 	int rawId;
 
 	ContactsProviderHelper() {
@@ -26,6 +26,9 @@ public class ContactsProviderHelper {
 	ContactsProviderHelper(Contact contact){
 		this.name = contact.getName();
 		this.number = contact.getNumber();
+		this.company = contact.getCompany();
+		this.title = contact.getTitle();
+		this.email = contact.getEmail();
 		initializeContactsContentProvider();
 	}
 
@@ -47,6 +50,7 @@ public class ContactsProviderHelper {
 
 	// Mathew, G. (2012) Adding Contacts Programmatically using Contacts Provider in Android - Example. [Online]. Available from: http://wptrafficanalyzer.in/blog/adding-contacts-programatically-using-contacts-provider-in-android-example/ [Accessed: 5 May 2015].
 	public void insertDataToContactsContractTable(Context context) {
+
 		// Insert display name in the table ContactsContract.Data
 		ops.add(ContentProviderOperation
 				.newInsert(ContactsContract.Data.CONTENT_URI)
@@ -56,6 +60,7 @@ public class ContactsProviderHelper {
 						StructuredName.CONTENT_ITEM_TYPE)
 				.withValue(StructuredName.DISPLAY_NAME, name).build());
 
+		// Insert number in table ContactsContract.Data
 		ops.add(ContentProviderOperation
 				.newInsert(ContactsContract.Data.CONTENT_URI)
 				.withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID,
@@ -65,6 +70,26 @@ public class ContactsProviderHelper {
 				.withValue(Phone.NUMBER, number)
 				.withValue(Phone.TYPE, CommonDataKinds.Phone.TYPE_MOBILE)
 				.build());
+		
+		// Insert company & title in table ContactsContract.Data
+	     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+	             .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+	             .withValue(ContactsContract.Data.MIMETYPE,
+	         ContactsContract.CommonDataKinds.Organization.CONTENT_ITEM_TYPE)
+	             .withValue(ContactsContract.CommonDataKinds.Organization.COMPANY, company)
+	             .withValue(ContactsContract.CommonDataKinds.Organization.TYPE, ContactsContract.CommonDataKinds.Organization.TYPE_WORK)
+	             .withValue(ContactsContract.CommonDataKinds.Organization.TITLE, title)
+	             .withValue(ContactsContract.CommonDataKinds.Organization.TYPE, ContactsContract.CommonDataKinds.Organization.TYPE_WORK)
+	             .build());
+	     
+		// Insert email in table ContactsContract.Data
+	     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+	         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+	         .withValue(ContactsContract.Data.MIMETYPE,
+	     ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE)
+	         .withValue(ContactsContract.CommonDataKinds.Email.DATA, email)
+	         .withValue(ContactsContract.CommonDataKinds.Email.TYPE, ContactsContract.CommonDataKinds.Email.TYPE_WORK)
+	         .build());
 	}
 	
 	public int applyBatchInsertOperations(Context context){
