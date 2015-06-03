@@ -157,11 +157,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			try {
 				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('1','APU Main Campus', 'Main Campus of APU in Malaysia','Asia Pacific University of Technology & Innovation (APU)', '3.048050', '101.692782', 'U')");
 				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('2','ENT 3', 'Enterprise 3','0', '3.048133','101.690647', 'U')");
-//				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('3','Pappy','123123114','0')");
-//		
-//				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('4','Granny','98323423','0')");
-//				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('5','Sis-ty','23223321','0')");
-//				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('6','Bro-ey','0123451234','0')");
+				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('3', 'Vista A', 'Student Accomodation', 'Vista Komenwel A', '3.0556863', '101.684131', 'A')");
+				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('4', 'Vista B', 'Student Accomodation', 'Vista Komenwel B', '3.0541981', '101.6865875', 'A')");
+				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('5', 'Endah Promenade', 'Student Accomodation', 'Endah Promenade', '3.063308', '101.696935', 'A')");
+				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('6', 'Student Car Park', 'Car Park East 4', '0', '3.044908', '101.691508', 'P')");
+				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('7', 'Parking Office', 'Office to Pay for Car Park East 4', 'Technology Park Malaysia Corporation Sdn Bhd', '3.04674', '101.68852', 'P')");
+				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('8', 'Incubator 2', 'Lecturer Office', '0', '3.047167', '101.690328', 'U')");
+				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('9', 'Mines Campus', 'APU Mines Campus in Malaysia', '0', '3.038023', '101.709364', 'U')");
+				db.execSQL("INSERT INTO " + TABLE_PLACES + " VALUES ('10', 'APU Examination Hall', 'South City Plaza', '0', '3.028359', '101.709357', 'U')");
 				Log.d("PDH", "Places inserted successfully");
 			} catch (Exception e){
 				Log.d("PDH", "Error @ Places inserted: " + e.getMessage());
