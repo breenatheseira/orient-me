@@ -41,9 +41,6 @@ public class ContactsDatabaseHelper extends DatabaseHelper {
 		ContentValues values = new ContentValues();
 		values.put(CONTACT_NAME, contact.getName());
 		values.put(CONTACT_NUMBER, contact.getNumber());
-		values.put(CONTACT_COMPANY, contact.getCompany());
-		values.put(CONTACT_TITLE, contact.getTitle());
-		values.put(CONTACT_EMAIL, contact.getEmail());
 		values.put(CONTACT_IMPORTED, contact.getImported());
 		int error = 0;
 		Log.d("update values", String.valueOf(contact.getId()) + " > contact name: " + contact.getName() + ", imported: "
@@ -60,7 +57,7 @@ public class ContactsDatabaseHelper extends DatabaseHelper {
 		
 		contact.setId(String.valueOf(c.getInt(c.getColumnIndex(CONTACT_ID ))));
 		contact.setName(c.getString(c.getColumnIndex(CONTACT_NAME)));
-		contact.setNumber(String.valueOf(c.getInt(c.getColumnIndex(CONTACT_NUMBER))));
+		contact.setNumber(c.getString(c.getColumnIndex(CONTACT_NUMBER)));
 		contact.setCompany(c.getString(c.getColumnIndex(CONTACT_COMPANY)));
 		contact.setTitle(c.getString(c.getColumnIndex(CONTACT_TITLE)));
 		contact.setEmail(c.getString(c.getColumnIndex(CONTACT_EMAIL)));
