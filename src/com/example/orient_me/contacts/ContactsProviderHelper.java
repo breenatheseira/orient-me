@@ -82,13 +82,15 @@ public class ContactsProviderHelper {
 	             .build());
 	     
 		// Insert email in table ContactsContract.Data
-	     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
-	         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
-	         .withValue(ContactsContract.Data.MIMETYPE,
-	     ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE)
-	         .withValue(ContactsContract.CommonDataKinds.Email.DATA, email)
-	         .withValue(ContactsContract.CommonDataKinds.Email.TYPE, ContactsContract.CommonDataKinds.Email.TYPE_WORK)
-	         .build());
+	     if (!"0".equals(email)){
+		     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+		         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+		         .withValue(ContactsContract.Data.MIMETYPE,
+		     ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE)
+		         .withValue(ContactsContract.CommonDataKinds.Email.DATA, email)
+		         .withValue(ContactsContract.CommonDataKinds.Email.TYPE, ContactsContract.CommonDataKinds.Email.TYPE_WORK)
+		         .build());
+	     }
 	}
 	
 	public int applyBatchInsertOperations(Context context){
