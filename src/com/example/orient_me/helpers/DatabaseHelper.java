@@ -39,6 +39,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		protected static final String CONTACT_ID = "id";
 		protected static final String CONTACT_NAME = "name";
 		protected static final String CONTACT_NUMBER = "c_number";
+		protected static final String CONTACT_COMPANY = "c_company";
+		protected static final String CONTACT_TITLE = "c_title";
+		protected static final String CONTACT_EMAIL = "c_email";
 		protected static final String CONTACT_IMPORTED = "imported";
 		
 		// Places Column Names
@@ -82,6 +85,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					+ CONTACT_ID + " INTEGER PRIMARY KEY,"
 					+ CONTACT_NAME + " TEXT,"
 					+ CONTACT_NUMBER + " TEXT,"
+					+ CONTACT_COMPANY + " TEXT,"
+					+ CONTACT_TITLE + " TEXT,"
+					+ CONTACT_EMAIL + " TEXT,"
 					+ CONTACT_IMPORTED + " INTEGER" + ")";
 			
 			// Place table create statement
@@ -140,13 +146,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		private void initContacts(SQLiteDatabase db){
 			try {
-				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('1','Daddy','123412123','0')");
-				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('2','Mummy','123121233','0')");
-				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('3','Pappy','123123114','0')");
-		
-				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('4','Granny','98323423','0')");
-				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('5','Sis-ty','23223321','0')");
-				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('6','Bro-ey','0123451234','0')");
+				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('1','APU Main Campus Admin Services','0389942880','APU Services','Office General Line','admin@apu.edu.my','0')");
+				db.execSQL("INSERT INTO " + TABLE_CONTACTS + " VALUES ('2','Nancy Quah','0389925009','APU Student Relations','Manager','nancy.quah@apu.edu.my','0')");
 				Log.d("CDH", "Contacts inserted successfully");
 			} catch (Exception e){
 				Log.d("CDH", "Error @ Contacts inserted: " + e.getMessage());
