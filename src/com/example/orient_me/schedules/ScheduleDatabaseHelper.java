@@ -80,7 +80,7 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 	}
 	public List<Schedule> getAllSchedules(){
 		List<Schedule> schedules = new ArrayList<Schedule>();
-		String sql = "SELECT * FROM " + TABLE_SCHEDULES;
+		String sql = "SELECT * FROM " + TABLE_SCHEDULES + " ORDER BY " + SCHEDULE_START + " DESC";
 		SQLiteDatabase rdb = this.getReadableDatabase();
 		try {
 			Cursor c = rdb.rawQuery(sql, null);
@@ -118,8 +118,8 @@ public class ScheduleDatabaseHelper extends DatabaseHelper {
 		// updating row
 		int i = wdb.update(TABLE_SCHEDULES, values, NOTE_ID + " = ?",
 				new String[] { String.valueOf(schedule.getId()) });
-//		Log.d("update values", i + " > doc id: " + schedule.getTitle() + ", note: "
-//				+ schedule.getNotes());
+		Log.d("update values", i + " > doc id: " + schedule.getTitle() + ", note: "
+				+ schedule.getNotes());
 		wdb.close();
 		return i;
 	}
