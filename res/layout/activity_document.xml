@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" 
-    style="@style/mainOuterLayout" >
+    style="@style/mainOuterLayout"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" 
+        android:orientation="vertical"
         android:padding="10dp" >
 
         <TextView
             android:id="@+id/daT_instructions"
             style="@style/instructTextView"
             android:text="@string/doc_instruction" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -28,6 +27,11 @@
             android:text="@string/student_handbook" />
 
         <Button
+            android:id="@+id/daB_feeSchedule"
+            style="@style/defaultbutton"
+            android:text="@string/fee_schedule" />
+
+        <Button
             android:id="@+id/daB_imptDetails"
             style="@style/defaultbutton"
             android:text="@string/important_details" />
@@ -38,15 +42,9 @@
             android:text="@string/orientation_schedule" />
 
         <Button
-            android:id="@+id/daB_feeSchedule"
-			style="@style/defaultbutton"
-            android:text="@string/fee_schedule" />
-
-        <Button
             android:id="@+id/daB_myNotes"
             style="@style/defaultbutton"
             android:text="@string/my_notes" />
-
     </LinearLayout>
 
 </LinearLayout>
