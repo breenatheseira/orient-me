@@ -1,7 +1,31 @@
 package com.example.orient_me.contacts;
 
 public class Contact {
-	String id, name, number, imported;
+	String id, name, number, company, title, email, imported;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public String getId() {
 		return id;
