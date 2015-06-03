@@ -6,9 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.orient_me.DocumentFragment;
 import com.example.orient_me.badges.ViewBadgesListFragment;
 import com.example.orient_me.contacts.ViewContactsListFragment;
+import com.example.orient_me.documents.DocumentFragment;
 import com.example.orient_me.maps.MapPlaceFragment;
 import com.example.orient_me.notes.ViewNotesListFragment;
 import com.example.orient_me.schedules.ViewScheduleListFragment;

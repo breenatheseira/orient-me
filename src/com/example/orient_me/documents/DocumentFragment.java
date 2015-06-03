@@ -1,4 +1,4 @@
-package com.example.orient_me;
+package com.example.orient_me.documents;
 
 import java.io.File;
 
@@ -20,6 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.orient_me.R;
+import com.example.orient_me.R.drawable;
+import com.example.orient_me.R.id;
+import com.example.orient_me.R.layout;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 import com.example.orient_me.helpers.PreferencesHelper;
