@@ -23,8 +23,6 @@ import android.widget.Toast;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 import com.example.orient_me.helpers.PreferencesHelper;
-import com.example.orient_me.maps.MapPlaceFragment;
-import com.example.orient_me.notes.ViewNotesListFragment;
 
 public class DocumentFragment extends Fragment implements
 		OnClickListener {
@@ -59,7 +57,6 @@ public class DocumentFragment extends Fragment implements
 
 	@Override
 	public void onClick(View v) {
-		Intent intent;		
 		switch (v.getId()) {
 		case R.id.daB_studentHandbook:
 			prefs.SavePreferences("sh_count", "v");
