@@ -41,12 +41,19 @@ public class FacebookFragment extends Fragment {
 		
 	     String url = "http://m.facebook.com";
 	     w.loadUrl(url);
-		 
-	     showAchievement(3); 
 	    
 	     return layout; 
 	}
 
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) { 
+	    super.setUserVisibleHint(isVisibleToUser);
+	    context = (FragmentActivity) super.getActivity();
+	    
+	    if (isVisibleToUser)
+	    	showAchievement(3); 
+	}
+	
 	private void showAchievement(int id) {
 	
 		BadgeDatabaseHelper db = new BadgeDatabaseHelper(context);
