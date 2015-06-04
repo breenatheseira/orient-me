@@ -126,6 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                 	prefs.SavePreferences("ImportantDetails", doc.getJSONArray("important_details").getJSONObject(0).getJSONObject("document_url").getString("url"));
                 	prefs.SavePreferences("FeeSchedule",  doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
                 	prefs.SavePreferences("CourseSchedule",  "http://titan.apiit.edu.my/courseschedule/" + getCourseType(prefs.GetPreferences("IntakeCode")) + "/" + prefs.GetPreferences("IntakeCode") + ".pdf");
+                	prefs.SavePreferences("FeeScheduleURL",  prefs.GetPreferences("FeeSchedule"));
                 }
                
             } catch (Exception e) {
