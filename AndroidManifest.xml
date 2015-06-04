@@ -70,11 +70,14 @@
             android:name=".schedules.EditScheduleActivity"
             android:label="@string/title_activity_edit_schedule" >
         </activity>
+        <activity
+            android:name="com.example.orient_me.documents.AcknowledgeFeeActivity"
+            android:label="@string/title_activity_acknowledge_fee" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        
     </application>
 
 </manifest>

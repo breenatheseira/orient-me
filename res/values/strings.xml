@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">orient-me</string>
-    
     <string name="title_activity_login">Log In to Orient-Me</string>
     <string name="main_menu">APU Orient-Me</string>
     <string name="title_activity_add_note">Add Note</string>
@@ -11,19 +10,19 @@
     <string name="title_activity_view_note">View Your Note</string>
     <string name="title_activity_view_schedule">View Schedule</string>
     <string name="title_activity_edit_schedule">Edit Schedule</string>
+    <string name="title_activity_acknowledge_fee">Acknowledge Fee Schedule</string>
     
+    <string name="aaf_ins">By clicking the button below, I agree to blablabla</string>
+    <string name="aaf_button">I Agree</string>
     <string name="activity_splash_login_message">One moment please. \n Self-programming on start-up&#8230;</string>
     <string name="activity_splash_desc">Displaying APU\'s Logo</string>
     <string name="AchievementUnlocked">Achievement Unlocked!</string>
-    
     <string name="doc_instruction">Select a Document to View</string>
     <string name="login_instruction">Enter your Student Email and Password to Login</string>
     <string name="ana_instructions">Type your notes here</string>
-    
     <string name="username_text">Username</string>
     <string name="password_text">Password</string>
     <string name="submit_text">Submit</string>
-    
     <string name="welcome">Welcome</string>
     <string name="action_import_short">Import</string>
     <string name="student_handbook">Student Handbook</string>
@@ -31,13 +30,11 @@
     <string name="orientation_schedule">Orientation Schedule</string>
     <string name="fee_schedule">Fee Schedule</string>
     <string name="course_schedule">Course Schedule</string>
-    
     <string name="New">New</string>
     <string name="Save">Save</string>
     <string name="Discard">Discard</string>
     <string name="Edit">Edit</string>
     <string name="Title">Title</string>
-    
     <string name="action_schedule">Schedules</string>
     <string name="Location">Location</string>
     <string name="Notes">Notes</string>
@@ -46,11 +43,15 @@
     <string name="Starts_at">Starts at:</string>
     <string name="Ends_at">Ends at:</string>
     <string name="End">End:</string>
-    
+
     <color name="darkblue">#01579B</color>
     <color name="middleblue">#03A9F4</color>
     <color name="lightblue">#B3E5FC</color>
     <color name="accentyellow">#FFB300</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>
