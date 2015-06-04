@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
+import com.example.orient_me.documents.AcknowledgeFeeActivity;
 import com.example.orient_me.helpers.FileDownloader;
 import com.example.orient_me.helpers.PreferencesHelper;
 
@@ -82,7 +83,7 @@ public class SplashLoginActivity extends AppCompatActivity {
         	prefs.SavePreferences("FeeSchedule", extStorageDirectory + "/orientmepdf/FeeSchedule.pdf");
         	prefs.SavePreferences("CourseSchedule", extStorageDirectory + "/orientmepdf/CourseSchedule.pdf");
             
-            Intent intent = new Intent (getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent (getApplicationContext(), AcknowledgeFeeActivity.class);
             showAchievement(8);
             startActivity(intent);
             finish();

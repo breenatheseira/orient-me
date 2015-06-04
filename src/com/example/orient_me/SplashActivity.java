@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.example.orient_me.documents.AcknowledgeFeeActivity;
 import com.example.orient_me.helpers.PreferencesHelper;
 
 // Tamada, R. (2013): http://www.androidhive.info/2013/07/how-to-implement-android-splash-screen-2/
@@ -44,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
 			public void run() {						
 				PreferencesHelper pref = new PreferencesHelper(SplashActivity.this);
 				Intent intent_login = new Intent(SplashActivity.this,LoginActivity.class);
-				Intent intent_menu = new Intent(SplashActivity.this, AcknowledgeFeeActivity.class);
+				Intent intent_menu = new Intent(SplashActivity.this, MainActivity.class);
 				
 				if (pref.GetPreferences("AuthToken").length() == 0)
 					startActivity(intent_login);
