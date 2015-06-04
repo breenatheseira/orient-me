@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:weightSum="10" >
 
     <include
         android:id="@+id/toolbar"
@@ -9,22 +10,38 @@
         android:layout_height="wrap_content"
         layout="@layout/toolbar" />
 
-    <TextView
-        android:id="@+id/aafT_instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/aaf_ins"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <fragment
-        android:id="@+id/aaf_feeFragment"
-        android:name="com.example.orient_me.documents.FeeFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp" />
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:paddingBottom="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/aafB_acknowledgeButton"
-        style="@style/defaultbutton"
-        android:text="@string/aaf_button" />
+        <TextView
+            android:id="@+id/aafT_instructions"
+            style="@style/instructTextView"
+            android:gravity="start"
+            android:text="@string/aaf_ins" 
+            android:layout_marginBottom="10dp" />
+
+        <fragment
+            android:id="@+id/aaf_feeFragment"
+            android:name="com.example.orient_me.documents.FeeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" 
+        android:layout_weight="2" >
+
+        <Button
+            android:id="@+id/aafB_acknowledgeButton"
+            style="@style/defaultbutton"
+            android:text="@string/aaf_button" />
+    </LinearLayout>
 
 </LinearLayout>
