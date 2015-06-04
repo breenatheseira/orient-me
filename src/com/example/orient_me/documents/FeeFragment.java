@@ -35,8 +35,10 @@ public class FeeFragment extends Fragment {
 		
 	     PreferencesHelper prefs = new PreferencesHelper(context); 
 	     
+	     //Banks, K. W. (2015) How To Load a PDF in an Android WebView. [Online]. Available from: src/com/example/orient_me/SplashActivity.java [Accessed: 4 June 2015].
 	     String url = "http://docs.google.com/gview?embedded=true&url=" + prefs.GetPreferences("FeeScheduleURL");	     
 	     Log.d("FeeFragment", url);
+	     
 	     // Javascript must be enabled in order to display the PDF.
 	     w.getSettings().setJavaScriptEnabled(true);
 	     w.loadUrl(url);
