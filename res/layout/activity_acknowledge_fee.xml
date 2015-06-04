@@ -16,10 +16,11 @@
         android:text="@string/aaf_ins"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <WebView
-        android:id="@+id/aafWV_fee_schedule"
+    <fragment
+        android:id="@+id/aaf_feeFragment"
+        android:name="com.example.orient_me.documents.FeeFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="250dp" />
 
     <Button
         android:id="@+id/aafB_acknowledgeButton"
