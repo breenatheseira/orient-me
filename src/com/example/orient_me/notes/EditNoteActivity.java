@@ -75,26 +75,27 @@ public class EditNoteActivity extends AppCompatActivity {
 			
 			break;
 		case R.id.discard:
-			deleteNote();
+			//Sukarno, C. (2011) How to Show a Dialog Confirm that the User Wishes to Exit an Android Activity? [Online]. Available: http://stackoverflow.com/questions/2257963/how-to-show-a-dialog-to-confirm-that-the-user-wishes-to-exit-an-android-activity [Accessed: 2 May 2015].
+			  new AlertDialog.Builder(this)
+		      .setMessage("Are you sure you want to delete this note?")
+		      .setCancelable(false)
+		      .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		          public void onClick(DialogInterface dialog, int id) {
+
+		        	//Delete the note
+		        	if (db.deleteNote(noteViewed.getId()) == 1)
+		        		deleteNote();       	  
+		          }
+		      })
+		      .setNegativeButton("No", null)
+		      .show();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 	
 	private void deleteNote(){
-	//Sukarno, C. (2011) How to Show a Dialog Confirm that the User Wishes to Exit an Android Activity? [Online]. Available: http://stackoverflow.com/questions/2257963/how-to-show-a-dialog-to-confirm-that-the-user-wishes-to-exit-an-android-activity [Accessed: 2 May 2015].
-	  new AlertDialog.Builder(this)
-      .setMessage("Are you sure you want to delete this note?")
-      .setCancelable(false)
-      .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int id) {
-
-        	//Delete the note
-        	if (db.deleteNote(noteViewed.getId()) == 1)
-				finish();        	  
-          }
-      })
-      .setNegativeButton("No", null)
-      .show();
+		Toast.makeText(this, "Note deleted", Toast.LENGTH_SHORT).show();
+		finish();
 	}
 }

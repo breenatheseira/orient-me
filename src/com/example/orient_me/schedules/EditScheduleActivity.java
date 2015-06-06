@@ -137,7 +137,7 @@ OnClickListener {
 
 		        	//Delete the note
 		        	if (db.deleteSchedule(schedule.getId()) == 1)
-		        		finish();
+		        		deleteSchedule();
 		          }
 		      })
 		      .setNegativeButton("No", null)
@@ -147,7 +147,12 @@ OnClickListener {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void onSwitchClicked(View view) {
+	private void deleteSchedule(){
+		Toast.makeText(this, "Schedule deleted", Toast.LENGTH_SHORT).show();
+		finish();
+	}
+	
+	private void onSwitchClicked(View view) {
 		// Is the toggle on?
 		boolean on = ((Switch) view).isChecked();
 

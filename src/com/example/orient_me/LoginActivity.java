@@ -116,14 +116,9 @@ public class LoginActivity extends AppCompatActivity {
 		protected void onPostExecute(JSONObject json) {
     		super.onPostExecute(json);
     		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
-    		boolean result = false;
+    		boolean result = false; // false is login fail, success is true
     		try {
                 if (json.getBoolean("success")) {
-                	prefs.SavePreferences("AuthToken", json.getJSONObject("data").getString("auth_token"));
-                	prefs.SavePreferences("Name", json.getJSONObject("data").getString("name"));
-                	prefs.SavePreferences("Username", json.getJSONObject("data").getString("username"));
-                	prefs.SavePreferences("IntakeCode", json.getJSONObject("data").getString("intake_code"));
-
                 	// Shared Preferences to get the URLs of the documents
                 	JSONObject doc = new JSONObject();
                 	doc = json.getJSONObject("data").getJSONObject("documents");
@@ -140,13 +135,18 @@ public class LoginActivity extends AppCompatActivity {
                 	
                 	prefs.SavePreferences("CourseSchedule",  "http://titan.apiit.edu.my/courseschedule/" + getCourseType(prefs.GetPreferences("IntakeCode")) + "/" + prefs.GetPreferences("IntakeCode") + ".pdf");
                 	prefs.SavePreferences("FeeScheduleURL",  prefs.GetPreferences("FeeSchedule"));
+					
+                	prefs.SavePreferences("AuthToken", json.getJSONObject("data").getString("auth_token"));
+                	prefs.SavePreferences("Name", json.getJSONObject("data").getString("name"));
+                	prefs.SavePreferences("Username", json.getJSONObject("data").getString("username"));
+                	prefs.SavePreferences("IntakeCode", json.getJSONObject("data").getString("intake_code"));
                 	
                 	result = true;
                 } else {
                 	Toast.makeText(getApplicationContext(), "Email and/or password are invalid. Retry!", Toast.LENGTH_LONG).show();
                 }
             } catch (Exception e) {
-                Toast.makeText(context, "Sorry, your documents are not ready.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Sorry, your documents are not ready. Please try again later.", Toast.LENGTH_LONG).show();
             } finally {
             	if (result){
 	            	Log.d("Login Activity", prefs.GetPreferences("CourseSchedule"));

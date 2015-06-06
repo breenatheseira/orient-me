@@ -196,7 +196,7 @@ public class AddScheduleActivity extends AppCompatActivity implements
 			Calendar sDate = Calendar.getInstance();
 			sDate.set(selectedYear, selectedMonth, selectedDay);
 			Log.d("stime", "dtf.format(sDate.getTime()):" + String.valueOf(sDate));
-			tempDate = dtf.format(sDate.getTime());
+			tempDate = df.format(sDate.getTime());
 			
 			if (startDate){
 				startDateTV.setText(tempDate);

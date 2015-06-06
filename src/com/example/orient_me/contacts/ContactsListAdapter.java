@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.orient_me.R;
+import com.example.orient_me.R.layout;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
 
@@ -58,52 +60,19 @@ public class ContactsListAdapter extends ArrayAdapter<Contact>{
 					ContactsProviderHelper cph = new ContactsProviderHelper(innerContact);
 					cph.insertDataToContactsContractTable(getContext());
 					
-					if (cph.applyBatchInsertOperations(getContext()) == 1) {
-						Toast.makeText(getContext(), "Error inserting contact!", Toast.LENGTH_SHORT).show();
-					} else {
-						innerContact.setImported("1");
-						new ContactsDatabaseHelper(getContext()).updateContact(innerContact);
-						((ImageView) v).setImageResource(R.drawable.ic_action_accept);
-						showAchievement(2);
+					if (innerContact.getImported().equals("0")){
+						if (cph.applyBatchInsertOperations(getContext()) == 1) {
+						Toast.makeText(getContext(), "Error inserting contact!", Toast.LENGTH_SHORT).show();						
+						} else {
+							innerContact.setImported("1");
+							new ContactsDatabaseHelper(getContext()).updateContact(innerContact);
+							((ImageView) v).setImageResource(R.drawable.ic_action_accept);
+						}
 					}
 				}
 			});
 		}
 		return convertView;
-	}
-	
-	@SuppressLint("InflateParams")
-	private void showAchievement(int id) {
-
-		BadgeDatabaseHelper db = new BadgeDatabaseHelper(getContext());
-
-		Badge badge = db.getOneBadgeRow(String.valueOf(id));
-
-		if (badge.getUnlocked_at().isEmpty()) {
-			badge.setUnlocked_at(badge.getTimeNow());
-			Log.d("DA - Checking time format", badge.getUnlocked_at());
-			db.updateBadge(badge);
-			
-			
-			LayoutInflater inflater = LayoutInflater.from(getContext());
-			View l = inflater.inflate(R.layout.customtoast,null);
-			View layout = inflater.inflate(R.layout.customtoast, (ViewGroup) l.findViewById(R.id.toast_container));
-
-			ImageView image = (ImageView) layout.findViewById(R.id.toast_image);
-			if (badge.getId().equals("1"))
-				image.setImageResource(R.drawable.badge_1);
-			else
-				image.setImageResource(R.drawable.badge_4);
-			TextView badgeName = (TextView) layout
-					.findViewById(R.id.toast_text);
-			badgeName.setText(badge.getName());
-
-			Toast toast = new Toast(getContext());
-			toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 100);
-			toast.setDuration(Toast.LENGTH_LONG);
-			toast.setView(layout);
-			toast.show();
-		}
 	}
 	
 	private static class ViewHolder {

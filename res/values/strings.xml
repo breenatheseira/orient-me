@@ -12,7 +12,7 @@
     <string name="title_activity_edit_schedule">Edit Schedule</string>
     <string name="title_activity_acknowledge_fee">Acknowledge Fee Schedule</string>
     
-    <string name="aaf_ins">By clicking the button below, I agree that I have read the Fee Schedule for my intake and will abide my the items stated in the Fee Schedule</string>
+    <string name="aaf_ins">By clicking the button below, I agree that I have read the Fee Schedule for my intake and will abide by the items stated in the Fee Schedule.</string>
     <string name="aaf_button">I Agree</string>
     <string name="activity_splash_login_message">One moment please. \n Self-programming on start-up&#8230;</string>
     <string name="activity_splash_desc">Displaying APU\'s Logo</string>
@@ -20,7 +20,7 @@
     <string name="doc_instruction">Select a Document to View</string>
     <string name="login_instruction">Enter your Student Email and Password to Login</string>
     <string name="ana_instructions">Type your notes here</string>
-    <string name="username_text">Username</string>
+    <string name="username_text">Email (ex: TP000001@apu.edu.my)</string>
     <string name="password_text">Password</string>
     <string name="submit_text">Submit</string>
     <string name="welcome">Welcome</string>
