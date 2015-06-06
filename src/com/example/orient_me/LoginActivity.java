@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 		protected void onPostExecute(JSONObject json) {
     		super.onPostExecute(json);
     		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
-    		
+    		boolean result = false;
     		try {
                 if (json.getBoolean("success")) {
                 	prefs.SavePreferences("AuthToken", json.getJSONObject("data").getString("auth_token"));
@@ -132,25 +132,37 @@ public class LoginActivity extends AppCompatActivity {
                 	prefs.SavePreferences("StudentHandbook", doc.getJSONArray("handbook").getJSONObject(0).getJSONObject("document_url").getString("url"));
                 	prefs.SavePreferences("ImportantDetails", doc.getJSONArray("important_details").getJSONObject(0).getJSONObject("document_url").getString("url"));
                 	prefs.SavePreferences("FeeSchedule",  doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
+
+                	prefs.SavePreferences("AuthToken", json.getJSONObject("data").getString("auth_token"));
+                	prefs.SavePreferences("Name", json.getJSONObject("data").getString("name"));
+                	prefs.SavePreferences("Username", json.getJSONObject("data").getString("username"));
+                	prefs.SavePreferences("IntakeCode", json.getJSONObject("data").getString("intake_code"));
+                	
                 	prefs.SavePreferences("CourseSchedule",  "http://titan.apiit.edu.my/courseschedule/" + getCourseType(prefs.GetPreferences("IntakeCode")) + "/" + prefs.GetPreferences("IntakeCode") + ".pdf");
                 	prefs.SavePreferences("FeeScheduleURL",  prefs.GetPreferences("FeeSchedule"));
                 	
-					Log.d("Login Activity", prefs.GetPreferences("CourseSchedule"));
-					Intent intent = new Intent (context, SplashLoginActivity.class);
-					startActivity(intent);
-                 	finish();
+                	result = true;
                 } else {
                 	Toast.makeText(getApplicationContext(), "Email and/or password are invalid. Retry!", Toast.LENGTH_LONG).show();
                 }
             } catch (Exception e) {
-                Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Sorry, your documents are not ready.", Toast.LENGTH_LONG).show();
+            } finally {
+            	if (result){
+	            	Log.d("Login Activity", prefs.GetPreferences("CourseSchedule"));
+					Intent intent = new Intent (context, SplashLoginActivity.class);
+					startActivity(intent);
+	             	finish();
+            	}
             }
     	}
     }   
     private String getCourseType(String course){
     	if (course.startsWith("UCF"))
     		return "Foundation";
-    	else
+    	else if (course.startsWith("UCD"))
     		return "Diploma";
+    	else
+    		return "";
     }
 }
