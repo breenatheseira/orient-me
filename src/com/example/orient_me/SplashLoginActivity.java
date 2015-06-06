@@ -47,6 +47,7 @@ public class SplashLoginActivity extends AppCompatActivity {
 		files[9] = "CourseSchedule.pdf";
 				
     	new DownloadFile().execute(files);
+    	showAchievement(8);
 	}
 	
     // Zakaria, M. (2014) Android Download PDF From Url Then Open It With a PDF Reader. [Online]. Available from: http://stackoverflow.com/questions/24740228/android-download-pdf-from-url-then-open-it-with-a-pdf-reader. [Accessed: 25 April 2015].
@@ -83,7 +84,7 @@ public class SplashLoginActivity extends AppCompatActivity {
         	prefs.SavePreferences("FeeSchedule", extStorageDirectory + "/orientmepdf/FeeSchedule.pdf");
         	prefs.SavePreferences("CourseSchedule", extStorageDirectory + "/orientmepdf/CourseSchedule.pdf");
             
-            Intent intent = new Intent (getApplicationContext(), AcknowledgeFeeActivity.class);
+            Intent intent = new Intent (getApplicationContext(), MainActivity.class);
             showAchievement(8);
             startActivity(intent);
             finish();

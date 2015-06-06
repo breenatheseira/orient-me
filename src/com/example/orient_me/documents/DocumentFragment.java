@@ -58,6 +58,7 @@ public class DocumentFragment extends Fragment implements
 
 	@Override
 	public void onClick(View v) {
+		context = (FragmentActivity) super.getActivity();
 		switch (v.getId()) {
 		case R.id.daB_studentHandbook:
 			prefs.SavePreferences("sh_count", "v");
@@ -71,7 +72,12 @@ public class DocumentFragment extends Fragment implements
 			ViewPDF(prefs.GetPreferences("ImportantDetails"), v);
 			break;
 		case R.id.daB_feeSchedule:
-			ViewPDF(prefs.GetPreferences("FeeSchedule"), v);
+			if (prefs.GetPreferences("FeeAck?").equals("Yes"))
+				ViewPDF(prefs.GetPreferences("FeeSchedule"), v);
+			else {
+				Intent intent = new Intent (context, AcknowledgeFeeActivity.class);
+	            context.startActivity(intent);
+			}
 			break;
 		case R.id.daB_orientSchedule:
 			prefs.SavePreferences("os_count", "v");

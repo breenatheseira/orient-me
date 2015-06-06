@@ -132,6 +132,7 @@ public class AcknowledgeFeeActivity extends AppCompatActivity implements OnClick
 	        try {
 	            if (json.getBoolean("success")) {
 	                // everything is ok
+	            	prefs.SavePreferences("FeeAck?", "Yes");
 	                Intent intent = new Intent(AcknowledgeFeeActivity.this, MainActivity.class);
 	                startActivity(intent);
 	                finish();
