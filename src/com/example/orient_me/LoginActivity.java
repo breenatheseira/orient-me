@@ -75,6 +75,12 @@ public class LoginActivity extends AppCompatActivity {
             
             try {
             	try {
+            		
+            		// setup the returned values in case
+                    // something goes wrong
+                    json.put("success", false);
+                    json.put("info", "Something went wrong. Retry!");
+            		
             		studentObj.put("email", s_username);
             		studentObj.put("password", s_password);
             		holder.put("student", studentObj);
@@ -92,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
             	} catch (HttpResponseException e) {
                     e.printStackTrace();
                     Log.e("ClientProtocol", "" + e);
-                    Toast.makeText(getApplicationContext(), "Email and/or password are invalid. Retry!", Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e("IO", "" + e);
@@ -102,12 +107,14 @@ public class LoginActivity extends AppCompatActivity {
                 e.printStackTrace();
                 Log.e("JSON", "" + e);
                 Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+                onPostExecute(json);
             }
 
             return json;
         }
     	@SuppressWarnings("deprecation")
 		protected void onPostExecute(JSONObject json) {
+    		super.onPostExecute(json);
     		PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
     		
     		try {
@@ -127,16 +134,16 @@ public class LoginActivity extends AppCompatActivity {
                 	prefs.SavePreferences("FeeSchedule",  doc.getJSONArray("fee_schedule").getJSONObject(0).getJSONObject("document_url").getString("url"));
                 	prefs.SavePreferences("CourseSchedule",  "http://titan.apiit.edu.my/courseschedule/" + getCourseType(prefs.GetPreferences("IntakeCode")) + "/" + prefs.GetPreferences("IntakeCode") + ".pdf");
                 	prefs.SavePreferences("FeeScheduleURL",  prefs.GetPreferences("FeeSchedule"));
+                	
+					Log.d("Login Activity", prefs.GetPreferences("CourseSchedule"));
+					Intent intent = new Intent (context, SplashLoginActivity.class);
+					startActivity(intent);
+                 	finish();
+                } else {
+                	Toast.makeText(getApplicationContext(), "Email and/or password are invalid. Retry!", Toast.LENGTH_LONG).show();
                 }
-               
             } catch (Exception e) {
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-            } finally {
-                super.onPostExecute(json);
-                Log.d("Login Activity", prefs.GetPreferences("CourseSchedule"));
-                Intent intent = new Intent (context, SplashLoginActivity.class);
-                startActivity(intent);
-            	finish();
             }
     	}
     }   
