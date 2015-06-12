@@ -96,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					+ PLACE_ID + " INTEGER PRIMARY KEY,"
 					+ PLACE_TITLE + " TEXT,"
 					+ PLACE_SNIPPET + " TEXT,"
-					+ PLACE_ADDRESS + " ADDRESS,"
+					+ PLACE_ADDRESS + " TEXT,"
 					+ PLACE_LAT + " TEXT,"
 					+ PLACE_LNG + " TEXT,"
 					+ PLACE_TYPE + " TEXT " + ")";
