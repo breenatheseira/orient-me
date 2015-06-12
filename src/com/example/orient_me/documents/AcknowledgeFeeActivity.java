@@ -1,5 +1,6 @@
 package com.example.orient_me.documents;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.http.client.HttpResponseException;
@@ -15,9 +16,11 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -70,6 +73,22 @@ public class AcknowledgeFeeActivity extends AppCompatActivity implements OnClick
 	      })
 	      .setNegativeButton("No", null)
 	      .show();
+	}
+	
+	public void ViewPDF(String filepath) {
+		File pdfFile = new File(filepath);
+		Uri path = Uri.fromFile(pdfFile);
+		Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+		pdfIntent.setDataAndType(path, "application/pdf");
+		pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+		try {
+			startActivity(pdfIntent);
+		} catch (ActivityNotFoundException e) {
+			Toast.makeText(this,
+					"No Application available to view PDF", Toast.LENGTH_SHORT)
+					.show();
+		}
 	}
 	
 	private void loadTasksFromAPI(String url) {
@@ -134,8 +153,7 @@ public class AcknowledgeFeeActivity extends AppCompatActivity implements OnClick
 	                // everything is ok
 	            	prefs.SavePreferences("FeeAck?", "Yes");
 	            	prefs.DeletePreferences("AuthToken");
-	                Intent intent = new Intent(AcknowledgeFeeActivity.this, MainActivity.class);
-	                startActivity(intent);
+	            	ViewPDF(prefs.GetPreferences("FeeSchedule"));
 	                finish();
 	            	Log.d("AckAct", "Successfully updated the value");
 	            }
