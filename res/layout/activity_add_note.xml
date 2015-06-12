@@ -17,9 +17,7 @@
         <EditText
             android:id="@+id/anaTB_Title"
             style="@style/defaultEditText"
-            android:hint="@string/Title" >
-
-            <requestFocus />
+            android:hint="@string/Title" >            
         </EditText>
 
         <EditText
