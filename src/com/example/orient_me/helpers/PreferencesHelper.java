@@ -22,4 +22,9 @@ public class PreferencesHelper {
 		ed.putString(key, val);
 		ed.commit();
 	}
+	
+	public void DeletePreferences(String key){
+		ed.remove(key);
+		ed.commit();
+	}
 }

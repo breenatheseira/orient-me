@@ -133,6 +133,7 @@ public class AcknowledgeFeeActivity extends AppCompatActivity implements OnClick
 	            if (json.getBoolean("success")) {
 	                // everything is ok
 	            	prefs.SavePreferences("FeeAck?", "Yes");
+	            	prefs.DeletePreferences("AuthToken");
 	                Intent intent = new Intent(AcknowledgeFeeActivity.this, MainActivity.class);
 	                startActivity(intent);
 	                finish();
