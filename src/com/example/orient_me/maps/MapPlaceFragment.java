@@ -2,12 +2,9 @@ package com.example.orient_me.maps;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -23,20 +20,22 @@ import android.widget.Toast;
 import com.example.orient_me.R;
 import com.example.orient_me.badges.Badge;
 import com.example.orient_me.badges.BadgeDatabaseHelper;
+import com.example.orient_me.helpers.PreferencesHelper;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
+public class MapPlaceFragment extends Fragment implements OnMapReadyCallback, OnMarkerClickListener {
 	
 	FragmentActivity context;
 	private static View view;
 	List<Marker> marker;
-	
+	PreferencesHelper prefs;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		context = (FragmentActivity) super.getActivity();
@@ -62,13 +61,7 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 		    GoogleMap mMap = ((SupportMapFragment) getChildFragmentManager()
 	                .findFragmentById(R.id.mapFragment)).getMap();
 		    onMapReady(mMap);
-		    		    
-		    BadgeDatabaseHelper db = new BadgeDatabaseHelper(context);
-		    Badge badge = db.getOneBadgeRow("7");
-		    
-		    if (badge.getUnlocked_at().isEmpty())
-		    	setAchievementTimer();
-		    
+		    mMap.setOnMarkerClickListener(this);
 		 } catch (InflateException e) {
 		     /* map is already there, just return view as it is */
 			 Log.d("MPFrag Inflate Exception", e.toString());
@@ -76,24 +69,6 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 		 return view;
 	}
     
-	public void setAchievementTimer(){
-		//Arshed, F. (2013) How Can I Create Timer Tick in Android? [Online]. Available from: http://stackoverflow.com/questions/14384016/how-can-i-create-timer-tick-in-android [Accessed: 20 May 2015].
-		final Handler handler = new Handler();
-		Timer timer = new Timer(false);
-		TimerTask timerTask = new TimerTask() {
-		    @Override
-		    public void run() {
-		        handler.post(new Runnable() {
-		            @Override
-		            public void run() {
-		                showAchievement(7);
-		            }
-		        });
-		    }
-		};
-		timer.schedule(timerTask, 1000*60*5); // 1000 = 1 second; so 1000*60*5 = 5 mins
-	}
-	
     public void onMapReady(GoogleMap map) {
     	marker = new ArrayList<Marker>();
     	List<Place> places = new ArrayList<Place>();
@@ -119,6 +94,7 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 				if (eachPlace.getId().equalsIgnoreCase("1"))
 					map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 17));	
 			}
+			
     	} catch (Exception e) {
     		Log.d("MapPF Adding Markers", "Error: " + e.getMessage());
     	}
@@ -172,4 +148,20 @@ public class MapPlaceFragment extends Fragment implements OnMapReadyCallback {
 		toast.setView(layout);
 		toast.show();
 	 }
+	 
+	 // Andr.oid Eric (2013) Google Maps Android API v2 Example: Detect MarkerClick and Add Polyline. [Online]. Available from: http://android-er.blogspot.in/2013/01/google-maps-android-api-v2-example_5213.html [Accessed: 30 May 2015].
+	@Override
+	public boolean onMarkerClick(Marker arg0) {
+		BadgeDatabaseHelper db = new BadgeDatabaseHelper(context);
+	    Badge badge = db.getOneBadgeRow("7");
+	    Log.d("onMarkerClick", "Clicked Marker");
+	    Log.d("onMarkerClick", "Marker ID:" + arg0.getId());
+	    Log.d("onMarkerClick", "Marker Title:" + arg0.getTitle());
+	    
+		if (badge.getUnlocked_at().isEmpty() && "10".equals(arg0.getId())){
+			showAchievement(7);
+			return true;
+		}
+		return false;
+	}
 }
