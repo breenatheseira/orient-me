@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/vblfT_badgeList"
-        android:name="com.example.orient_me.badges.BadgesListFragment"
+        android:name="com.breenatheseira.orient_me.badges.BadgesListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

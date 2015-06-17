@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/vnlfB_listFragment"
-        android:name="com.example.orient_me.notes.NoteListFragment"
+        android:name="com.breenatheseira.orient_me.notes.NoteListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

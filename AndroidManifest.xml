@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.orient_me"
+    package="com.breenatheseira.orient_me"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -71,7 +71,7 @@
             android:label="@string/title_activity_edit_schedule" >
         </activity>
         <activity
-            android:name="com.example.orient_me.documents.AcknowledgeFeeActivity"
+            android:name="com.breenatheseira.orient_me.documents.AcknowledgeFeeActivity"
             android:label="@string/title_activity_acknowledge_fee" >
         </activity>
 

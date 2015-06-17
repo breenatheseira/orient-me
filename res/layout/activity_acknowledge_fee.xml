@@ -27,7 +27,7 @@
 
         <fragment
             android:id="@+id/aaf_feeFragment"
-            android:name="com.example.orient_me.documents.FeeFragment"
+            android:name="com.breenatheseira.orient_me.documents.FeeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
